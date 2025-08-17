@@ -1,0 +1,15 @@
+<h2>Test Backend Verbindung</h2>
+
+<button (click)="loadMessage()" class="mb">Nachricht laden</button>
+<p class="mb">{{ message }}</p>
+
+@if (error){
+  Fehler: {{ error }}
+} @else {
+  <div>
+    <h3>Backend Status: {{ health.status }}</h3>
+    <h4>Datenbank Status: {{ health.components.db.status }}</h4>
+    <p>Datenbank: {{ health.components.db.details.database }}</p>
+    <p>Validation Query: {{ health.components.db.details.validationQuery }}</p>
+  </div>
+}
