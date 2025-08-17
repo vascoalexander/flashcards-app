@@ -3,11 +3,9 @@ package com.example.flashcardsapp.rest;
 import com.example.flashcardsapp.dto.FlashcardDto;
 import com.example.flashcardsapp.service.FlashcardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -23,7 +21,7 @@ public class FlashcardController {
     @GetMapping("/flashcards")
     public List<FlashcardDto>  getFlashcards(
             @RequestParam(required = false) String type,
-            @RequestParam(required = false) Long set
+            @RequestParam(required = false) String set
     ) {
         return flashcardService.findAll(type, set);
     }

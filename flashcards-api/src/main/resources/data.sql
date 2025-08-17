@@ -5,6 +5,7 @@
 DROP TABLE IF EXISTS flashcard_options CASCADE;
 DROP TABLE IF EXISTS cards CASCADE;
 DROP TABLE IF EXISTS flashcard_sets CASCADE;
+TRUNCATE TABLE flashcard_set_mapping;
 
 -- Erstelle flashcards_sets Tabelle
 CREATE TABLE IF NOT EXISTS flashcard_sets
@@ -35,11 +36,10 @@ CREATE TABLE flashcard_options
 
 -- Seeding: Flashcard Sets anlegen
 INSERT INTO flashcard_sets (name, description)
-VALUES
-    ('Undefined', 'Default set for flashcards without explicit set'),
-    ('Java Basics', 'Questions covering basic Java concepts'),
-    ('Spring Boot', 'Flashcards about Spring Boot features'),
-    ('Database Fundamentals', 'Covers SQL, normalization, indexes');
+VALUES ('Undefined', 'Default set for flashcards without explicit set'),
+       ('Java Basics', 'Questions covering basic Java concepts'),
+       ('Spring Boot', 'Flashcards about Spring Boot features'),
+       ('Database Fundamentals', 'Covers SQL, normalization, indexes');
 
 -- Seeding: IT-Flashcards einfügen
 INSERT INTO cards (question, answer, type)
@@ -138,3 +138,17 @@ VALUES ('Bubble Sort', false, 10),
        ('Quick Sort', true, 10),
        ('Selection Sort', false, 10),
        ('Insertion Sort', false, 10);
+
+INSERT INTO flashcard_set_mapping (flashcard_id, set_id)
+VALUES (1, 1),
+       (2, 1),
+       (3, 2),
+       (3, 4),
+       (4, 2),
+       (5, 1),
+       (6, 3),
+       (7, 3),
+       (8, 1),
+       (8, 2),
+       (9, 1),
+       (10, 3)

@@ -94,17 +94,36 @@ public class FlashcardServiceImpl implements FlashcardService {
     }
 
     @Override
-    public List<FlashcardDto> findAll(String type, Long setId) {
+    public List<FlashcardDto> findAll(String type, String set) {
+        List<Long> ids = set != null ?
+                Arrays.stream(set.split(","))
+                        .map(Long::parseLong)
+                        .toList()
+                : List.of();
+
         return flashcardRepository.findAll()
                 .stream()
                 .filter(f -> type == null || f.getType().name().equals(type))
-                .filter(f -> setId == null || f.getSets().stream().anyMatch(s -> s.getId().equals(setId)))
+                .filter(f -> ids.isEmpty() || f.getSets().stream().anyMatch(s -> ids.contains(s.getId())))
                 .map(this::toDto)
                 .toList();
     }
 
+    @Override
     public List<FlashcardDto> findBySetId(Long setId) {
         return flashcardRepository.findBySetId(setId).stream()
+                .map(this::toDto)
+                .toList();
+    }
+
+    public List<FlashcardDto> findBySetIds(String sets) {
+        List<Long> ids = sets != null ?
+                Arrays.stream(sets.split(","))
+                        .map(Long::parseLong)
+                        .toList()
+                : List.of();
+
+        return flashcardRepository.findBySetIds(ids).stream()
                 .map(this::toDto)
                 .toList();
     }

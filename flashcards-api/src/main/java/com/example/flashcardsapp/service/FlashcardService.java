@@ -9,7 +9,7 @@ public interface FlashcardService {
     Flashcard toEntity(FlashcardDto flashcardDto);
     FlashcardDto toDto(Flashcard flashcard);
     FlashcardDto findById(Long id);
-    List<FlashcardDto> findAll(String type, Long setId);
+    List<FlashcardDto> findAll(String type, String set);
     List<FlashcardDto> findBySetId(Long setId);
     FlashcardDto update(Long id, FlashcardDto flashcardDto);
     FlashcardDto save(FlashcardDto flashcardDto);
