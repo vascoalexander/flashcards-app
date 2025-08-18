@@ -5,7 +5,7 @@
 DROP TABLE IF EXISTS flashcard_options CASCADE;
 DROP TABLE IF EXISTS cards CASCADE;
 DROP TABLE IF EXISTS flashcard_sets CASCADE;
-TRUNCATE TABLE flashcard_set_mapping;
+-- TRUNCATE TABLE flashcard_set_mapping;
 
 -- Erstelle flashcards_sets Tabelle
 CREATE TABLE IF NOT EXISTS flashcard_sets
@@ -139,16 +139,16 @@ VALUES ('Bubble Sort', false, 10),
        ('Selection Sort', false, 10),
        ('Insertion Sort', false, 10);
 
-INSERT INTO flashcard_set_mapping (flashcard_id, set_id)
-VALUES (1, 1),
-       (2, 1),
-       (3, 2),
-       (3, 4),
-       (4, 2),
-       (5, 1),
-       (6, 3),
-       (7, 3),
-       (8, 1),
-       (8, 2),
-       (9, 1),
-       (10, 3)
+-- INSERT INTO flashcard_set_mapping (flashcard_id, set_id)
+-- VALUES (1, 1),
+--        (2, 1),
+--        (3, 2),
+--        (3, 4),
+--        (4, 2),
+--        (5, 1),
+--        (6, 3),
+--        (7, 3),
+--        (8, 1),
+--        (8, 2),
+--        (9, 1),
+--        (10, 3)
