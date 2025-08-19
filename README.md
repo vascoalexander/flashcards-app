@@ -106,8 +106,10 @@ git checkout -b feature/dein-feature
 git add .
 git commit -m "Mein neues Feature"
 
-# Feature pushen
-git push origin feature/dein-feature
+# Feature pushen (legt die branch auf github an)
+git push -u origin feature/dein-feature
+
+# danach Pull Request auf github
 ```
 
 ---
@@ -130,6 +132,8 @@ flashcards-app/
 cd flashcards-api
 ./mvnw spring-boot:run   # Linux/macOS
 mvnw.cmd spring-boot:run # Windows (PowerShell)
+# wenn maven global installiert ist
+mvn springboot:run
 ```
 
 API läuft anschließend auf:  
@@ -173,13 +177,3 @@ UI läuft anschließend auf:
 | `DELETE /api/sets/{setId}` | Set löschen       |
 
 ---
-
-## Mit Docker starten
-
-```bash
-# Build & Run
-docker-compose up --build
-```
-
-- Backend → `http://localhost:8080/api`
-- Frontend → `http://localhost:4200`
