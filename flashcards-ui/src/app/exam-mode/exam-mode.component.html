@@ -1,0 +1,11 @@
+<p>exam-mode works!</p>
+
+<label for="time">Zeitlimit auswählen:</label>
+<select [(ngModel)]="selectedTime">
+  <option value="15">15 Minuten</option>
+  <option value="30">30 Minuten</option>
+  <option value="60">60 Minuten</option>
+  <option value="90">90 Minuten</option>
+  <option value="per-question">1 Minute pro Frage</option>
+</select>
+<button (click)="startExam()">Start</button>
