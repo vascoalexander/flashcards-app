@@ -1,3 +1,85 @@
 .my-app-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  gap: 10px;
 
+  min-height: 100vh;
+}
+
+.my-aside-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.my-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.my-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+}
+
+/* test objekte, später mit echten objekten ausprobieren, sonst löschen */
+.my-aside1, .main1, .main2, .main3, .main4 {
+  border-radius: 20px;
+}
+.header1, .my-footer1 {
+  border-radius: 12px;
+}
+.header1 {
+  height: 50px;
+  background-color: darksalmon;
+}
+.my-aside1 {
+  background-color: aquamarine;
+  /* min-width: 20vw; */
+  flex: 1;
+}
+
+.main1, .main2, .main3, .main4 {
+  height: 200px;
+  background-color: rebeccapurple;
+}
+.my-footer1 {
+  background-color: cornflowerblue;
+  height: 50px;
+}
+
+
+
+
+
+.my-footer {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .my-app-container {
+    margin: 20px 100px 0 100px;
+  }
+
+  .my-aside-main-container {
+    flex-direction: row;
+  }
+  .my-row {
+    flex-direction: row;
+  }
+  .my-main {
+    min-width: 70vw;
+  }
+  .main1, .main2, .main3, .main4 {
+    /* min-width: 50%; */
+    /* min-width: 50%; */
+    height: 100%;
+    flex: 1;
+  }
 }

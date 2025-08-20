@@ -2,54 +2,68 @@
 
   <!-- TODO: dummy content als test, danach löschen -->
   <!-- header -->
-  <header>
+     <header class="header1">
 
-    <mat-toolbar>
-      <mat-toolbar-row>
+         <a routerLink="/test">Test API</a>
 
-      <h1>Header H1</h1>
-      <span>
-        <nav class="mb">
-          <a routerLink="/test">Test API</a>
-        </nav>
-      </span>
-
-
-      <span class="spacer"></span>
-
-    </mat-toolbar-row>
-  </mat-toolbar>
-
-  </header>
+     </header>
 
   <!-- TODO: dummy content als test, danach löschen -->
   <!-- aside -->
+   <div class="my-aside-main-container">
+
+     <aside class="my-aside1">
+      <section>Aside Component</section>
+      <section>Test Insgesamt</section>
+      <section>Test Insgesamt</section>
+      <section>Test Insgesamt</section>
+     </aside>
 
 
-  <!-- TODO: dummy content als test, danach löschen -->
-  <!-- main -->
-  <main class="main">
+    <!-- TODO: dummy content als test, danach löschen -->
+    <!-- main -->
+    <main class="my-main">
 
-    <div class="content">
-      <router-outlet />
-    </div>
+      <div class="my-row">
 
-  </main>
+        <div class="main1">
+          <p>Main 1</p>
+        </div>
+        <div class="main2">
+          <p>Main 2</p>
+        </div>
+
+      </div>
+
+
+
+      <div class="my-row">
+
+        <div class="main3">
+          <p>Main 3</p>
+        </div>
+        <div class="main4">
+          <p>Main 4</p>
+        </div>
+
+      </div>
+
+    </main>
+
+   </div>
 
 
 
   <!-- TODO: dummy content als test, danach löschen -->
   <!-- footer  -->
-  <footer>
+  <footer class="my-footer my-footer1">
 
-    <mat-toolbar>
-      <mat-toolbar-row>
+        <span>Footer Component</span>
 
-        <span>Footer ...</span>
-
-      </mat-toolbar-row>
-    </mat-toolbar>
 
   </footer>
 
 </div>
+
+
+<router-outlet />
