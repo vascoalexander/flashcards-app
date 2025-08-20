@@ -19,7 +19,6 @@ public class FlashcardSet {
     @Column(name="description", nullable = false, length = 2000)
     private String description;
 
-    //@ManyToMany(mappedBy = "sets", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @ManyToMany
     @JoinTable(
             name = "flashcard_set_mapping",

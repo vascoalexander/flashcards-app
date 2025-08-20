@@ -28,11 +28,6 @@ public class Flashcard
     private List<FlashcardOption> options = new ArrayList<>();
 
     @ManyToMany(mappedBy = "flashcards")
-    // @JoinTable(
-    //         name="flashcard_set_mapping",
-    //         joinColumns = @JoinColumn(name="flashcard_id"),
-    //         inverseJoinColumns = @JoinColumn(name="set_id")
-    // )
     private List<FlashcardSet> sets = new ArrayList<>();
 
     public Flashcard() {}
