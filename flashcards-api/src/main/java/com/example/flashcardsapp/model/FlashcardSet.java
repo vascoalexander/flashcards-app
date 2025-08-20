@@ -19,7 +19,12 @@ public class FlashcardSet {
     @Column(name="description", nullable = false, length = 2000)
     private String description;
 
-    @ManyToMany(mappedBy = "sets")
+    @ManyToMany
+    @JoinTable(
+            name = "flashcard_set_mapping",
+            joinColumns = @JoinColumn(name = "set_id"),
+            inverseJoinColumns = @JoinColumn(name = "flashcard_id")
+    )
     private List<Flashcard> flashcards = new ArrayList<>();
 
     public Long getId() {
