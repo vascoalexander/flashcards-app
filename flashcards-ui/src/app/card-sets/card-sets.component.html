@@ -1,0 +1,19 @@
+<head>
+    <h1>Karten Kataloge</h1>
+    <div></div>
+</head>
+
+<div class="">
+    <div><h3>Sets anzeige</h3></div>
+    <div *ngIf="sets$ | async as sets">
+        <div *ngFor="let set of sets">
+            <h4>{{ set.title }}</h4>
+            <p>{{ set.kategorie }}</p>
+        </div>
+    </div>
+<div>Edit Set</div>
+
+</div>
+
+
+<footer></footer>
