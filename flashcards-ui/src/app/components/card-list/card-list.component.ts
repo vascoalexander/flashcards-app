@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrl: './card-list.component.css'
 })
 
-//TODO: vllt mit Resolver arbeiten
+//TODO: Wird mit Resolver gemacht
 export class CardListComponent implements OnInit
 {
   cards$: Observable<Flashcard[]> | undefined;
