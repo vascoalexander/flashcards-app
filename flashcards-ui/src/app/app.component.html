@@ -1,7 +1,55 @@
-<h1>{{ title }}</h1>
+<div class="my-app-container">
 
-<nav class="mb">
-  <a routerLink="/test">Test API</a>
-</nav>
+  <!-- TODO: dummy content als test, danach löschen -->
+  <!-- header -->
+  <header>
 
-<router-outlet></router-outlet>
+    <mat-toolbar>
+      <mat-toolbar-row>
+
+      <h1>Header H1</h1>
+      <span>
+        <nav class="mb">
+          <a routerLink="/test">Test API</a>
+        </nav>
+      </span>
+
+
+      <span class="spacer"></span>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  </header>
+
+  <!-- TODO: dummy content als test, danach löschen -->
+  <!-- aside -->
+
+
+  <!-- TODO: dummy content als test, danach löschen -->
+  <!-- main -->
+  <main class="main">
+
+    <div class="content">
+      <router-outlet />
+    </div>
+
+  </main>
+
+
+
+  <!-- TODO: dummy content als test, danach löschen -->
+  <!-- footer  -->
+  <footer>
+
+    <mat-toolbar>
+      <mat-toolbar-row>
+
+        <span>Footer ...</span>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+  </footer>
+
+</div>
