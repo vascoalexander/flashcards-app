@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,9 @@ import {RouterLink, RouterOutlet} from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+
+
+export class AppComponent
+{
   title = 'Flashcards UI';
 }
