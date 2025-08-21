@@ -27,3 +27,4 @@ export class CardSetsComponent {
     this.sets$ = from(this.cardSetService.getAllSets());
   }
 }
+
