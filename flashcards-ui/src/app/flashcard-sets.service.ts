@@ -35,4 +35,14 @@ export class FlashcardSetsService {
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
   }
+
+  async updateSet(setId: number, set: any): Promise<any> {
+    const response = await fetch(`${this.baseUrl}/${setId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(set)
+    });
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    return response.json();
+  }
 }
