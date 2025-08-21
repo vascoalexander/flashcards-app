@@ -1,4 +1,5 @@
-import {inject, Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
+import {Flashcard} from './flashcard.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +8,22 @@ export class FlashcardsService {
 
   private baseUrl = '/api/flashcards';
 
-  async getFlashcards(): Promise<any> {
+  flashcards = signal<Flashcard[]>([]);
+
+  async getFlashcards(): Promise<void> {
     const response = await fetch(this.baseUrl);
     if (!response.ok) throw new Error('Fehler beim Abrufen des /flashcards Enpoints');
-    return  response.json();
+    const data = await response.json();
+
+    this.flashcards.set(data);
   }
 
-  async getFlashcardsBySetId(setId: number): Promise<any> {
+  async getFlashcardsBySetId(setId: number): Promise<void> {
     const response = await fetch(`${this.baseUrl}?set=${setId}`);
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return response.json();
+    const data = await response.json();
+
+    this.flashcards.set(data);
   }
 
   async getFlashcardById(flashcardId: number): Promise<any> {
@@ -25,24 +32,28 @@ export class FlashcardsService {
     return response.json();
   }
 
-  async createFlashcard(flashcard: any): Promise<any> {
+  async createFlashcard(flashcard: any): Promise<void> {
     const response = await fetch(this.baseUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(flashcard)
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return response.json();
+    const newCard = await response.json();
+
+    this.flashcards.update(cards => [...cards, newCard])
   }
 
-  async updateFlashcard(flashcardId: number, flashcard: any): Promise<any> {
+  async updateFlashcard(flashcardId: number, flashcard: any): Promise<void> {
     const response = await fetch(`${this.baseUrl}/${flashcardId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(flashcard)
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return response.json();
+    const updated = await response.json();
+
+    this.flashcards.update(cards => cards.map(c => c.id === updated.id ? updated : c));
   }
 
   async deleteFlashcard(flashcardId: number): Promise<void> {
@@ -50,5 +61,7 @@ export class FlashcardsService {
       method: 'DELETE'
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+
+    this.flashcards.update(cards => cards.filter(c => c.id !== flashcardId));
   }
 }
