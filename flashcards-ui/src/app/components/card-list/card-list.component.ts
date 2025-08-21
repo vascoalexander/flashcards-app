@@ -3,11 +3,14 @@ import { Flashcard } from '../../flashcard.model';
 import { signal } from '@angular/core';
 import { FlashcardsService } from '../../flashcards.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 
 
 @Component({
   selector: 'app-card-list',
-  imports: [MatProgressSpinnerModule],
+  imports: [MatProgressSpinnerModule, MatCardModule, MatTableModule],
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.scss'
 })
@@ -18,6 +21,7 @@ export class CardListComponent implements OnInit
   private flashcardsService = inject(FlashcardsService);
 
   cards: Signal<Flashcard[]> = this.flashcardsService.flashcards;
+  columnNames = ['id', 'question'];
 
   loading = signal(true);
   loadingError = signal(false);

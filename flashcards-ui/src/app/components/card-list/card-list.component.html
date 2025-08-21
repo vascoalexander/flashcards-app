@@ -1,17 +1,48 @@
+<!-- //TODO: test.html löschen -->
 @defer (when !loading() && !loadingError())
 {
   <h1>All Flashcards ({{ cards().length }})</h1>
 
-  <ul class="pill-group">
-    @for (card of cards(); track card.id; let i = $index)
-    {
-      <li class="pill">{{ i+1 }}. {{ card.question }}</li>
-    }
+    <!-- @for (card of cards(); track card.id; let i = $index)
+    { -->
+
+
+      <!-- <mat-card [routerLink]="[card.id]">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ i+1 }}. {{ card.question }}</mat-card-title>
+            <mat-card-subtitle>{{ card.question }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+      </mat-card> -->
+
+
+      <table mat-table [dataSource]="cards()">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Nr:</th>
+        <td mat-cell *matCellDef="let card">
+          <!-- TODO: -->
+          <!-- <a [routerLink]="[card.id]">{{ card.id }}</a> -->
+           <p>{{ card.id }}</p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="question">
+        <th mat-header-cell *matHeaderCellDef>Frage:</th>
+        <td mat-cell *matCellDef="let card">{{ card.question }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+
+
+    </table>
+    <!-- }
     @empty
     {
       <p>No cards found! (empty)</p>
-    }
-  </ul>
+    } -->
 }
 <!-- zum testen: @placeholder(minimum 3s) -->
 @placeholder ()
@@ -28,22 +59,3 @@
     <p>Cards konnten nicht geladen werden.</p>
   </div>
 }
-
-
-
-
-
-
-
-
-
-
-<!-- @placeholder (when loading())
-{
-  <p>⏳ Lade Karten...</p>
-}
-
-@error (when error())
-{
-  <p>❌ Fehler beim Laden der Karten!</p>
-} -->
