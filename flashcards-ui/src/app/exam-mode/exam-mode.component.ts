@@ -1,4 +1,4 @@
-import {Component, computed, inject, OnInit} from '@angular/core';
+import {Component, computed, inject, OnInit, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {FlashcardSetsService} from '../flashcard-sets.service';
 import {FlashcardsService} from '../flashcards.service';
@@ -32,6 +32,7 @@ export class ExamModeComponent implements OnInit {
   // Exam state
   currentIndex: number = 0;
   showAnswer = false;
+  currentFlashcard = computed(() => this.flashcards()[this.currentIndex]);
 
   // temp
   isCorrect: boolean = false;
