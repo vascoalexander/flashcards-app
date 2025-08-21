@@ -1,23 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { Flashcard } from '../../flashcard.model';
-import { Observable } from 'rxjs';
+import { signal } from '@angular/core';
+import { FlashcardsService } from '../../flashcards.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @Component({
   selector: 'app-card-list',
-  imports: [],
+  imports: [MatProgressSpinnerModule],
   templateUrl: './card-list.component.html',
-  styleUrl: './card-list.component.css'
+  styleUrl: './card-list.component.scss'
 })
 
-//TODO: Wird mit Resolver gemacht
+
 export class CardListComponent implements OnInit
 {
-  cards$: Observable<Flashcard[]> | undefined;
+  private flashcardsService = inject(FlashcardsService);
+
+  cards: Signal<Flashcard[]> = this.flashcardsService.flashcards;
+
+  loading = signal(true);
+  loadingError = signal(false);
+
 
 
   ngOnInit(): void
   {
-
+    this.flashcardsService.getFlashcards()
+      .catch(() => this.loadingError.set(true))
+      .finally(() => this.loading.set(false));
   }
 }
+

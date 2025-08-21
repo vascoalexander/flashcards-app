@@ -24,6 +24,6 @@ export class CardSetsComponent {
   }
 
   async onAllSets() {
-    this.sets$ = from(this.cardSetService.getAllSets());
+    // this.sets$ = from(this.cardSetService.getAllSets());
   }
 }

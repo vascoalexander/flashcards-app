@@ -1,1 +1,49 @@
-<p>card-list works!</p>
+@defer (when !loading() && !loadingError())
+{
+  <h1>All Flashcards ({{ cards().length }})</h1>
+
+  <ul class="pill-group">
+    @for (card of cards(); track card.id; let i = $index)
+    {
+      <li class="pill">{{ i+1 }}. {{ card.question }}</li>
+    }
+    @empty
+    {
+      <p>No cards found! (empty)</p>
+    }
+  </ul>
+}
+<!-- zum testen: @placeholder(minimum 3s) -->
+@placeholder ()
+{
+  <div class="cardlist-placeholder-container">
+    <mat-progress-spinner mode="indeterminate" [diameter]="40"></mat-progress-spinner>
+    <p>Cards werden geladen...</p>
+  </div>
+}
+@error
+{
+  <div class="cardlist-error-container">
+    <p>Hoppla! Etwas ist schiefgelaufen!</p>
+    <p>Cards konnten nicht geladen werden.</p>
+  </div>
+}
+
+
+
+
+
+
+
+
+
+
+<!-- @placeholder (when loading())
+{
+  <p>⏳ Lade Karten...</p>
+}
+
+@error (when error())
+{
+  <p>❌ Fehler beim Laden der Karten!</p>
+} -->
