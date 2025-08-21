@@ -5,7 +5,7 @@ import { FlashcardsService } from '../../flashcards.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,8 +19,9 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 export class CardListComponent implements OnInit
 {
   private flashcardsService = inject(FlashcardsService);
+  private router = inject(Router);
 
-  cards: Signal<Flashcard[]> = this.flashcardsService.flashcards;
+  flashcards: Signal<Flashcard[]> = this.flashcardsService.flashcards;
   columnNames = ['id', 'question'];
 
   loading = signal(true);
@@ -33,6 +34,11 @@ export class CardListComponent implements OnInit
     this.flashcardsService.getFlashcards()
       .catch(() => this.loadingError.set(true))
       .finally(() => this.loading.set(false));
+  }
+
+    clickCardDetail(id: number)
+    {
+    this.router.navigate(['/cards', id]);
   }
 }
 

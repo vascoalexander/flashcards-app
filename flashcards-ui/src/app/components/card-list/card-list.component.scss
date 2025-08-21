@@ -14,3 +14,13 @@
   align-items: center;
 
 }
+
+
+.clickable-row {
+  cursor: pointer;
+  transition: background linear;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+  }
+}
