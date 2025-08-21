@@ -15,15 +15,15 @@ import { CommonModule } from '@angular/common';
 })
 export class CardSetsComponent {
 
-  sets$: Observable<CardSets[]> | undefined;
-
-  constructor(private cardSetService: FlashcardSetsService, private cardService: FlashcardsService, private router: Router,) { }
-
-  ngOnInit(): void {
-    this.onAllSets();
-  }
-
-  async onAllSets() {
-    this.sets$ = from(this.cardSetService.getAllSets());
-  }
+  // sets$: Observable<CardSets[]> | undefined;
+  //
+  // constructor(private cardSetService: FlashcardSetsService, private cardService: FlashcardsService, private router: Router,) { }
+  //
+  // ngOnInit(): void {
+  //   this.onAllSets();
+  // }
+  //
+  // async onAllSets() {
+  //   this.sets$ = from(this.cardSetService.getAllSets());
+  // }
 }
