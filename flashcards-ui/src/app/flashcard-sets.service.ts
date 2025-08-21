@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable, signal} from '@angular/core';
+import {FlashcardSet} from './flashcard.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,13 @@ export class FlashcardSetsService {
 
   private baseUrl = '/api/sets';
 
-  async getAllSets(): Promise<any> {
+  sets = signal<FlashcardSet[]>([]);
+
+  async getAllSets(): Promise<void> {
     const response = await fetch(this.baseUrl);
     if (!response.ok) throw new Error('Fehler beim Abrufen des /flashcards Enpoints');
-    return  response.json();
+    const data = await response.json();
+    this.sets.set(data);
   }
 
   async getSetById(setId: number): Promise<any> {
@@ -19,14 +23,16 @@ export class FlashcardSetsService {
     return response.json();
   }
 
-  async createSet(set: any): Promise<any> {
+  async createSet(set: any): Promise<void> {
     const response = await fetch(this.baseUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(set)
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return response.json();
+    const created = await response.json();
+
+    this.sets.update(sets => [...sets, created]);
   }
 
   async deleteSet(setId: number): Promise<void> {
@@ -34,6 +40,8 @@ export class FlashcardSetsService {
       method: 'DELETE'
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+
+    this.sets.update(sets => sets.filter(s => s.id !== setId));
   }
 
   async updateSet(setId: number, set: any): Promise<any> {
