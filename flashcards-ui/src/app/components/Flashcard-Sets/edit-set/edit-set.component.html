@@ -1,0 +1,70 @@
+<mat-card>
+
+  <!-- Kopfzeile -->
+  <mat-toolbar>
+    <span *ngIf="mode() === 'create'; else editTitle">Neues Deck anlegen</span>
+    <ng-template #editTitle>Deck bearbeiten</ng-template>
+    <span class="mat-toolbar-spacer"></span>
+    <button mat-icon-button aria-label="Abbrechen" (click)="cancel()" [disabled]="saving()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <!-- Formular -->
+  <mat-card-content>
+    <fieldset [disabled]="loading() || saving()">
+      <mat-form-field appearance="outline" style="width:100%;">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          [value]="name()"
+          (input)="name.set($any($event.target).value)"
+          required />
+        <mat-error *ngIf="!name().trim()">Name ist erforderlich</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width:100%;">
+        <mat-label>Beschreibung</mat-label>
+        <textarea
+          matInput
+          rows="5"
+          [value]="description()"
+          (input)="description.set($any($event.target).value)"></textarea>
+      </mat-form-field>
+
+      <mat-divider></mat-divider>
+
+      <h3 class="mat-h3">Karten für dieses Deck auswählen</h3>
+      <mat-selection-list (selectionChange)="onSelectionChange($event)">
+        @for (card of allFlashcards(); track card.id) {
+          <mat-list-option [value]="card.id" [selected]="selectedCardIds().includes(card.id)">
+            {{card.question}}
+          </mat-list-option>
+        }
+      </mat-selection-list>
+    </fieldset>
+
+    <mat-progress-bar *ngIf="loading() || saving()" mode="indeterminate"></mat-progress-bar>
+
+    <mat-card *ngIf="error()" appearance="outlined">
+      <mat-card-content>
+        <mat-icon color="warn" aria-hidden="true">error</mat-icon>
+        {{ error() }}
+      </mat-card-content>
+    </mat-card>
+
+  </mat-card-content>
+
+  <!-- Aktionen -->
+  <mat-card-actions [align]="'end'">
+    <button mat-stroked-button (click)="cancel()" [disabled]="loading() || saving()">Abbrechen</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="save()"
+      [disabled]="loading() || saving() || !name().trim()">
+      {{ mode() === 'create' ? 'Anlegen' : 'Speichern' }}
+    </button>
+  </mat-card-actions>
+
+</mat-card>
