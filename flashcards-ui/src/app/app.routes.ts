@@ -5,6 +5,7 @@ import { EditSetComponent } from './components/Flashcard-Sets/edit-set/edit-set.
 import { CardListComponent } from './components/card-list/card-list.component';
 import { CardDetailComponent } from './components/card-detail/card-detail.component';
 import { CardSetsComponent } from './components/Flashcard-Sets/card-sets/card-sets.component';
+import { CardCreateComponent } from './components/card-create/card-create.component';
 
 
 export const routes: Routes = [
