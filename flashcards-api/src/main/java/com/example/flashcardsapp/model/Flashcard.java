@@ -27,12 +27,7 @@ public class Flashcard
     @OneToMany(mappedBy = "flashcard", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FlashcardOption> options = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name="flashcard_set_mapping",
-            joinColumns = @JoinColumn(name="flashcard_id"),
-            inverseJoinColumns = @JoinColumn(name="set_id")
-    )
+    @ManyToMany(mappedBy = "flashcards")
     private List<FlashcardSet> sets = new ArrayList<>();
 
     public Flashcard() {}

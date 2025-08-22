@@ -1,0 +1,26 @@
+//NOTE: host für diese comp und root auf alle
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.progress-spinner-overrides((
+    active-indicator-color: purple
+  ));
+}
+
+
+.cardlist-placeholder-container, .cardlist-error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+.clickable-row {
+  cursor: pointer;
+  transition: background linear;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+  }
+}

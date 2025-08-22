@@ -18,11 +18,11 @@ html, body {
 }
 
 /* ===== Layout-Helfer ===== */
-.container {
+/* .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 1rem;
-}
+} */
 
 .flex {
   display: flex;
@@ -63,3 +63,12 @@ a:hover {
 .mb {
   margin-bottom: 1rem;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

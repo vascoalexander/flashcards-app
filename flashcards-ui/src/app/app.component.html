@@ -1,7 +1,71 @@
-<h1>{{ title }}</h1>
+<div class="my-app-container">
 
-<nav class="mb">
-  <a routerLink="/test">Test API</a>
-</nav>
+  <router-outlet />
 
-<router-outlet></router-outlet>
+  <!-- TODO: dummy content als test, danach löschen -->
+  <!-- header -->
+     <header class="header1">
+
+      <h1>{{ title }}</h1>
+      <a routerLink="/test">Test API</a>
+      <a routerLink="/"></a>
+
+     </header>
+
+  <!-- TODO: dummy content als test, danach löschen -->
+  <!-- aside -->
+   <div class="my-aside-main-container">
+
+     <aside class="my-aside1">
+      <section>Aside Component</section>
+      <section>Test Insgesamt</section>
+      <section>Test Insgesamt</section>
+      <section>Test Insgesamt</section>
+     </aside>
+
+
+    <!-- TODO: dummy content als test, danach löschen -->
+    <!-- main -->
+    <main class="my-main">
+
+      <div class="my-row">
+
+        <div class="main1">
+          <p>Main 1</p>
+        </div>
+        <div class="main2">
+          <p>Main 2</p>
+        </div>
+
+      </div>
+
+
+
+      <div class="my-row">
+
+        <div class="main3">
+          <p>Main 3</p>
+          <a routerLink="/sets">Card Sets</a>
+        </div>
+        <div class="main4">
+          <p>Main 4</p>
+        </div>
+
+      </div>
+
+    </main>
+
+   </div>
+
+
+
+  <!-- TODO: dummy content als test, danach löschen -->
+  <!-- footer  -->
+  <footer class="my-footer my-footer1">
+
+        <span>Footer Component</span>
+
+
+  </footer>
+
+</div>

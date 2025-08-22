@@ -63,6 +63,7 @@ public class FlashcardSetServiceImpl implements FlashcardSetService {
     public void deleteById(Long id) {
         FlashcardSet flashcardSet = flashcardSetRepository.findById(id)
             .orElseThrow(() -> new FlashcardSetNotFoundException("FlashcardSet with id " + id + " not found"));
+        flashcardSet.getFlashcards().clear();
         flashcardSetRepository.deleteById(id);
     }
 }

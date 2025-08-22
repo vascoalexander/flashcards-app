@@ -1,0 +1,108 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- LINKE SPALTE (SIDENAV) -->
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-toolbar color="primary">
+      <span>Lernkarten Decks</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="addSet()" matTooltip="Neues Set erstellen">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="sidenav-content">
+      <mat-form-field appearance="outline">
+        <mat-label>Deck suchen</mat-label>
+        <input matInput [value]="filterText()" (input)="filterText.set($any($event.target).value)">
+        <button *ngIf="filterText()" mat-icon-button matSuffix (click)="filterText.set('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-progress-bar *ngIf="loading()" mode="indeterminate"></mat-progress-bar>
+
+      <mat-nav-list>
+        <ng-container *ngIf="filteredSets().length > 0; else noSets">
+          <a mat-list-item *ngFor="let s of filteredSets(); trackBy: trackById" (click)="selectSet(s.id)" [activated]="s.id === selectedId()">
+            <span matListItemTitle>{{ s.name }}</span>
+            <span matListItemLine>Für Details auswählen</span>
+          </a>
+        </ng-container>
+        <ng-template #noSets>
+          <div class="empty-list-message">
+            <p>Keine Decks gefunden.</p>
+          </div>
+        </ng-template>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <!-- RECHTE SPALTE (CONTENT) -->
+  <mat-sidenav-content class="main-content">
+    <div class="main-content-inner">
+      <div *ngIf="error() as e" class="error-box">
+        <mat-icon>error</mat-icon>
+        <span>{{ e }}</span>
+      </div>
+
+      <ng-container *ngIf="selectedSet() as sel; else noSetSelected">
+        <!-- Header -->
+        <div class="content-header">
+          <h1>{{ sel.name }}</h1>
+          <span class="spacer"></span>
+          <button mat-stroked-button (click)="editSelected()">
+            <mat-icon>edit</mat-icon>
+            Deck bearbeiten
+          </button>
+          <button mat-stroked-button color="warn" (click)="removeSet()">
+            <mat-icon>delete</mat-icon>
+            Deck löschen
+          </button>
+        </div>
+
+        <!-- Description -->
+        <p *ngIf="sel.description; else noDesc" class="description">{{ sel.description }}</p>
+        <ng-template #noDesc>
+          <p class="description"><em>Keine Beschreibung vorhanden.</em></p>
+        </ng-template>
+
+        <mat-divider></mat-divider>
+
+        <!-- Questions Card -->
+        <mat-card class="questions-card">
+          <mat-card-header>
+            <mat-card-title>Fragen in diesem Deck ({{ selectedCount() }})</mat-card-title>
+            <span class="spacer"></span>
+            <button mat-flat-button color="warn" [disabled]="!questionIdsToDelete().length" (click)="removeSelectedQuestions()">
+              <mat-icon>delete_sweep</mat-icon>
+              Auswahl entfernen
+            </button>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-selection-list #questionList (selectionChange)="onQuestionSelectionChange($event)">
+              <ng-container *ngIf="selectedSetCards().length > 0; else noCards">
+                <mat-list-option *ngFor="let card of selectedSetCards(); trackBy: trackCardById" [value]="card.id">
+                  {{ card.question || 'Frage…' }}
+                </mat-list-option>
+              </ng-container>
+              <ng-template #noCards>
+                <div class="empty-list-message">
+                  <mat-icon>inbox</mat-icon>
+                  <p>Dieses Deck hat noch keine Fragen.</p>
+                </div>
+              </ng-template>
+            </mat-selection-list>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+      <ng-template #noSetSelected>
+        <div class="empty-content-message">
+          <mat-icon>rule_folder</mat-icon>
+          <h2>Deck auswählen</h2>
+          <p>Wählen Sie ein Set aus der linken Liste aus, um dessen Details und Fragen anzuzeigen.</p>
+        </div>
+      </ng-template>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
