@@ -4,6 +4,7 @@ import com.example.flashcardsapp.dto.FlashcardSetDto;
 import com.example.flashcardsapp.exceptions.FlashcardSetNotFoundException;
 import com.example.flashcardsapp.model.FlashcardSet;
 import com.example.flashcardsapp.repository.FlashcardSetRepository;
+import com.example.flashcardsapp.service.FlashcardService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,9 +18,11 @@ import java.util.Optional;
 public class FlashcardSetServiceImpl implements FlashcardSetService {
 
     private FlashcardSetRepository flashcardSetRepository;
+    private FlashcardService flashcardService;
 
-    public FlashcardSetServiceImpl(FlashcardSetRepository flashcardSetRepository) {
+    public FlashcardSetServiceImpl(FlashcardSetRepository flashcardSetRepository, FlashcardService flashcardService) {
         this.flashcardSetRepository = flashcardSetRepository;
+        this.flashcardService = flashcardService;
     }
 
     @Override
@@ -27,7 +30,8 @@ public class FlashcardSetServiceImpl implements FlashcardSetService {
         return new FlashcardSetDto(
                 set.getId(),
                 set.getName(),
-                set.getDescription()
+                set.getDescription(),
+                set.getFlashcards().stream().map(flashcardService::toDto).toList()
         );
     }
 

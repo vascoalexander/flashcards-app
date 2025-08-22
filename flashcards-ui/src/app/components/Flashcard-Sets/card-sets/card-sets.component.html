@@ -4,7 +4,7 @@
     <mat-toolbar color="primary">
       <span>Lernkarten Decks</span>
       <span class="spacer"></span>
-      <button mat-icon-button class="hover-green" (click)="addSet()" matTooltip="Neues Set erstellen">
+      <button mat-icon-button class="hover-green" (click)="addSet()" matTooltip="Neues Deck erstellen">
         <mat-icon>add</mat-icon>
       </button>
     </mat-toolbar>
@@ -62,7 +62,7 @@
 
         <p *ngIf="sel.description; else noDesc" class="description">{{ sel.description }}</p>
         <ng-template #noDesc>
-          <p class="description"><em>Keine Beschreibung vorhanden.</em></p>
+          <p class="description">Keine Beschreibung vorhanden.</p>
         </ng-template>
 
         <mat-divider></mat-divider>

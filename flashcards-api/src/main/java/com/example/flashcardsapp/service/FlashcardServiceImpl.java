@@ -63,19 +63,11 @@ public class FlashcardServiceImpl implements FlashcardService {
                         o.isCorrect()
                 )).toList();
 
-        List<FlashcardSetDto> sets = flashcard.getSets()
-                .stream()
-                .map(s -> new FlashcardSetDto(
-                        s.getId(),
-                        s.getName(),
-                        s.getDescription()
-                )).toList();
-
         return new FlashcardDto(
                 flashcard.getId(),
                 flashcard.getQuestion(),
                 flashcard.getAnswer(),
-                flashcard.getType(), options, sets);
+                flashcard.getType(), options);
     }
 
     @Override
@@ -135,12 +127,7 @@ public class FlashcardServiceImpl implements FlashcardService {
             option.setFlashcard(flashcard);
         }
 
-        if (flashcardDto.getSets() != null && !flashcardDto.getSets().isEmpty()) {
-            List<FlashcardSet> managedSets = flashcardDto.getSets().stream()
-                    .map(setDto -> flashcardSetRepository.getReferenceById(setDto.getId()))
-                    .toList();
-            flashcard.setSets(managedSets);
-        }
+        
 
         Flashcard saved = flashcardRepository.save(flashcard);
         return toDto(saved);

@@ -93,7 +93,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
       }
     }
     catch (e: any) {
-      this.error.set(e?.message ?? 'Fehler beim Laden der Sets.');
+      this.error.set(e?.message ?? 'Fehler beim Laden der Decks.');
     }
     finally {
       this.loading.set(false);
@@ -105,7 +105,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
       await this.flashcardsService.getFlashcardsBySetId(setId);
       this.selectedSetCards.set(this.flashcardsService.flashcards());
     } catch (e) {
-      console.error('Fehler beim Laden der Karten für das Set', e);
+      console.error('Fehler beim Laden der Karten für das Deck', e);
       this.selectedSetCards.set([]);
     }
   }

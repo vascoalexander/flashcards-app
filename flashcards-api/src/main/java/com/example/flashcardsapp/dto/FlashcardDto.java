@@ -11,21 +11,18 @@ public class FlashcardDto {
     private String answer;
     private FlashcardType type;
     private List<FlashcardOptionDto> options;
-    private List<FlashcardSetDto> sets;
 
     public FlashcardDto(
             Long id,
             String question,
             String answer,
             FlashcardType type,
-            List<FlashcardOptionDto> options,
-            List<FlashcardSetDto> sets) {
+            List<FlashcardOptionDto> options) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.type = type;
         this.options = options;
-        this.sets = sets;
     }
 
     public Long getId() {
@@ -50,9 +47,5 @@ public class FlashcardDto {
 
     public List<FlashcardOptionDto> getOptions() {
         return options;
-    }
-
-    public List<FlashcardSetDto> getSets() {
-        return sets;
     }
 }

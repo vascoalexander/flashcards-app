@@ -4,7 +4,7 @@
     <span *ngIf="mode() === 'create'; else editTitle">Neues Deck anlegen</span>
     <ng-template #editTitle>Deck bearbeiten</ng-template>
     <span class="mat-toolbar-spacer"></span>
-    <button mat-icon-button aria-label="Abbrechen" (click)="cancel()" [disabled]="saving()">
+    <button mat-icon-button class="backerror" (click)="cancel()" [disabled]="saving()">
       <mat-icon>close</mat-icon>
     </button>
   </mat-toolbar>
@@ -30,16 +30,20 @@
           (input)="description.set($any($event.target).value)"></textarea>
       </mat-form-field>
 
-      <mat-divider></mat-divider>
+     
 
-      <h3 class="mat-h3">Karten für dieses Deck auswählen</h3>
-      <mat-selection-list (selectionChange)="onSelectionChange($event)">
-        @for (card of allFlashcards(); track card.id) {
-          <mat-list-option [value]="card.id" [selected]="selectedCardIds().includes(card.id)">
+      <h3 class="mat-h3">Verfügbare Karten auswählen </h3>
+      <mat-selection-list #availableCardsList>
+        @for (card of cardsAvailable(); track card.id) {
+          <mat-list-option [value]="card.id">
             {{card.question}}
           </mat-list-option>
         }
+        @if(cardsAvailable().length === 0) {
+          <mat-list-item>Keine weiteren Karten verfügbar.</mat-list-item>
+        }
       </mat-selection-list>
+
     </fieldset>
 
     <mat-progress-bar *ngIf="loading() || saving()" mode="indeterminate"></mat-progress-bar>
@@ -54,7 +58,7 @@
   </mat-card-content>
 
   <mat-card-actions [align]="'end'">
-    <button mat-stroked-button class="hover-white" (click)="cancel()" [disabled]="loading() || saving()">Abbrechen</button>
+    <button mat-stroked-button class="backerror" (click)="cancel()" [disabled]="loading() || saving()">Abbrechen</button>
     <button
       mat-stroked-button class="hover-green"
       (click)="save()"
