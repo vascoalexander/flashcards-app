@@ -103,7 +103,7 @@ export class QuizService {
   }
 
   formatTime(){
-    const timeLeft = this.quizState().timeLeft;
+    const timeLeft = this._quizState().timeLeft;
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;

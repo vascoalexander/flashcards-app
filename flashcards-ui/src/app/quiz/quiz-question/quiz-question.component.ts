@@ -1,6 +1,7 @@
 import {Component, computed, inject, input, output} from '@angular/core';
 import {QuizService, QuizState} from '../quiz.service';
 import {Flashcard} from '../../flashcard.model';
+import {log} from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 
 @Component({
   selector: 'app-quiz-question',
@@ -20,8 +21,13 @@ export class QuizQuestionComponent {
   // outputs
   finishQuiz = output<void>();
 
-  // computed
+  // timer
   showTimer = computed(() => this.quizState().quizMode === 'exam');
+
+  formatTime(){
+    return this.quizService.formatTime();
+  }
+
 
   onFinishQuiz() {
     this.finishQuiz.emit();
