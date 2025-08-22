@@ -1,0 +1,132 @@
+<h1>Add new product</h1>
+
+<form [formGroup]="cardForm!" (ngSubmit)="submit()">
+
+
+  <mat-form-field>
+    <mat-label for="question">Frage</mat-label>
+    <input matInput id="question" formControlName="question" required />
+    <mat-error>Frage ist erforderlich.</mat-error>
+  </mat-form-field>
+
+
+  <!-- //TODO: nicht mit radio sondern -> mit chip siehe angular material examples -->
+  <p>Fragetyp:</p>
+  <mat-radio-group aria-label="Wählen Sie einen Fragetyp aus" [color]="'accent'" formControlName="type">
+    <mat-radio-button value="MULTIPLE_CHOICE">Multiple Choice</mat-radio-button>
+    <mat-radio-button value="SINGLE_CHOICE">Single Choice</mat-radio-button>
+    <mat-radio-button value="TEXT">Text</mat-radio-button>
+  </mat-radio-group>
+
+
+  <mat-form-field>
+    <mat-label for="set">Set auswählen</mat-label>
+    <mat-select id="set" formControlName="set">
+    <mat-option *ngFor="let set of sets()" [value]="set.id">{{ set.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <!-- //////////////////////////    TEST    /////////////////////////////////////////////// -->
+
+  <div>
+    <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
+    <mat-form-field>
+      <mat-label for="createAnswer1">Antwort 1</mat-label>
+      <input matInput id="createAnswer1" formControlName="createAnswer1" required />
+      <mat-error>Eine Antwort ist erforderlich.</mat-error>
+    </mat-form-field>
+  </div>
+
+
+
+  <div>
+    <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
+    <mat-form-field>
+      <mat-label for="createAnswer2">Antwort 2</mat-label>
+      <input matInput id="createAnswer2" formControlName="createAnswer2" required />
+      <mat-error>Eine Antwort ist erforderlich.</mat-error>
+    </mat-form-field>
+  </div>
+
+
+
+  <div>
+    <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
+    <mat-form-field>
+      <mat-label for="createAnswer3">Antwort 3</mat-label>
+      <input matInput id="createAnswer3" formControlName="createAnswer3" required />
+      <mat-error>Eine Antwort ist erforderlich.</mat-error>
+    </mat-form-field>
+  </div>
+
+
+
+  <div>
+    <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
+    <mat-form-field>
+      <mat-label for="createAnswer4">Antwort 4</mat-label>
+      <input matInput id="createAnswer4" formControlName="createAnswer4" required />
+      <mat-error>Eine Antwort ist erforderlich.</mat-error>
+    </mat-form-field>
+  </div>
+
+
+
+  <div>
+    <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
+    <mat-form-field>
+      <mat-label for="createAnswer5">Antwort 5</mat-label>
+      <input matInput id="createAnswer5" formControlName="createAnswer5" required />
+      <mat-error>Eine Antwort ist erforderlich.</mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <!-- ///////////////////////////////////////////////////////////////////////// -->
+
+
+    <!-- <mat-form-field>
+    <mat-label for="category">Category</mat-label>
+    <mat-select id="category" formControlName="category">
+      <mat-option value="electronics">Electronics</mat-option>
+      <mat-option value="jewelery">Jewelery</mat-option>
+      <mat-option>Other</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+
+
+  <!-- <mat-form-field>
+    <mat-label for="price">Price</mat-label>
+    <input matInput id="price" formControlName="price" type="number" required />
+    @if (productForm.controls.price.touched && productForm.controls.price.hasError('required'))
+    {
+      <mat-error>Price is required</mat-error>
+    }
+    @if (productForm.controls.price.touched && productForm.controls.price.hasError('min'))
+    {
+      <mat-error>Price should be greater than 0</mat-error>
+    }
+    @if (productForm.controls.price.touched && productForm.controls.price.hasError('priceMaximum'))
+    {
+      <mat-error>Price must be smaller or equal to 1000</mat-error>
+    }
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <mat-label for="category">Category</mat-label>
+    <mat-select id="category" formControlName="category">
+      <mat-option value="electronics">Electronics</mat-option>
+      <mat-option value="jewelery">Jewelery</mat-option>
+      <mat-option>Other</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+
+  <div>
+    <button mat-raised-button type="submit" [disabled]="cardForm.invalid">Create</button>
+  </div>
+
+</form>
