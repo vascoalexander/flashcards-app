@@ -86,7 +86,6 @@
   flex: 1 1 auto;
 }
 
-/* Improve activated route style */
 .mat-mdc-list-item.mdc-list-item--activated {
   background-color: rgba(63, 81, 181, 0.1);
   font-weight: 500;
@@ -105,4 +104,17 @@
 
 .error-box mat-icon {
   margin-right: 8px;
+}
+.hover-white:hover {
+  color: #fff !important;
+}
+.backerror:hover{ 
+  color: #fff !important;
+  background-color: red;
+  border-color: red;
+
+}
+.hover-green:hover{
+    color: white;
+    background-color: green;
 }

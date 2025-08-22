@@ -1,6 +1,5 @@
 <mat-card>
 
-  <!-- Kopfzeile -->
   <mat-toolbar>
     <span *ngIf="mode() === 'create'; else editTitle">Neues Deck anlegen</span>
     <ng-template #editTitle>Deck bearbeiten</ng-template>
@@ -10,7 +9,6 @@
     </button>
   </mat-toolbar>
 
-  <!-- Formular -->
   <mat-card-content>
     <fieldset [disabled]="loading() || saving()">
       <mat-form-field appearance="outline" style="width:100%;">
@@ -55,12 +53,10 @@
 
   </mat-card-content>
 
-  <!-- Aktionen -->
   <mat-card-actions [align]="'end'">
-    <button mat-stroked-button (click)="cancel()" [disabled]="loading() || saving()">Abbrechen</button>
+    <button mat-stroked-button class="hover-white" (click)="cancel()" [disabled]="loading() || saving()">Abbrechen</button>
     <button
-      mat-flat-button
-      color="primary"
+      mat-stroked-button class="hover-green"
       (click)="save()"
       [disabled]="loading() || saving() || !name().trim()">
       {{ mode() === 'create' ? 'Anlegen' : 'Speichern' }}

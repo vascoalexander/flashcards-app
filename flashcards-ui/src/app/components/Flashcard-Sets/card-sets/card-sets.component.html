@@ -1,11 +1,10 @@
 <mat-sidenav-container class="sidenav-container">
 
-  <!-- LINKE SPALTE (SIDENAV) -->
   <mat-sidenav mode="side" opened class="sidenav">
     <mat-toolbar color="primary">
       <span>Lernkarten Decks</span>
       <span class="spacer"></span>
-      <button mat-icon-button (click)="addSet()" matTooltip="Neues Set erstellen">
+      <button mat-icon-button class="hover-green" (click)="addSet()" matTooltip="Neues Set erstellen">
         <mat-icon>add</mat-icon>
       </button>
     </mat-toolbar>
@@ -25,7 +24,6 @@
         <ng-container *ngIf="filteredSets().length > 0; else noSets">
           <a mat-list-item *ngFor="let s of filteredSets(); trackBy: trackById" (click)="selectSet(s.id)" [activated]="s.id === selectedId()">
             <span matListItemTitle>{{ s.name }}</span>
-            <span matListItemLine>Für Details auswählen</span>
           </a>
         </ng-container>
         <ng-template #noSets>
@@ -35,9 +33,11 @@
         </ng-template>
       </mat-nav-list>
     </div>
+    <div>
+       <button mat-stroked-button color="primary" class="hover-white" (click)="cancel()" >Zurück</button>
+    </div>
   </mat-sidenav>
 
-  <!-- RECHTE SPALTE (CONTENT) -->
   <mat-sidenav-content class="main-content">
     <div class="main-content-inner">
       <div *ngIf="error() as e" class="error-box">
@@ -46,21 +46,20 @@
       </div>
 
       <ng-container *ngIf="selectedSet() as sel; else noSetSelected">
-        <!-- Header -->
+    
         <div class="content-header">
           <h1>{{ sel.name }}</h1>
           <span class="spacer"></span>
-          <button mat-stroked-button (click)="editSelected()">
+          <button mat-stroked-button class="hover-white" (click)="editSelected()">
             <mat-icon>edit</mat-icon>
             Deck bearbeiten
           </button>
-          <button mat-stroked-button color="warn" (click)="removeSet()">
+          <button mat-stroked-button  class="hover-white, backerror" (click)="removeSet()">
             <mat-icon>delete</mat-icon>
             Deck löschen
           </button>
         </div>
 
-        <!-- Description -->
         <p *ngIf="sel.description; else noDesc" class="description">{{ sel.description }}</p>
         <ng-template #noDesc>
           <p class="description"><em>Keine Beschreibung vorhanden.</em></p>
@@ -68,12 +67,11 @@
 
         <mat-divider></mat-divider>
 
-        <!-- Questions Card -->
         <mat-card class="questions-card">
           <mat-card-header>
             <mat-card-title>Fragen in diesem Deck ({{ selectedCount() }})</mat-card-title>
             <span class="spacer"></span>
-            <button mat-flat-button color="warn" [disabled]="!questionIdsToDelete().length" (click)="removeSelectedQuestions()">
+            <button mat-stroked-button class="backerror" [disabled]="!questionIdsToDelete().length" (click)="removeSelectedQuestions()">
               <mat-icon>delete_sweep</mat-icon>
               Auswahl entfernen
             </button>
@@ -99,7 +97,7 @@
         <div class="empty-content-message">
           <mat-icon>rule_folder</mat-icon>
           <h2>Deck auswählen</h2>
-          <p>Wählen Sie ein Set aus der linken Liste aus, um dessen Details und Fragen anzuzeigen.</p>
+          <p>Wählen Sie ein Deck aus für mehr Informationen.</p>
         </div>
       </ng-template>
     </div>

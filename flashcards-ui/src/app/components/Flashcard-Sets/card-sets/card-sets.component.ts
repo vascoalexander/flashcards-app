@@ -14,15 +14,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { filter, Subscription } from 'rxjs';
-import { FlashcardSetsService } from '../../flashcard-sets.service';
-import { FlashcardsService } from '../../flashcards.service';
-import { Flashcard, FlashcardSet } from '../../flashcard.model';
+import { FlashcardSetsService } from '../../../flashcard-sets.service';
+import { FlashcardsService } from '../../../flashcards.service';
+import { Flashcard, FlashcardSet } from '../../../flashcard.model';
 
 @Component({
   selector: 'app-card-sets',
   imports: [
     ReactiveFormsModule, CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule,
-    MatFormFieldModule, MatInputModule, MatListModule, MatProgressBarModule, MatCardModule, MatDividerModule, MatGridListModule
+    MatFormFieldModule, MatInputModule, MatListModule, MatProgressBarModule, MatCardModule, MatDividerModule, MatGridListModule,
+
   ],
   templateUrl: './card-sets.component.html',
   styleUrl: './card-sets.component.css'
@@ -166,7 +167,9 @@ export class CardSetsComponent implements OnInit, OnDestroy {
     const id = this.selectedId();
     if (id != null) this.router.navigate(['/sets', id, 'organize']);
   }
-
+  cancel() {
+    this.router.navigate(['/']);
+  }
   trackById = (_: number, s: FlashcardSet) => s.id;
   trackCardById = (_: number, c: Flashcard) => c.id;
 }

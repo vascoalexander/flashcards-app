@@ -37,7 +37,7 @@ export class EditSetComponent implements OnInit {
   error = signal<string | null>(null);
   loading = signal(false);
 
-  allFlashcards = signal<Flashcard[]>([]);
+  allFlashcards = this.flashcardsApi.flashcards;
   selectedCardIds = signal<number[]>([]);
 
   async ngOnInit(): Promise<void> {
@@ -45,7 +45,7 @@ export class EditSetComponent implements OnInit {
     this.error.set(null);
     try {
       await Promise.all([
-        this.loadAllFlashcards(),
+        this.flashcardsApi.getFlashcards(),
         this.loadSetIfInEditMode()
       ]);
     } catch (e: any) {
@@ -65,14 +65,7 @@ export class EditSetComponent implements OnInit {
     }
   }
 
-  private async loadAllFlashcards() {
-    try {
-      await this.flashcardsApi.getFlashcards();
-      this.allFlashcards.set(this.flashcardsApi.flashcards());
-    } catch (e: any) {
-      this.error.set(e?.message ?? 'Fehler beim Laden der Flashcards.');
-    }
-  }
+  
 
   private async load(id: number) {
     this.error.set(null);

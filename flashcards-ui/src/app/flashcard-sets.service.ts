@@ -1,5 +1,5 @@
-import {Injectable, signal} from '@angular/core';
-import {FlashcardSet} from './flashcard.model';
+import { Injectable, signal } from '@angular/core';
+import { FlashcardSet } from './flashcard.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,15 +45,11 @@ export class FlashcardSetsService {
     this.sets.update(sets => sets.filter(s => s.id !== setId));
   }
 
-    async updateSet(setId: number, set: any): Promise<any> {
-    const response = await fetch(`${this.baseUrl}/${setId}`, {
+  async updateSet(setId: number, set: any): Promise<any> {
+    const response = await fetch(`${this.baseUrl}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(set)
     });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    // The response from the server is null, so we use the passed 'set' object to update the state.
-    this.sets.update(sets => sets.map(s => s.id === setId ? set : s));
-    return null;
   }
 }
