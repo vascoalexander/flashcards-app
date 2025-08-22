@@ -1,0 +1,36 @@
+<div class="quiz-config">
+
+  <div class="quiz-config-set">
+    <label for="selectSet">Kartenset auswählen</label>
+    <select id="selectSet" [(ngModel)]="selectedSetId">
+      @for (set of sets(); track set.id) {
+        <option [value]="set.id">{{ set.name }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="quiz-config-mode">
+    <label for="learnMode">
+      <input type="radio" name="quizMode" id="learnMode" value="learn" checked [(ngModel)]="selectedQuizMode"/>
+      <span>Lernmodus</span>
+    </label>
+    <label for="examMode">
+      <input type="radio" name="quizMode" id="examMode" value="exam" [(ngModel)]="selectedQuizMode"/>
+      <span>Prüfungsmodus</span>
+    </label>
+  </div>
+
+  @if (selectedQuizMode === 'exam'){
+    <div>
+      <label for="selectTime">Zeitlimit festlegen</label>
+      <select id="selectTime" [(ngModel)]="selectedTime">
+        @for (option of timerOptions; track option) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+  }
+
+  <button (click)="onExamStart()">Starte Quiz</button>
+
+</div>
