@@ -23,7 +23,6 @@ export class QuizComponent implements OnInit, OnDestroy {
   quizState = this.quizService.quizState;
   currentFlashcard = this.quizService.currentFlashcard;
 
-
   // computed
   showConfig = computed(() =>
     !this.quizState().isStarted && !this.quizState().isFinished);

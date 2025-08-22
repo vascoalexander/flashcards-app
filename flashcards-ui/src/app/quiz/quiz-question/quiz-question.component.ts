@@ -28,7 +28,6 @@ export class QuizQuestionComponent {
     return this.quizService.formatTime();
   }
 
-
   onFinishQuiz() {
     this.finishQuiz.emit();
   }

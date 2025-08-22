@@ -1,3 +1,18 @@
-@if (showTimer()) {
-  {{ formatTime() }}
-}
+<div class="quiz-header">
+  @if (showTimer()) {
+    <div class="timer">
+      {{ formatTime() }}
+    </div>
+  }
+  <div class="progress-info">
+    <div class="progress-bar">
+      <span class="progress-text">
+        Frage {{ quizState().currentQuestionIndex + 1 }} von {{ flashcards().length }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="question-text">
+  <p>{{ currentFlashcard().question }}</p>
+</div>

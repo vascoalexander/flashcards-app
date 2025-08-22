@@ -18,7 +18,12 @@ export interface QuizState {
   progress: number; // percent
 }
 
-export interface QuizResult {}
+export interface QuizResult {
+  score: number;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  unansweredQuestions: number;
+}
 
 
 @Injectable({
@@ -130,6 +135,24 @@ export class QuizService {
   toggleShowAnswer() {}
 
   // quiz termination
-  finishQuiz() {}
-  resetQuiz() {}
+  finishQuiz() {
+    this._quizState.update(state => ({
+      ...state,
+      isStarted: false,
+      isFinished: true
+    }))
+  }
+
+  resetQuiz() {
+    this.clearTimer();
+    this._quizState.set({
+      quizMode: '',
+      isStarted: false,
+      isFinished: false,
+      currentQuestionIndex: 0,
+      totalTime: 0,
+      timeLeft: 0,
+      progress: 0
+    });
+  }
 }
