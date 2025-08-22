@@ -58,4 +58,5 @@ public class FlashcardSet {
     public void setFlashcards(List<Flashcard> flashcards) {
         this.flashcards = flashcards;
     }
+    
 }

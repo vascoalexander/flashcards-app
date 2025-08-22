@@ -10,7 +10,6 @@ export interface Flashcard {
   answer?: string;
   type: FlashcardType;
   options?: FlashcardOption[];
-  sets?: FlashcardSet[];
 }
 
 export interface FlashcardOption {
