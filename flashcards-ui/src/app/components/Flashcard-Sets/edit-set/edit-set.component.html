@@ -1,3 +1,4 @@
+
 <mat-card>
 
   <mat-toolbar>
@@ -10,9 +11,12 @@
   </mat-toolbar>
 
   <mat-card-content>
-    <fieldset [disabled]="loading() || saving()">
-      <mat-form-field appearance="outline" style="width:100%;">
+    
+    <fieldset [disabled]="loading() || saving() " >
+      <mat-form-field appearance="outline" style="width:100%; ">
+        
         <mat-label>Name</mat-label>
+        
         <input
           matInput
           [value]="name()"
