@@ -10,11 +10,12 @@ export class FlashcardSetsService {
 
   sets = signal<FlashcardSet[]>([]);
 
-  async getAllSets(): Promise<void> {
+  async getAllSets(): Promise<FlashcardSet[]> {
     const response = await fetch(this.baseUrl);
     if (!response.ok) throw new Error('Fehler beim Abrufen des /flashcards Enpoints');
     const data = await response.json();
     this.sets.set(data);
+    return data;
   }
 
   async getSetById(setId: number): Promise<any> {
@@ -42,5 +43,17 @@ export class FlashcardSetsService {
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
 
     this.sets.update(sets => sets.filter(s => s.id !== setId));
+  }
+
+    async updateSet(setId: number, set: any): Promise<any> {
+    const response = await fetch(`${this.baseUrl}/${setId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(set)
+    });
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    // The response from the server is null, so we use the passed 'set' object to update the state.
+    this.sets.update(sets => sets.map(s => s.id === setId ? set : s));
+    return null;
   }
 }

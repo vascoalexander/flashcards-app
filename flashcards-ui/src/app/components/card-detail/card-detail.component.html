@@ -1,0 +1,34 @@
+@let card = flashcard();
+
+<!-- //TODO: 1: alle infos ausgeben!! -->
+<!-- TODO: vllt designen, aber erst in die haupt design basic layout einfügne und schauen wie es aussieht -->
+@defer (when card)
+{
+  <li>Id: {{card?.id}}</li>
+  <li>Question: {{card?.question}}</li>
+  <li>Answer: {{card?.answer}}</li>
+
+
+      <!-- <mat-card [routerLink]="[card.id]">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ i+1 }}. {{ card.question }}</mat-card-title>
+            <mat-card-subtitle>{{ card.question }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+      </mat-card> -->
+}
+<!-- zum testen: @placeholder(minimum 3s) -->
+@placeholder ()
+{
+  <div>
+    <p>Flashcard wurde nicht gefunden...</p>
+  </div>
+}
+@error
+{
+  <div>
+    <p>Hoppla! Etwas ist schiefgelaufen!</p>
+    <p>Flashcard konnte nicht geladen werden.</p>
+  </div>
+}

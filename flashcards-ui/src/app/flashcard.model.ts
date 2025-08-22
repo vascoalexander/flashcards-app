@@ -28,5 +28,5 @@ export interface FlashcardSet {
   id: number;
   name: string;
   description: string;
-  flashcards?: Flashcard[];
+  flashcards: Flashcard[];
 }

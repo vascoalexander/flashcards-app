@@ -1,11 +1,14 @@
 <div class="my-app-container">
 
+  <router-outlet />
+
   <!-- TODO: dummy content als test, danach löschen -->
   <!-- header -->
      <header class="header1">
 
       <h1>{{ title }}</h1>
       <a routerLink="/test">Test API</a>
+      <a routerLink="/"></a>
 
      </header>
 
@@ -43,7 +46,7 @@
 
         <div class="main3">
           <p>Main 3</p>
-          <a routerLink="/cardsets">Card Sets</a>
+          <a routerLink="/sets">Card Sets</a>
         </div>
         <div class="main4">
           <p>Main 4</p>
@@ -67,6 +70,3 @@
   </footer>
 
 </div>
-
-
-<router-outlet />

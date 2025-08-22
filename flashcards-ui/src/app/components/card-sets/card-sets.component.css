@@ -1,0 +1,108 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 320px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.sidenav-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-content .mat-form-field {
+  width: 100%;
+}
+
+.main-content {
+  background-color: #f9f9f9;
+}
+
+.main-content-inner {
+  padding: 24px;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.content-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.description {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.questions-card {
+  margin-top: 24px;
+}
+
+.mat-card-actions {
+  padding: 16px !important;
+}
+
+.empty-list-message, .empty-content-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: rgba(0, 0, 0, 0.54);
+  text-align: center;
+}
+
+.empty-content-message {
+  height: 100%;
+}
+
+.empty-content-message mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}
+
+.empty-content-message h2 {
+  margin: 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Improve activated route style */
+.mat-mdc-list-item.mdc-list-item--activated {
+  background-color: rgba(63, 81, 181, 0.1);
+  font-weight: 500;
+}
+
+.error-box {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.error-box mat-icon {
+  margin-right: 8px;
+}
