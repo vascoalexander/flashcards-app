@@ -25,7 +25,7 @@ import { Flashcard, FlashcardSet } from '../../../flashcard.model';
     MatFormFieldModule, MatInputModule, MatListModule, MatProgressBarModule, MatCardModule, MatDividerModule, MatGridListModule,
 
   ],
-  templateUrl: './card-sets.component.html',
+ templateUrl: './card-sets.component.html',
   styleUrl: './card-sets.component.css'
 })
 export class CardSetsComponent implements OnInit, OnDestroy {
