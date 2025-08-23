@@ -42,7 +42,6 @@ export class FlashcardSetsService {
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
 
-    this.sets.update(sets => sets.filter(s => s.id !== setId));
   }
 
   async updateSet(setId: number, set: any): Promise<any> {
