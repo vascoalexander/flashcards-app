@@ -20,11 +20,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-edit-set',
-  imports: [CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule,MatProgressSpinnerModule,
+  imports: [CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatProgressBarModule, MatCardModule, MatDividerModule, MatGridListModule],
   templateUrl: './edit-set.component.html',
   styleUrl: './edit-set.component.css'
 })
+
+
 export class EditSetComponent {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -43,6 +45,7 @@ export class EditSetComponent {
 
   allFlashcards = this.flashcardsApi.flashcards;
   selectedCardIds = signal<number[]>([]);
+
 
   cardsInSet = computed(() => {
     const all = this.allFlashcards();
@@ -96,6 +99,8 @@ export class EditSetComponent {
   }
 
   async save() {
+    const norm = (s: string) => s.trim().toLowerCase();
+
     const name = this.name().trim();
     if (!name) {
       this.error.set('Der Name für das Set ist erforderlich.'); return;
@@ -115,6 +120,11 @@ export class EditSetComponent {
       .filter((c): c is Flashcard => c !== undefined);
 
     try {
+      const id = this.id();
+      const sets = await this.api.getAllSets();
+      if (sets.some(s => norm(s.name) === norm(name) && s.id !== id)) {
+        this.error.set('Das Deck existiert bereits.'); return;
+      }
       const payload: Omit<FlashcardSet, 'id'> = {
         name: name,
         description: this.description().trim(),
