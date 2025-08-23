@@ -17,15 +17,15 @@ import { filter, Subscription } from 'rxjs';
 import { FlashcardSetsService } from '../../../flashcard-sets.service';
 import { FlashcardsService } from '../../../flashcards.service';
 import { Flashcard, FlashcardSet } from '../../../flashcard.model';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-card-sets',
   imports: [
-    ReactiveFormsModule, CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule,
+    ReactiveFormsModule, CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatProgressBarModule, MatCardModule, MatDividerModule, MatGridListModule,
 
   ],
- templateUrl: './card-sets.component.html',
+  templateUrl: './card-sets.component.html',
   styleUrl: './card-sets.component.css'
 })
 export class CardSetsComponent implements OnInit, OnDestroy {
@@ -118,6 +118,8 @@ export class CardSetsComponent implements OnInit, OnDestroy {
     const set = this.selectedSet();
     if (!set) return;
 
+    if (!confirm('Sind Sie sicher, dass Sie die ausgewählten Fragen löschen möchten?')) return;
+
     const originalCards = this.selectedSetCards();
     const idsToDelete = this.questionIdsToDelete();
     const newCards = originalCards.filter(card => !idsToDelete.includes(card.id));
@@ -153,6 +155,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
   async removeSet() {
     const id = this.selectedId();
     if (id == null) return;
+    if (!confirm('Sind Sie sicher, dass Sie dieses Deck löschen möchten?')) return;
     this.error.set(null);
     try {
       await this.setservice.deleteSet(id);
