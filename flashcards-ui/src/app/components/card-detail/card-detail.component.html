@@ -4,25 +4,43 @@
 <!-- TODO: vllt designen, aber erst in die haupt design basic layout einfügne und schauen wie es aussieht -->
 @defer (when card)
 {
-  <li>Id: {{card?.id}}</li>
-  <li>Question: {{card?.question}}</li>
-  <li>Answer: {{card?.answer}}</li>
+  <mat-card class="card-detail" appearance="outlined">
+
+    <mat-card-header>
+      <mat-card-title>#{{card?.id}} Frage
+        <span [matBadge]="card?.type | formatCardtype" matBadgeOverlap="false" class="card-detail-type-badge"></span>
+      </mat-card-title>
 
 
-      <!-- <mat-card [routerLink]="[card.id]">
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>{{ i+1 }}. {{ card.question }}</mat-card-title>
-            <mat-card-subtitle>{{ card.question }}</mat-card-subtitle>
-          </mat-card-title-group>
-        </mat-card-header>
-      </mat-card> -->
+      <mat-chip-set>
+        <!-- //TODO: class="is-clickable" (click)="onOpen()" -->
+        <mat-chip *ngFor="let set of card?.sets">
+          {{ set.name }} (Set #{{ set.id }})
+        </mat-chip>
+      </mat-chip-set>
+    </mat-card-header>
+
+    <mat-card-content class="card-detail-chip-crud">
+      <p class="card-detail-question">{{card?.question}}</p>
+      <mat-chip-set>
+        <!-- //TODO: class="is-clickable" (click)="onOpen()" -->
+        <mat-chip>Antwort</mat-chip>
+        <!-- //TODO: class="is-clickable" (click)="onOpen()" -->
+        <mat-chip>Editieren</mat-chip>
+      </mat-chip-set>
+    </mat-card-content>
+
+    <!-- //NOTE: mit footer verschieben sich die chips in einer unmöglichen Position -->
+    <mat-card-footer></mat-card-footer>
+
+  </mat-card>
+
 }
-<!-- zum testen: @placeholder(minimum 3s) -->
 @placeholder ()
 {
   <div>
-    <p>Flashcard wurde nicht gefunden...</p>
+    <p>Flashcard wird geladen...</p>
+    <p>(oder wurde nicht gefunden)</p>
   </div>
 }
 @error

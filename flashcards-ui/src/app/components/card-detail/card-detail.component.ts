@@ -1,14 +1,18 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { Flashcard } from '../../flashcard.model';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FlashcardsService } from '../../flashcards.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { CommonModule } from '@angular/common';
+import { MatBadgeModule } from '@angular/material/badge';
+import { FormatCardtypePipe } from '../../pipes/format-cardtype.pipe';
 
 
 @Component({
   selector: 'app-card-detail',
-  imports: [],
+  imports: [MatCardModule, MatChipsModule, CommonModule, MatBadgeModule, FormatCardtypePipe],
   templateUrl: './card-detail.component.html',
-  styleUrl: './card-detail.component.css'
+  styleUrl: './card-detail.component.scss'
 })
 
 
@@ -17,18 +21,14 @@ export class CardDetailComponent implements OnInit
   private flashcardsService = inject(FlashcardsService);
   private route = inject(ActivatedRoute);
 
-  flashcard = signal<Flashcard | null>(null);
+  id = Number(this.route.snapshot.paramMap.get('id'));
+
+  flashcard = computed(() => this.flashcardsService.flashcards().find(card => card.id === this.id) ?? null);
 
 
   ngOnInit(): void
   {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-
-
-
-    this.flashcardsService.getFlashcardById(id)
-    .then(data => this.flashcard.set(data));
-
+    this.flashcardsService.getFlashcards();
   };
 
 }

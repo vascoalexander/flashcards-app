@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.radio-overrides((
+    ripple-color: aqua,
+    checked-ripple-color: rgb(61, 61, 255),
+    selected-icon-color: rgb(61, 61, 255),
+    selected-hover-icon-color: rgb(61, 61, 255),
+    state-layer-size: 40px,
+    unselected-hover-icon-color: rgb(61, 61, 255),
+    selected-focus-icon-color: rgb(61, 61, 255),
+    label-text-size: 1.2rem,
+    label-text-tracking: 0.1rem,
+  ));
+}
+
+/* //TODO: code aus angular-buch, später alles anpassen */
+
+:host {
+  width: 400px;
+}
+
+/* input {
+  width: 200px;
+} */
+
+select {
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #BDBDBD;
+  width: 220px;
+}
