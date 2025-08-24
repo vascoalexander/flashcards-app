@@ -1,9 +1,10 @@
 import { Component, inject, signal, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { FlashcardSetsService } from './flashcard-sets.service';
-import { FlashcardSet } from './flashcard.model';
+import { Flashcard, FlashcardSet } from './flashcard.model';
 import { InfoPanelComponent, InfoItem } from './components/info-panel/info-panel.component';
 import { Subscription } from 'rxjs';
+import { FlashcardsService } from './flashcards.service';
 
 
 @Component({
@@ -38,19 +39,21 @@ export class AppComponent implements OnInit, OnDestroy {
     try {
       const sets: FlashcardSet[] = await this.setssvc.getAllSets();
       const cardsInSet = sets.flatMap(s => s.flashcards ?? []);
-      const seen = cardsInSet.filter(c =>
-        (c as any).seenn == true ||
+      const byId = new Map<number, Flashcard>(cardsInSet.map(c => [c.id, c]));
+      const uniqueCards = Array.from(byId.values());
+      const seen = uniqueCards.filter(c =>
+        (c as any).seen === true ||
         (c as any).timesSeen > 0 ||
         !!(c as any).lastReviewedAt).length;
         
-        const correct = cardsInSet.filter(c => (c as any).correct == true ||
-        (c as any).isCorrect == true ||
+      const correct = uniqueCards.filter(c => (c as any).correct == true ||
+        (c as any).isCorrect === true ||
         ((c as any).stats?.correctCount ?? 0) > 0).length;
 
       const accuracy = seen > 0 ? Math.round((correct / seen) * 100) : 0;
 
       this.infoItems.set([
-        { icon: 'layers', label: 'Karten gesamt', value: cardsInSet.length.toString() },
+        { icon: 'layers', label: 'Karten gesamt', value: uniqueCards.length.toString() },
         { icon: 'collections_bookmark', label: 'Sets gesamt', value: sets.length.toString() },
         { icon: 'visibility', label: 'Karten gesehen', value: seen.toString() },
         { icon: 'check_circle', label: 'Richtig beantwortet', value: `${correct} (${accuracy}%)` }
