@@ -54,7 +54,6 @@ export class CardCreateComponent implements OnInit, OnDestroy
     // set: new FormControl<number | null>(null, { nonNullable: true, validators: Validators.required }),
     set: new FormControl<number | null>(null),
 
-    //NOTE: TEST FÜR TEXT FILL-IN TYPE (eventuell löschen)
     answer: new FormControl('', {nonNullable: true, validators: this.customValidators }),
 
 

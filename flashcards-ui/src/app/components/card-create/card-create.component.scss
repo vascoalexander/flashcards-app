@@ -17,9 +17,6 @@
 :host {
   @include mat.button-overrides((
     text-label-text-color: grey,
-
-    // text-ripple-color: #ff7d7d,
-    // text-state-layer-color: red,
   ));
 }
 

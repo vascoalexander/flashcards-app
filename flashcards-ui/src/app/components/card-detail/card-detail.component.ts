@@ -1,6 +1,6 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { FlashcardsService } from '../../flashcards.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
@@ -26,6 +26,7 @@ export class CardDetailComponent implements OnInit
 {
   private flashcardsService = inject(FlashcardsService);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   id = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -37,4 +38,11 @@ export class CardDetailComponent implements OnInit
   {
     this.flashcardsService.getFlashcards();
   };
+
+
+
+  edit()
+  {
+    this.router.navigate(['/cards', this.id, 'edit']);
+  }
 }
