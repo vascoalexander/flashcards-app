@@ -1,5 +1,4 @@
-import {Component, inject, input, output, signal} from '@angular/core';
-import {QuizService} from '../quiz.service';
+import {Component, input, output} from '@angular/core';
 import {FlashcardSet} from '../../flashcard.model';
 import {FormsModule} from '@angular/forms';
 
@@ -12,8 +11,6 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './quiz-config.component.css'
 })
 export class QuizConfigComponent {
-
-  private quizService = inject(QuizService);
 
   // input & output
   sets = input.required<FlashcardSet[]>();
@@ -30,20 +27,21 @@ export class QuizConfigComponent {
     { value: '45', label: '45 Minuten' },
     { value: '60', label: '60 Minuten' },
     { value: '90', label: '90 Minuten' },
-    { value: 'per-question', label: 'Pro Frage' },
+    { value: 'per-question', label: '1 Minute Pro Frage' },
   ]
 
-  onExamStart() {
+  onStartQuiz() {
     this.examStart.emit({
       timeLimit: this.selectedTime,
       setId: this.selectedSetId,
       quizMode: this.selectedQuizMode
     })
 
+    // debug
     console.log(`Start Quiz with
-    Timelimit: ${this.selectedTime} Minutes,
-    SetId: ${this.selectedSetId},
-    Mode: ${this.selectedQuizMode}`);
+      Timelimit: ${this.selectedTime} Minutes,
+      SetId: ${this.selectedSetId},
+      Mode: ${this.selectedQuizMode}`);
 
   }
 }

@@ -14,13 +14,15 @@
         [quizState]="quizState()"
         [flashcards]="flashcards()"
         [currentFlashcard]="currentFlashcard()"
+        [progress]="quizProgress()"
+        [answeredCount]="answeredCount()"
         (finishQuiz)="onFinishQuiz()">
       </app-quiz-question>
   }
 
   @if (showResult()){
-      <app-quiz-result>
-
+      <app-quiz-result
+        (restartQuiz)="onRestartQuiz()">
       </app-quiz-result>
   }
 

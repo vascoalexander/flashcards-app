@@ -22,6 +22,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   flashcards = this.quizService.flashcards;
   quizState = this.quizService.quizState;
   currentFlashcard = this.quizService.currentFlashcard;
+  quizProgress = this.quizService.quizProgress;
+  answeredCount = this.quizService.answeredCount;
 
   // computed
   showConfig = computed(() =>
@@ -42,7 +44,11 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   // finish / reset
   onFinishQuiz() {
-    this.quizService.finishQuiz();
+    if (this.quizState().quizMode === 'exam'){
+      this.quizService.finishQuiz();
+    } else {
+      this.quizService.resetQuiz();
+    }
   }
 
   ngOnDestroy() {

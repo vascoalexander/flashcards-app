@@ -64,41 +64,4 @@ export class FlashcardsService {
 
     this.flashcards.update(cards => cards.filter(c => c.id !== flashcardId));
   }
-
-  validateAnswer(flashcard: Flashcard, selectedOption: string[]):boolean {
-    let isCorrect = false;
-
-    if (selectedOption.length === 0) return false;
-
-    if (flashcard.type === FlashcardType.MULTIPLE_CHOICE){
-      const correctAnswers = (flashcard.options ?? []).filter(o => o.correct).map(o => o.optionText);
-      const givenAnswers = Array.isArray(selectedOption) ? selectedOption : [selectedOption];
-      isCorrect = (correctAnswers.length === givenAnswers.length && correctAnswers.every(a => givenAnswers.includes(a)));
-    } else if (flashcard.type === FlashcardType.SINGLE_CHOICE){
-      if (selectedOption.length > 1) return false;
-      const correctAnswer = (flashcard.options ?? []).find(o => o.correct)?.optionText;
-      const givenAnswer = selectedOption[0].toString();
-      isCorrect = correctAnswer === givenAnswer;
-    } else if (flashcard.type === FlashcardType.TEXT){
-      if (selectedOption.length > 1) return false;
-      const correctAnswer = flashcard.answer;
-      isCorrect = correctAnswer === selectedOption[0].toString();
-    }
-
-    this.flashcards.update(cards =>
-      cards.map(card => {
-        if (card.id === flashcard.id) {
-          return {
-            ...card,
-            userAnswer: selectedOption,
-            isCorrect: isCorrect,
-            answered: true
-          };
-        }
-        return card;
-      })
-    );
-
-    return isCorrect;
-  }
 }

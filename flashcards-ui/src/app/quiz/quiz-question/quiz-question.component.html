@@ -1,18 +1,137 @@
-<div class="quiz-header">
-  @if (showTimer()) {
-    <div class="timer">
-      {{ formatTime() }}
-    </div>
-  }
-  <div class="progress-info">
-    <div class="progress-bar">
-      <span class="progress-text">
-        Frage {{ quizState().currentQuestionIndex + 1 }} von {{ flashcards().length }}
-      </span>
+<div class="exam-question">
+
+  <!-- Timer und Progress -->
+  <div class="exam-header">
+    <div class="progress-info">
+      <div class="progress-text-row">
+        @if (showTimer()){
+          <div class="timer">
+            ⏳ {{ formatTime() }}
+          </div>
+        }
+        <span class="progress-text">
+          {{ quizState().currentIndex + 1 }} / {{ flashcards().length }}
+          ({{ answeredCount() }} beantwortet)
+        </span>
+      </div>
+      <div class="progress-bar-container">
+        <div
+          class="progress-bar"
+          [style.width.%]="progress()">
+        </div>
+        <span class="progress-percentage">{{ progress() | number:'1.0-0' }}%</span>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="question-text">
-  <p>{{ currentFlashcard().question }}</p>
+
+  <!-- Current Question -->
+  @if (currentFlashcard(); as card) {
+    <div class="question-card">
+      <h3>Frage {{ quizState().currentIndex + 1 }}</h3>
+      <p class="question-text">{{ card.question }}</p>
+
+      @if (card.type === FlashcardType.MULTIPLE_CHOICE) {
+        <div class="options mc-options">
+          @for (option of card.options; track option.id) {
+            <label class="option-label" [ngClass]="{
+              'correct': isCurrentAnswered() && quizState().quizMode === 'learn' && option.correct
+            }">
+              <input
+                type="checkbox"
+                [checked]="isOptionSelected(option.optionText)"
+                (change)="onMcOptionChange($event, option.optionText)">
+              <span>{{ option.optionText }}</span>
+            </label>
+          }
+        </div>
+      }
+
+      @else if (card.type === FlashcardType.SINGLE_CHOICE) {
+        <div class="options sc-options">
+          @for (option of card.options; track option.id) {
+            <label class="option-label" [ngClass]="{
+              'correct': isCurrentAnswered() && quizState().quizMode === 'learn' && option.correct
+            }">
+              <input
+                type="radio"
+                [name]="'question-' + card.id"
+                [checked]="isOptionSelected(option.optionText)"
+                (change)="onScOptionChange($event, option.optionText)">
+              <span>{{ option.optionText }}</span>
+            </label>
+          }
+        </div>
+      }
+
+      @else if (card.type === FlashcardType.TEXT) {
+        <div class="text-input">
+          <input
+            type="text"
+            [value]="textAnswer()"
+            (input)="onTextAnswerChange($event)"
+            placeholder="Ihre Antwort...">
+        </div>
+      }
+
+      @if (quizState().quizMode === 'exam'){
+        @if (isCurrentAnswered()) {
+          <div class="answer-status answered">
+            ✓ Frage beantwortet
+          </div>
+        } @else {
+          <div class="answer-status not-answered">
+            ⚬ Frage noch nicht beantwortet
+          </div>
+        }
+      } @else {
+        @if (isCurrentAnswered() && currentFlashcard().type !== FlashcardType.TEXT){
+          @if (isCurrentCorrect()) {
+            <div class="answer-status correct">
+              ✓ Frage richtig beantwortet
+            </div>
+          } @else {
+            <div class="answer-status wrong">
+              ⚬ Frage nicht korrekt beantwortet
+            </div>
+          }
+        }
+      }
+    </div>
+  }
+
+  <div class="exam-controls">
+    <div class="action-buttons">
+      <button
+        type="button"
+        [disabled]="!canGoPrevious()"
+        (click)="onPreviousQuestion()">
+        ← Vorherige Frage
+      </button>
+
+      <button
+        type="button"
+        class="submit-button"
+        (click)="onSubmitAnswer()">
+        {{ quizState().quizMode === 'exam' ? 'Antwort speichern' : 'Antwort anzeigen' }}
+      </button>
+
+      <button
+        type="button"
+        class="finish-button"
+        (click)="onFinishQuiz()">
+        Quiz beenden
+      </button>
+
+      <button
+        type="button"
+        [disabled]="!canGoNext()"
+        (click)="onNextQuestion()">
+        Nächste Frage →
+      </button>
+
+    </div>
+  </div>
+
+
 </div>
