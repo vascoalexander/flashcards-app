@@ -8,6 +8,7 @@
 ### Node / Angular ###
 **/node_modules/
 **/dist/
+**/cache/
 
 ### OS ###
 .DS_Store
