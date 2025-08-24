@@ -1,0 +1,193 @@
+<div class="exam-result">
+
+  <!-- Header -->
+  <div class="result-header">
+    <h2>Exam Ergebnisse</h2>
+  </div>
+
+  <!-- Score  -->
+  <div class="score-overview">
+    <div class="score-circle" [class]="scoreColor()">
+      <div class="score-value">{{ quizResult().score.toFixed(1) }}%</div>
+      <div class="score-grade">{{ scoreGrade() }}</div>
+    </div>
+
+    <div class="score-details">
+      <div class="stat-item">
+        <span class="stat-label">Gesamtfragen:</span>
+        <span class="stat-value">{{ quizResult().totalQuestions }}</span>
+      </div>
+      <div class="stat-item success">
+        <span class="stat-label">Richtig:</span>
+        <span class="stat-value">{{ quizResult().correctAnswers }}</span>
+      </div>
+      <div class="stat-item danger">
+        <span class="stat-label">Falsch:</span>
+        <span class="stat-value">{{ quizResult().incorrectAnswers }}</span>
+      </div>
+      <div class="stat-item warning">
+        <span class="stat-label">Übersprungen:</span>
+        <span class="stat-value">{{ quizResult().skippedQuestions }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Visualization -->
+  <div class="progress-visualization">
+    <div class="progress-bar-container">
+      <div class="progress-segment correct"
+           [style.width.%]="(quizResult().correctAnswers / quizResult().totalQuestions) * 100">
+      </div>
+      <div class="progress-segment incorrect"
+           [style.width.%]="(quizResult().incorrectAnswers / quizResult().totalQuestions) * 100">
+      </div>
+      <div class="progress-segment skipped"
+           [style.width.%]="(quizResult().skippedQuestions / quizResult().totalQuestions) * 100">
+      </div>
+    </div>
+    <div class="progress-legend">
+      <span class="legend-item correct">
+        <span class="legend-color"></span>
+        Richtig ({{ quizResult().correctAnswers }})
+      </span>
+      <span class="legend-item incorrect">
+        <span class="legend-color"></span>
+        Falsch ({{ quizResult().incorrectAnswers }})
+      </span>
+      <span class="legend-item skipped">
+        <span class="legend-color"></span>
+        Übersprungen ({{ quizResult().skippedQuestions }})
+      </span>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button
+      type="button"
+      class="details-button"
+      (click)="onToggleDetails()">
+      {{ showDetails() ? 'Details ausblenden' : 'Details anzeigen' }}
+    </button>
+
+    <button
+      type="button"
+      class="restart-button"
+      (click)="onRestartExam()">
+      Neues Exam starten
+    </button>
+  </div>
+
+  <!-- Detailed Results -->
+  @if (showDetails()) {
+    <div class="detailed-results">
+      <h3>Detailierte Auswertung</h3>
+
+      <!-- Filter Buttons -->
+      <div class="filter-buttons">
+        <button
+          type="button"
+          [class.active]="selectedFilter() === 'all'"
+          (click)="onFilterChange('all')">
+          Alle ({{ quizResult().totalQuestions }})
+        </button>
+        <button
+          type="button"
+          [class.active]="selectedFilter() === 'correct'"
+          class="filter-correct"
+          (click)="onFilterChange('correct')">
+          ✅ Richtig ({{ quizResult().correctAnswers }})
+        </button>
+        <button
+          type="button"
+          [class.active]="selectedFilter() === 'incorrect'"
+          class="filter-incorrect"
+          (click)="onFilterChange('incorrect')">
+          ❌ Falsch ({{ quizResult().incorrectAnswers }})
+        </button>
+        <button
+          type="button"
+          [class.active]="selectedFilter() === 'skipped'"
+          class="filter-skipped"
+          (click)="onFilterChange('skipped')">
+          ⏭️ Übersprungen ({{ quizResult().skippedQuestions }})
+        </button>
+      </div>
+
+      <!-- Question Details -->
+      <div class="questions-detail">
+        @for (card of filteredQuestions(); track card.id) {
+          <div class="question-detail" [class]="getQuestionStatus(card)">
+
+            <div class="question-header">
+              <span class="question-number">Frage {{ quizResult().flashcards.indexOf(card) + 1 }}</span>
+              <span class="question-status-icon">
+                @switch (getQuestionStatus(card)) {
+                  @case ('correct') {
+                    <span class="status-correct">✅</span>
+                  }
+                  @case ('incorrect') {
+                    <span class="status-incorrect">❌</span>
+                  }
+                  @case ('skipped') {
+                    <span class="status-skipped">⏭️</span>
+                  }
+                }
+              </span>
+            </div>
+
+            <div class="question-content">
+              <div class="question-text">
+                <strong>{{ card.question }}</strong>
+              </div>
+
+              <div class="answers-comparison">
+                <div class="user-answer">
+                  <strong>Ihre Antwort:</strong>
+                  <span [class]="getQuestionStatus(card)">
+                    {{ getUserAnswerText(card) }}
+                  </span>
+                </div>
+
+                @if (getQuestionStatus(card) !== 'skipped') {
+                  <div class="correct-answer">
+                    <strong>Richtige Antwort:</strong>
+                    <span class="correct">{{ getCorrectAnswerText(card) }}</span>
+                  </div>
+                }
+              </div>
+
+              <!-- Show options for MC/SC questions -->
+              @if (card.type === 'MULTIPLE_CHOICE' || card.type === 'SINGLE_CHOICE') {
+                <div class="options-review">
+                  <strong>Antwortmöglichkeiten:</strong>
+                  <ul class="options-list">
+                    @for (option of card.options; track option.id) {
+                      <li class="option-item"
+                          [class.user-selected]="quizService.getAnswerForQuestion(card.id).includes(option.optionText)"
+                          [class.correct-option]="option.correct">
+                        {{ option.optionText }}
+                        @if (option.correct) {
+                          <span class="correct-marker">✓</span>
+                        }
+                        @if (quizService.getAnswerForQuestion(card.id).includes(option.optionText)) {
+                          <span class="user-marker">👤</span>
+                        }
+                      </li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (filteredQuestions().length === 0) {
+          <div class="no-questions">
+            <p>Keine Fragen für den gewählten Filter gefunden.</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
