@@ -2,7 +2,7 @@ import { ValidatorFn, AbstractControl, ValidationErrors } from "@angular/forms";
 
 
 //wenn return null -> alles richtig, wenn nicht dann springt der Validator an
-export function formMultipleChoiceValidator(): ValidatorFn
+export function formMultipleChoiceMaxThreeRightValidator(): ValidatorFn
 {
   return (control: AbstractControl): ValidationErrors | null =>
   {
@@ -42,13 +42,13 @@ export function formMultipleChoiceValidator(): ValidatorFn
 
 
 
-    if (trues >= 2)
+    if (trues <= 3)
     {
       return null;
     }
     else
     {
-      return { multipleChoiceNotNull: 'Mindestens 2 Häkchen müssen als richtige Antworten ausgewählt werden.' };
+      return { multipleChoiceMaxThreeNotNull: 'Maximal 3 Häkchen als richtige Antworten sind erlaubt.' };
     }
   }
 }

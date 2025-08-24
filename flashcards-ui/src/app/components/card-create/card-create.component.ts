@@ -1,24 +1,27 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FlashcardsService } from '../../flashcards.service';
 import { FlashcardSetsService } from '../../flashcard-sets.service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-import { MatInput } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatFormField, MatError, MatLabel } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelect, MatOption } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { formMultipleChoiceValidator } from '../../validators/formMultipleChoiceValidator';
 import { formNoWhiteSpaceValidator } from '../../validators/formNoWhiteSpaceValidator';
+import { formMultipleChoiceMaxThreeRightValidator } from '../../validators/formMultipleChoiceMaxThreeRightValidator';
+import { formSingleChoiceValidator } from '../../validators/formSingleChoiceValidator';
+import { Subscription } from 'rxjs';
 
 
 @Component({
   selector: 'app-card-create',
   imports:
   [
-    ReactiveFormsModule, MatFormField, MatLabel, MatError, MatInput, MatButtonModule, MatRadioModule,
+    ReactiveFormsModule, MatFormField, MatLabel, MatError, MatInputModule, MatButtonModule, MatRadioModule,
     MatSelect, MatOption, CommonModule, MatCheckboxModule, RouterLink
   ],
   templateUrl: './card-create.component.html',
@@ -26,10 +29,13 @@ import { formNoWhiteSpaceValidator } from '../../validators/formNoWhiteSpaceVali
 })
 
 
-export class CardCreateComponent implements OnInit
+export class CardCreateComponent implements OnInit, OnDestroy
 {
   flashcardsService = inject(FlashcardsService);
   flashcardSetsService = inject(FlashcardSetsService);
+  private router = inject(Router);
+  ignoreGuard = false;
+  private controlValueChangesSub$: Subscription | undefined;
 
   sets = this.flashcardSetsService.sets;
 
@@ -45,7 +51,11 @@ export class CardCreateComponent implements OnInit
 
     // original
     // set: new FormControl('', { nonNullable: true }),
-    set: new FormControl<number | null>(null, { nonNullable: true, validators: Validators.required }),
+    // set: new FormControl<number | null>(null, { nonNullable: true, validators: Validators.required }),
+    set: new FormControl<number | null>(null),
+
+    //NOTE: TEST FÜR TEXT FILL-IN TYPE (eventuell löschen)
+    answer: new FormControl('', {nonNullable: true, validators: this.customValidators }),
 
 
     createCorrect1: new FormControl(false),
@@ -64,9 +74,12 @@ export class CardCreateComponent implements OnInit
     createAnswer5: new FormControl('', {nonNullable: true, validators: this.customValidators })
 
 
-  }, { validators: formMultipleChoiceValidator() });
-
-
+  }, { validators:
+    [
+      formMultipleChoiceValidator(),
+      formMultipleChoiceMaxThreeRightValidator(),
+      formSingleChoiceValidator(),
+    ] });
 
 
 
@@ -74,14 +87,79 @@ export class CardCreateComponent implements OnInit
   ngOnInit(): void
   {
     this.flashcardSetsService.getAllSets();
+
+
+
+
+    // harter Brocken: Validation überprüfen je nach gewählten Fragetypen
+    this.controlValueChangesSub$ = this.cardForm.get('type')?.valueChanges.subscribe(type =>
+      {
+
+        const createAnswerControls = ['createAnswer1','createAnswer2','createAnswer3','createAnswer4','createAnswer5'];
+
+
+        // für single und multiple choice
+        createAnswerControls.forEach(i =>
+        {
+          const getControl = this.cardForm.get(i);
+          if (!getControl)
+          {
+            return; //continue wird angesetzt
+          }
+
+          if (type === 'TEXT')
+          {
+            getControl.clearValidators();
+          }
+
+          else
+          {
+            getControl.setValidators(this.customValidators);
+          }
+
+          getControl.updateValueAndValidity();
+        });
+
+
+
+
+
+        // für text fill-in
+        const getControl = this.cardForm.get('answer');
+
+        if (!getControl)
+        {
+          return;
+        }
+
+        if(type === 'TEXT')
+        {
+          getControl.setValidators(this.customValidators);
+        }
+
+        else
+        {
+          getControl.clearValidators();
+        }
+
+        getControl.updateValueAndValidity();
+
+
+
+        // Updater for add or remove a validator at run time
+        this.cardForm.updateValueAndValidity();
+      });
+
   }
 
 
-//NOTE: vllt ohne getRawValue -> Buch nochmal lesen: vllt die andere Variante
-  async submit() //TODO: Set auswählen, wo kommt der beim Erstellen hin??
+
+  async submit()
   {
     if (this.cardForm.valid)
     {
+      this.ignoreGuard = true;
+
       const formValues = this.cardForm.getRawValue();
 
 
@@ -99,43 +177,81 @@ export class CardCreateComponent implements OnInit
       const correctAnswers = options.filter(i => i.correct).map(i => i.optionText).join(', ');
 
 
-      const newFlashcard =
+
+
+      var newFlashcard = {}
+      if (formValues.type === 'TEXT')
+      {
+        newFlashcard =
       {
         question: formValues.question.trim(),
         type: formValues.type,
-        answer: correctAnswers,
-        options: options
+        answer: formValues.answer,
+        options: []
       };
+      }
+      else
+      {
+        newFlashcard =
+        {
+          question: formValues.question.trim(),
+          type: formValues.type,
+          answer: correctAnswers,
+          options: options
+        };
+      }
+
+
+
 
 
 
       try
       {
         await this.flashcardsService.createFlashcard(newFlashcard);
-
-        this.cardForm.reset();
       }
       catch (error)
       {
         alert('Fehler beim Erstellen der Karte. Bitte versuche es später erneut.');
       }
+
+
+      ///SET Zuordnung Logik
+
+      if (formValues.set)
+      {
+        this.flashcardsService.getFlashcards();
+        const getAllFlashcards = this.flashcardsService.flashcards();
+        const getLastNewFlashcard = getAllFlashcards[getAllFlashcards.length - 1];
+
+
+
+        try
+        {
+          const selectedSetId = formValues.set;
+          const oldFlashcardSet = await this.flashcardSetsService.getSetById(selectedSetId);
+
+          const updatedFlashcardSet = {...oldFlashcardSet, flashcards: [...oldFlashcardSet.flashcards, getLastNewFlashcard]};
+
+          await this.flashcardSetsService.updateSet(selectedSetId, updatedFlashcardSet);
+        }
+        catch (error)
+        {
+          alert('Deine erstellte Karte konnte nicht zum Set hinzugefügt werden. Bitte versuche es später erneut.');
+        }
+      }
+
+
+
+      this.cardForm.reset();
+      this.router.navigate(['/cards']);
     }
   }
 
+
+
+  ngOnDestroy(): void
+  {
+    this.controlValueChangesSub$?.unsubscribe();
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

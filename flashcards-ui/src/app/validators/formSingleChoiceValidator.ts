@@ -2,7 +2,7 @@ import { ValidatorFn, AbstractControl, ValidationErrors } from "@angular/forms";
 
 
 //wenn return null -> alles richtig, wenn nicht dann springt der Validator an
-export function formMultipleChoiceValidator(): ValidatorFn
+export function formSingleChoiceValidator(): ValidatorFn
 {
   return (control: AbstractControl): ValidationErrors | null =>
   {
@@ -11,7 +11,7 @@ export function formMultipleChoiceValidator(): ValidatorFn
     const cardType = control.get('type')?.value;
 
 
-    if (cardType !== 'MULTIPLE_CHOICE')
+    if (cardType !== 'SINGLE_CHOICE')
     {
       return null;
     }
@@ -42,13 +42,13 @@ export function formMultipleChoiceValidator(): ValidatorFn
 
 
 
-    if (trues >= 2)
+    if (trues === 1)
     {
       return null;
     }
     else
     {
-      return { multipleChoiceNotNull: 'Mindestens 2 Häkchen müssen als richtige Antworten ausgewählt werden.' };
+      return { singleChoiceNotNull: 'Nur 1 Häkchen muss als richtige Antwort ausgewählt werden.' };
     }
   }
 }
