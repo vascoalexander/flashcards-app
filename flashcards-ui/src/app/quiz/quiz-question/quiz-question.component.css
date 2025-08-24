@@ -1,0 +1,380 @@
+
+.exam-question {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Section */
+.exam-header {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border-left: 4px solid #2196f3;
+}
+
+.timer {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff5722;
+}
+
+.progress-info {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Progress Info Layout */
+.progress-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.progress-info .progress-text-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-text {
+  font-weight: 500;
+  color: #666;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  position: relative;
+  background: #e0e0e0;
+  border-radius: 12px;
+  height: 24px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 50%, #4caf50 100%);
+  border-radius: 12px;
+  transition: width 0.4s ease-in-out;
+  position: relative;
+  min-width: 0;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg,
+  transparent 0%,
+  rgba(255,255,255,0.2) 50%,
+  transparent 100%);
+  border-radius: 12px;
+}
+
+.progress-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+  z-index: 10;
+}
+
+/* Question Card */
+.question-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-card h3 {
+  color: #333;
+  font-size: 20px;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.question-text {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* Options */
+.options {
+  margin-bottom: 20px;
+}
+
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  border: 1px solid transparent;
+}
+
+.option-label:hover {
+  background: #f5f5f5;
+  border-color: #e0e0e0;
+}
+
+.option-label input {
+  margin-right: 12px;
+  margin-top: 2px;
+  transform: scale(1.2);
+}
+
+.option-label span {
+  flex: 1;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* Text Input */
+.text-input {
+  margin-bottom: 20px;
+}
+
+.text-input input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.text-input input:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+/* Answer Status */
+.answer-status {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.answer-status.answered {
+  background: #e8f5e8;
+  color: #2e7d2e;
+  border: 1px solid #c8e6c8;
+}
+
+.answer-status.not-answered {
+  background: #fff3e0;
+  color: #f57c00;
+  border: 1px solid #ffe0b2;
+}
+
+.correct {
+  background-color: #d4edda;
+}
+.wrong {
+  background-color: #f8d7da;
+}
+
+/* Controls Section */
+.exam-controls {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+/* Buttons - Updated */
+button {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 48px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Navigation Buttons */
+.action-buttons button:first-child,
+.action-buttons button:nth-child(4) {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.action-buttons button:first-child:hover:not(:disabled),
+.action-buttons button:nth-child(4):hover:not(:disabled) {
+  background: #bbdefb;
+  transform: translateY(-1px);
+}
+
+/* Submit Button */
+.submit-button {
+  background: #4caf50 !important;
+  color: white !important;
+  border: 1px solid #4caf50 !important;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #45a049 !important;
+  transform: translateY(-1px);
+}
+
+/* Finish Button */
+.finish-button {
+  background: #ff5722 !important;
+  color: white !important;
+  border: 1px solid #ff5722 !important;
+}
+
+.finish-button:hover:not(:disabled) {
+  background: #e64a19 !important;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .exam-question {
+    padding: 15px;
+  }
+
+  .exam-header {
+    padding: 15px;
+  }
+
+  .timer {
+    font-size: 16px;
+  }
+
+  .progress-info .progress-text-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .progress-bar-container {
+    height: 20px;
+  }
+
+  .progress-percentage {
+    font-size: 12px;
+  }
+
+  .question-card {
+    padding: 20px;
+  }
+
+  /* Action buttons responsive */
+  .action-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 12px 8px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .exam-question {
+    padding: 10px;
+  }
+
+  .exam-header {
+    padding: 12px;
+  }
+
+  .question-card {
+    padding: 15px;
+  }
+
+  .question-card h3 {
+    font-size: 18px;
+  }
+
+  .question-text {
+    font-size: 15px;
+  }
+
+  .option-label {
+    padding: 10px;
+  }
+
+  .option-label span {
+    font-size: 14px;
+  }
+
+  .progress-bar-container {
+    height: 18px;
+  }
+
+  .progress-percentage {
+    font-size: 11px;
+  }
+
+  /* Action buttons für sehr kleine Bildschirme */
+  .action-buttons {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 10px 8px;
+    min-height: 40px;
+  }
+}
+
+/* Progress Bar Status */
+.progress-bar[style*="width: 0"] + .progress-percentage {
+  color: #666;
+}
+
+.progress-bar[style*="width: 100"] {
+  background: linear-gradient(135deg, #2e7d32 0%, #4caf50 50%, #2e7d32 100%);
+}
+
+.progress-bar[style*="width: 100"] + .progress-percentage {
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}

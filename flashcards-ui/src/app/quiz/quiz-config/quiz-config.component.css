@@ -1,0 +1,126 @@
+.quiz-config {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-config-set {
+  margin-bottom: 2rem;
+}
+
+.quiz-config-set label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.quiz-config-set select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.quiz-config-set select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.quiz-config-mode {
+  margin-bottom: 2rem;
+}
+
+.quiz-config-mode label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quiz-config-mode label:hover {
+  background: #f0f8ff;
+  border-color: #007bff;
+}
+
+.quiz-config-mode input[type="radio"] {
+  margin-right: 0.75rem;
+  transform: scale(1.2);
+}
+
+.quiz-config-mode span {
+  font-weight: 500;
+  color: #333;
+}
+
+.quiz-config-mode label:has(input:checked) {
+  background: #e3f2fd;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.quiz-config div:not(.quiz-config-set):not(.quiz-config-mode) {
+  margin-bottom: 2rem;
+}
+
+.quiz-config div:not(.quiz-config-set):not(.quiz-config-mode) label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.quiz-config div:not(.quiz-config-set):not(.quiz-config-mode) select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.quiz-config div:not(.quiz-config-set):not(.quiz-config-mode) select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.quiz-config button {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.quiz-config button:hover {
+  background: #0056b3;
+}
+
+.quiz-config button:active {
+  transform: translateY(1px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .quiz-config {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
