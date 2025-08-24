@@ -6,12 +6,16 @@ import { CardListComponent } from './components/card-list/card-list.component';
 import { CardDetailComponent } from './components/card-detail/card-detail.component';
 import { CardSetsComponent } from './components/Flashcard-Sets/card-sets/card-sets.component';
 import { CardCreateComponent } from './components/card-create/card-create.component';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
 
 
 export const routes: Routes = [
+
+
   { path: 'test', component: TestComponent },
   { path: 'cards/:id', component: CardDetailComponent },
   { path: 'cards', component: CardListComponent },
+  { path: 'create', component: CardCreateComponent },
   {
     path: 'sets',
     component: CardSetsComponent,
