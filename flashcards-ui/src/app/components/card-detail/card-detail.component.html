@@ -1,41 +1,53 @@
 @let card = flashcard();
 
-<!-- //TODO: 1: alle infos ausgeben!! -->
-<!-- TODO: vllt designen, aber erst in die haupt design basic layout einfügne und schauen wie es aussieht -->
+
 @defer (when card)
 {
   <mat-card class="card-detail" appearance="outlined">
 
     <mat-card-header>
-      <mat-card-title>#{{card?.id}} Frage
-        <span [matBadge]="card?.type | formatCardtype" matBadgeOverlap="false" class="card-detail-type-badge"></span>
+      <mat-card-title>
+        <div><p class="p1" [matBadge]="card?.type | formatCardtype" matBadgeOverlap="false" class="card-detail-type-badge">{{card?.question}}</p></div>
       </mat-card-title>
+      <div class="card-id-type-badge-wrapper">
+        <p>{{card?.id}}#</p>
+      </div>
 
 
-      <mat-chip-set>
-        <!-- //TODO: class="is-clickable" (click)="onOpen()" -->
+       <!-- //TODO 2: hatten cards keine sets? es hatte mal geklappt -->
+      <!-- <mat-chip-set>
         <mat-chip *ngFor="let set of card?.sets">
           {{ set.name }} (Set #{{ set.id }})
         </mat-chip>
-      </mat-chip-set>
+      </mat-chip-set> -->
     </mat-card-header>
 
-    <mat-card-content class="card-detail-chip-crud">
-      <p class="card-detail-question">{{card?.question}}</p>
-      <mat-chip-set>
-        <!-- //TODO: class="is-clickable" (click)="onOpen()" -->
-        <mat-chip>Antwort</mat-chip>
-        <!-- //TODO: class="is-clickable" (click)="onOpen()" -->
-        <mat-chip>Editieren</mat-chip>
-      </mat-chip-set>
+
+    <mat-card-content>
+      @for (option of card?.options ?? []; track option.id; let i = $index)
+      {
+        <p>{{ i | formatIndexToLetter | uppercase }} {{ option.optionText }}</p>
+      }
+      @empty
+      {
+        <p>Flashcards wurden nicht gefunden.</p>
+      }
     </mat-card-content>
 
-    <!-- //NOTE: mit footer verschieben sich die chips in einer unmöglichen Position -->
-    <mat-card-footer></mat-card-footer>
+
+
+    <mat-card-footer>
+      <mat-chip-set>
+        <!-- //TODO: Wenn ich card-edit habe dann implementieren: class="is-clickable" (click)="onOpen()" -->
+        <mat-chip>Antwort</mat-chip>
+        <mat-chip>Editieren</mat-chip>
+      </mat-chip-set>
+    </mat-card-footer>
 
   </mat-card>
 
 }
+<!-- //TODO: unsauber gelöst, wenn id/99 ungültige flashcard id aufgerufen wird -->
 @placeholder ()
 {
   <div>
