@@ -1,15 +1,23 @@
 import { Component, inject, signal, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+<<<<<<< HEAD
 import { FlashcardSetsService } from './flashcard-sets.service';
 import { Flashcard, FlashcardSet } from './flashcard.model';
 import { InfoPanelComponent, InfoItem } from './components/info-panel/info-panel.component';
 import { Subscription } from 'rxjs';
 import { FlashcardsService } from './flashcards.service';
+=======
+import {QuizComponent} from './quiz/quiz.component';
+>>>>>>> develop
 
 
 @Component({
   selector: 'app-root',
+<<<<<<< HEAD
   imports: [RouterOutlet, RouterLink, InfoPanelComponent],
+=======
+  imports: [RouterOutlet, RouterLink, QuizComponent],
+>>>>>>> develop
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
