@@ -4,13 +4,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { FlashcardSetsService } from './flashcard-sets.service';
 import { Flashcard, FlashcardSet } from './flashcard.model';
 import { InfoPanelComponent, InfoItem } from './components/info-panel/info-panel.component';
-
-import { QuizComponent } from './quiz/quiz.component';
 import { FlashcardsService } from './flashcards.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, InfoPanelComponent, QuizComponent],
+  imports: [RouterOutlet, RouterLink, InfoPanelComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -23,7 +21,8 @@ export class AppComponent {
 
   constructor() {
     effect(() => {
-      this.setssvc.setsChanged();
+      this.setssvc.setsChanged(); 
+      this.cardsvc.cardsChanged(); 
       this.loadStats();
     });
   }
