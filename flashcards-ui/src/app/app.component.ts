@@ -1,45 +1,31 @@
-import { Component, inject, signal, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, signal, effect } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { FlashcardSetsService } from './flashcard-sets.service';
 import { Flashcard, FlashcardSet } from './flashcard.model';
 import { InfoPanelComponent, InfoItem } from './components/info-panel/info-panel.component';
-import { Subscription } from 'rxjs';
 
 import { QuizComponent } from './quiz/quiz.component';
 import { FlashcardsService } from './flashcards.service';
 
-
-
 @Component({
   selector: 'app-root',
-
   imports: [RouterOutlet, RouterLink, InfoPanelComponent, QuizComponent],
-
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-
-
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent {
   title = 'Flashcards UI';
   private setssvc = inject(FlashcardSetsService);
   private cardsvc = inject(FlashcardsService);
-  private subscription!: Subscription;
 
   infoItems = signal<InfoItem[]>([]);
 
-  ngOnInit() {
-    this.loadStats();
-    this.subscription = this.setssvc.setsChanged$.subscribe(() => {
+  constructor() {
+    effect(() => {
+      this.setssvc.setsChanged();
       this.loadStats();
     });
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 
   private async loadStats() {
@@ -69,3 +55,4 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 }
+
