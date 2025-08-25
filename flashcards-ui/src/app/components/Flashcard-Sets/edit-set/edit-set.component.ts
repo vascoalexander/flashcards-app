@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal, ViewChild, computed } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlashcardSetsService } from '../../../flashcard-sets.service';
 import { Flashcard, FlashcardSet } from '../../../flashcard.model';
@@ -15,15 +16,18 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlashcardsService } from '../../../flashcards.service';
 import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-edit-set',
-  imports: [CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule,
+  imports: [CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatProgressBarModule, MatCardModule, MatDividerModule, MatGridListModule],
   templateUrl: './edit-set.component.html',
   styleUrl: './edit-set.component.css'
 })
-export class EditSetComponent implements OnInit {
+
+
+export class EditSetComponent {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private api = inject(FlashcardSetsService);
@@ -41,6 +45,7 @@ export class EditSetComponent implements OnInit {
 
   allFlashcards = this.flashcardsApi.flashcards;
   selectedCardIds = signal<number[]>([]);
+
 
   cardsInSet = computed(() => {
     const all = this.allFlashcards();
@@ -94,6 +99,8 @@ export class EditSetComponent implements OnInit {
   }
 
   async save() {
+    const norm = (s: string) => s.trim().toLowerCase();
+
     const name = this.name().trim();
     if (!name) {
       this.error.set('Der Name für das Set ist erforderlich.'); return;
@@ -113,6 +120,11 @@ export class EditSetComponent implements OnInit {
       .filter((c): c is Flashcard => c !== undefined);
 
     try {
+      const id = this.id();
+      const sets = await this.api.getAllSets();
+      if (sets.some(s => norm(s.name) === norm(name) && s.id !== id)) {
+        this.error.set('Das Deck existiert bereits.'); return;
+      }
       const payload: Omit<FlashcardSet, 'id'> = {
         name: name,
         description: this.description().trim(),
@@ -131,7 +143,20 @@ export class EditSetComponent implements OnInit {
       this.router.navigate(['/sets']);
 
     } catch (e: any) {
-      this.error.set(e?.message ?? 'Speichern fehlgeschlagen.');
+      if (e instanceof HttpErrorResponse) {
+        if (e.status === 400) {
+          const errorMessage = e.error?.message || e.error;
+          if (errorMessage && (errorMessage.toLowerCase().includes('already exists') || errorMessage.toLowerCase().includes('bereits existiert'))) {
+            this.error.set('Das Deck existiert bereits.');
+          } else {
+            this.error.set('Speichern fehlgeschlagen: Ungültige Anfrage.');
+          }
+        } else {
+          this.error.set(e?.message ?? 'Speichern fehlgeschlagen.');
+        }
+      } else {
+        this.error.set(e?.message ?? 'Speichern fehlgeschlagen.');
+      }
     } finally { this.saving.set(false); }
   }
   cancel() { this.router.navigate(['/sets']); }

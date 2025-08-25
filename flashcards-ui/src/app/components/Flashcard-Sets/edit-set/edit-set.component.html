@@ -1,4 +1,6 @@
 
+@defer (when !loading() && !error())
+{
 <mat-card>
 
   <mat-toolbar>
@@ -36,7 +38,7 @@
 
      
 
-      <h3 class="mat-h3">Verfügbare Karten auswählen </h3>
+      <h3 class="mat-h3">Verfügbare Karten auswählen ({{cardsAvailable().length}})</h3>
       <mat-selection-list #availableCardsList>
         @for (card of cardsAvailable(); track card.id) {
           <mat-list-option [value]="card.id">
@@ -72,3 +74,17 @@
   </mat-card-actions>
 
 </mat-card>
+}@placeholder ()
+{
+  <div class="cardlist-placeholder-container">
+    <mat-progress-spinner mode="indeterminate" [diameter]="40"></mat-progress-spinner>
+    <p>Flashcards werden geladen...</p>
+  </div>
+}
+@error
+{
+  <div class="cardlist-error-container">
+    <p>Hoppla! Etwas ist schiefgelaufen!</p>
+    <p>Flashcards konnten nicht geladen werden.</p>
+  </div>
+}

@@ -13,19 +13,21 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { filter, Subscription } from 'rxjs';
+import { filter, firstValueFrom, Subscription } from 'rxjs';
 import { FlashcardSetsService } from '../../../flashcard-sets.service';
 import { FlashcardsService } from '../../../flashcards.service';
 import { Flashcard, FlashcardSet } from '../../../flashcard.model';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-card-sets',
   imports: [
-    ReactiveFormsModule, CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule,
+    ReactiveFormsModule, CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatProgressBarModule, MatCardModule, MatDividerModule, MatGridListModule,
 
   ],
- templateUrl: './card-sets.component.html',
+  templateUrl: './card-sets.component.html',
   styleUrl: './card-sets.component.css'
 })
 export class CardSetsComponent implements OnInit, OnDestroy {
@@ -34,6 +36,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
   private flashcardsService = inject(FlashcardsService);
   router = inject(Router);
   private routerSubscription: Subscription;
+  private dialog = inject(MatDialog);
 
   loading = signal(false);
   error = signal<string | null>(null);
@@ -116,21 +119,32 @@ export class CardSetsComponent implements OnInit, OnDestroy {
 
   async removeSelectedQuestions(): Promise<void> {
     const set = this.selectedSet();
+    const plural: 'Karte' | 'Karten' = this.questionIdsToDelete().length === 1 ? 'Karte' : 'Karten';
     if (!set) return;
 
-    const originalCards = this.selectedSetCards();
-    const idsToDelete = this.questionIdsToDelete();
-    const newCards = originalCards.filter(card => !idsToDelete.includes(card.id));
+    const ref = this.dialog.open(ConfirmDeleteDialogComponent,
+      {
+        data: {
+          entity: plural, count: this.questionIdsToDelete().length
+        }, disableClose: true
+      });
+    const ok = await firstValueFrom(ref.afterClosed());
+    if (ok) {
 
-    const updatedSet = { ...set, flashcards: newCards };
+      const originalCards = this.selectedSetCards();
+      const idsToDelete = this.questionIdsToDelete();
+      const newCards = originalCards.filter(card => !idsToDelete.includes(card.id));
 
-    try {
-      await this.setservice.updateSet(set.id, updatedSet);
-      this.selectedSetCards.set(newCards);
-      this.questionIdsToDelete.set([]);
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : 'Unbekannter Fehler';
-      this.error.set(`Fragen konnten nicht entfernt werden: ${msg}`);
+      const updatedSet = { ...set, flashcards: newCards };
+
+      try {
+        await this.setservice.updateSet(set.id, updatedSet);
+        this.selectedSetCards.set(newCards);
+        this.questionIdsToDelete.set([]);
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : 'Unbekannter Fehler';
+        this.error.set(`Fragen konnten nicht entfernt werden: ${msg}`);
+      }
     }
   }
 
@@ -153,9 +167,15 @@ export class CardSetsComponent implements OnInit, OnDestroy {
   async removeSet() {
     const id = this.selectedId();
     if (id == null) return;
+    const ref = this.dialog.open
+      (ConfirmDeleteDialogComponent,
+        { data: { entity: 'Deck', name: this.selectedSet()?.name }, disableClose: true });
+    const confirmed = await firstValueFrom(ref.afterClosed());
+    if (!confirmed) return;
     this.error.set(null);
     try {
       await this.setservice.deleteSet(id);
+      this.selectedSetCards.update(arr => arr.filter(s => s.id !== id));
       const left = this.setservice.sets();
       this.selectedId.set(left.length ? left[0].id : null);
     } catch (e: any) {

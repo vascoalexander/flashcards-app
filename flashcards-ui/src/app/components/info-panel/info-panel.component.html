@@ -1,0 +1,19 @@
+<mat-card class="info-card">
+  <mat-card-header>
+    <mat-card-title>Info</mat-card-title>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let item of infoItems()">
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <div matListItemTitle>{{ item.label }}</div>
+        <div matListItemMeta>{{ item.value }}</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+

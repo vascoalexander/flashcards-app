@@ -1,0 +1,18 @@
+<h2 mat-dialog-title class="dlg-title">
+  <mat-icon color="warn" aria-hidden="true">warning</mat-icon>
+  <span>{{ defaultTitle }}</span>
+</h2>
+
+<div mat-dialog-content class="dlg-content">
+  <p>{{ defaultMessage }}</p>
+</div>
+
+<div mat-dialog-actions class="dlg-actions" align="end">
+  <button mat-stroked-button class="hover-blue" (click)="close(false)">
+    {{ data.cancelText || 'Abbrechen' }}
+  </button>
+  <button mat-stroked-button class="hover-red" cdkFocusInitial (click)="close(true)">
+    <mat-icon>delete</mat-icon>
+    {{ data.confirmText || 'Löschen' }}
+  </button>
+</div>
