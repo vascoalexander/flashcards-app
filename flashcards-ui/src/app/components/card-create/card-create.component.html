@@ -1,0 +1,264 @@
+<div class="card-create-container">
+  <h1>Neue Flashcard erstellen</h1>
+
+  <form [formGroup]="cardForm!" (ngSubmit)="submit()">
+
+
+    <mat-form-field>
+      <mat-label for="question">Frage</mat-label>
+      <!-- <input matInput id="question" formControlName="question" required /> -->
+      <textarea matInput id="question" formControlName="question" required></textarea>
+      <mat-error>Frage ist erforderlich.</mat-error>
+    </mat-form-field>
+
+
+    <!-- //TODO: nicht mit radio sondern -> mit chip siehe angular material examples aber aufwendiger -->
+    <p>Fragetyp:</p>
+    <mat-radio-group aria-label="Wählen Sie einen Fragetyp aus" [color]="'accent'" formControlName="type">
+      <mat-radio-button value="MULTIPLE_CHOICE">Multiple Choice</mat-radio-button>
+      <mat-radio-button value="SINGLE_CHOICE">Single Choice</mat-radio-button>
+      <mat-radio-button value="TEXT">Text</mat-radio-button>
+    </mat-radio-group>
+
+
+
+    <mat-form-field>
+      <mat-label for="set">Set auswählen</mat-label>
+      <mat-select id="set" formControlName="set">
+        @for (set of sets(); track set.id)
+        {
+          <mat-option [value]="set.id">{{ set.name }}</mat-option>
+        }
+        @empty
+        {
+          <mat-option>Keine Sets gefunden!</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+
+    <!-- //NOTE: Wenn Fragetyp == MULTIPLE_CHOICE -->
+    @if (cardForm.get('type')?.value === 'MULTIPLE_CHOICE')
+    {
+      <div>
+        <div>
+          <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer1">Antwort 1</mat-label>
+            <input matInput id="createAnswer1" formControlName="createAnswer1" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer1')?.invalid && cardForm.get('createAnswer1')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer2">Antwort 2</mat-label>
+            <input matInput id="createAnswer2" formControlName="createAnswer2" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer2')?.invalid && cardForm.get('createAnswer2')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer3">Antwort 3</mat-label>
+            <input matInput id="createAnswer3" formControlName="createAnswer3" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer3')?.invalid && cardForm.get('createAnswer3')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer4">Antwort 4</mat-label>
+            <input matInput id="createAnswer4" formControlName="createAnswer4" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer4')?.invalid && cardForm.get('createAnswer4')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer5">Antwort 5</mat-label>
+            <input matInput id="createAnswer5" formControlName="createAnswer5" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer5')?.invalid && cardForm.get('createAnswer5')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        <mat-error>
+          @if (cardForm.hasError('multipleChoiceNotNull'))
+          {
+            {{ cardForm.getError('multipleChoiceNotNull') }}
+          }
+          @if (cardForm.hasError('multipleChoiceMaxThreeNotNull'))
+          {
+            {{ cardForm.getError('multipleChoiceMaxThreeNotNull') }}
+          }
+        </mat-error>
+
+
+      </div>
+    }
+
+
+
+    <!-- //NOTE: Wenn Fragetyp == SINGLE_CHOICE -->
+    @if (cardForm.get('type')?.value === 'SINGLE_CHOICE')
+    {
+      <div>
+        <div>
+          <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer1">Antwort 1</mat-label>
+            <input matInput id="createAnswer1" formControlName="createAnswer1" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer1')?.invalid && cardForm.get('createAnswer1')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer2">Antwort 2</mat-label>
+            <input matInput id="createAnswer2" formControlName="createAnswer2" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer2')?.invalid && cardForm.get('createAnswer2')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer3">Antwort 3</mat-label>
+            <input matInput id="createAnswer3" formControlName="createAnswer3" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer3')?.invalid && cardForm.get('createAnswer3')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer4">Antwort 4</mat-label>
+            <input matInput id="createAnswer4" formControlName="createAnswer4" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer4')?.invalid && cardForm.get('createAnswer4')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
+          <mat-form-field>
+            <mat-label for="createAnswer5">Antwort 5</mat-label>
+            <input matInput id="createAnswer5" formControlName="createAnswer5" required />
+            <mat-error>
+              @if (cardForm.get('createAnswer5')?.invalid && cardForm.get('createAnswer5')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        <mat-error>
+          @if (cardForm.hasError('singleChoiceNotNull'))
+          {
+            {{ cardForm.getError('singleChoiceNotNull') }}
+          }
+        </mat-error>
+
+
+      </div>
+    }
+
+
+
+
+
+
+
+    <!-- //NOTE: Wenn Fragetyp == TEXT -->
+    @if (cardForm.get('type')?.value === 'TEXT')
+    {
+      <div>
+        <div>
+          <mat-form-field>
+            <mat-label for="answer">Antwort 1</mat-label>
+            <input matInput id="answer" formControlName="answer" required />
+            <mat-error>
+              @if (cardForm.get('answer')?.invalid && cardForm.get('answer')?.touched)
+              {
+                Eine Antwort ist erforderlich.
+              }
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    }
+
+
+
+
+
+    <div>
+      <button mat-button routerLink="/cards">Abbrechen</button>
+      <button mat-button type="submit" [disabled]="cardForm.invalid">Speichern</button>
+    </div>
+
+  </form>
+
+</div>

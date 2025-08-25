@@ -1,0 +1,72 @@
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.card-overrides((
+
+  ));
+}
+
+:host {
+  @include mat.chips-overrides((
+
+  ));
+}
+
+:host {
+  @include mat.badge-overrides((
+    background-color: rgb(53, 134, 255),
+  ));
+}
+
+:host ::ng-deep .mat-mdc-chip .mdc-evolution-chip__action,
+:host ::ng-deep .mat-mdc-chip .mdc-evolution-chip__primary-action {
+  cursor: pointer !important;
+}
+
+
+mat-card-header {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+mat-card-title {
+  display: flex;
+  // margin-bottom: 10px;
+}
+
+mat-card-content {
+  margin-bottom: 10px;
+  // padding: 0 16px 16px 16px;
+
+}
+
+mat-chip-set {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-card-footer {
+  padding: 0 16px 16px 16px;
+}
+
+
+:host ::ng-deep .mdc-evolution-chip-set__chips {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.card-id-type-badge-wrapper {
+  display: flex;
+  margin-left: auto;
+  gap: 4px;
+}
+.my-type-badge-container {
+  background-color: rgb(53, 134, 255);
+  border-radius: 9px;
+}
+.my-type-badge {
+  color: aliceblue;
+  // padding: 5px;
+  font-size: small;
+}

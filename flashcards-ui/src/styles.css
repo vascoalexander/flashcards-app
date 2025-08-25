@@ -36,7 +36,7 @@ html, body {
 }
 
 /* ===== Buttons ===== */
-button {
+/* button {
   background-color: #2563eb;
   color: white;
   border: none;
@@ -45,11 +45,11 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
-}
+} */
 
-button:hover {
+/* button:hover {
   background-color: #1d4ed8;
-}
+} */
 
 /* ===== Links ===== */
 a {

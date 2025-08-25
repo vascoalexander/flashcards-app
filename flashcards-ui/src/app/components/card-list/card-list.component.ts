@@ -36,8 +36,9 @@ export class CardListComponent implements OnInit
       .finally(() => this.loading.set(false));
   }
 
-    clickCardDetail(id: number)
-    {
+
+  clickCardDetail(id: number)
+  {
     this.router.navigate(['/cards', id]);
   }
 }

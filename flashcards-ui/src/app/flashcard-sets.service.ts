@@ -41,8 +41,6 @@ export class FlashcardSetsService {
       method: 'DELETE'
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-
-
   }
 
   async updateSet(setId: number, set: any): Promise<any> {
