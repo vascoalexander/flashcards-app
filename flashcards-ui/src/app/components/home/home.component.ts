@@ -4,25 +4,20 @@ import { FlashcardSetsService } from '../../flashcard-sets.service';
 import { FlashcardsService } from '../../flashcards.service';
 import { InfoPanelComponent, InfoItem } from '../info-panel/info-panel.component';
 import { Flashcard ,FlashcardSet } from '../../flashcard.model';
+import { MatCardModule } from '@angular/material/card';
 
 
 @Component({
   selector: 'app-home',
-  imports: [ RouterLink, InfoPanelComponent],
+  imports: [ RouterLink, InfoPanelComponent, MatCardModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.scss'
 })
 
 
 export class HomeComponent
 {
-
-
-
-
-
-
-    private setssvc = inject(FlashcardSetsService);
+  private setssvc = inject(FlashcardSetsService);
   private cardsvc = inject(FlashcardsService);
 
   infoItems = signal<InfoItem[]>([]);

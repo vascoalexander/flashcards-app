@@ -3,7 +3,7 @@
 
 :host {
   @include mat.progress-spinner-overrides((
-    active-indicator-color: purple
+    active-indicator-color: hotpink,
   ));
 }
 
