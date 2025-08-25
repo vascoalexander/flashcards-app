@@ -8,7 +8,7 @@
 ### Node / Angular ###
 **/node_modules/
 **/dist/
-
+**/.angular/
 ### OS ###
 .DS_Store
 *.log
