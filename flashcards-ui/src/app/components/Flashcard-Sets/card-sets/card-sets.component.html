@@ -1,3 +1,6 @@
+
+@defer (when !loading() && !error())
+{
 <mat-sidenav-container class="sidenav-container">
 
   <mat-sidenav mode="side" opened class="sidenav">
@@ -104,3 +107,19 @@
   </mat-sidenav-content>
 
 </mat-sidenav-container>
+}
+
+@placeholder ()
+{
+  <div class="cardlist-placeholder-container">
+    <mat-progress-spinner mode="indeterminate" [diameter]="40"></mat-progress-spinner>
+    <p>Flashcards werden geladen...</p>
+  </div>
+}
+@error
+{
+  <div class="cardlist-error-container">
+    <p>Hoppla! Etwas ist schiefgelaufen!</p>
+    <p>Flashcards konnten nicht geladen werden.</p>
+  </div>
+}
