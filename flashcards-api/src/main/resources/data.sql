@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS flashcard_options
 -- Seeding: Flashcard Sets (frei anpassbar)
 INSERT INTO flashcard_sets (name, description)
 VALUES ('Undefined', 'Standard-Set für nicht zugeordnete Karten'),
-       ('u-form – Teil 1', 'Automatisch extrahierte und bereinigte Lernkarten (30 Items)');
+       ('Zwischen Prüfung', 'Automatisch extrahierte und bereinigte Lernkarten (30 Items)');
 
 -- =====================
 -- Seeding: 30 Flashcards
