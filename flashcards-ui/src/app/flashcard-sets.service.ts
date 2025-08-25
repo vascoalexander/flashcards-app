@@ -1,6 +1,5 @@
 import { Injectable, signal } from '@angular/core';
 import { FlashcardSet } from './flashcard.model';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +10,7 @@ export class FlashcardSetsService {
 
   sets = signal<FlashcardSet[]>([]);
 
-  private setsChanged = new Subject<void>();
-  setsChanged$ = this.setsChanged.asObservable();
+  setsChanged = signal(0);
 
   async getAllSets(): Promise<FlashcardSet[]> {
     const response = await fetch(this.baseUrl);
@@ -38,7 +36,7 @@ export class FlashcardSetsService {
     const created = await response.json();
 
     this.sets.update(sets => [...sets, created]);
-    this.setsChanged.next();
+    this.setsChanged.update(v => v + 1);
   }
 
   async deleteSet(setId: number): Promise<void> {
@@ -47,15 +45,15 @@ export class FlashcardSetsService {
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
 
-    this.setsChanged.next();
+    this.setsChanged.update(v => v + 1);
   }
 
   async updateSet(setId: number, set: any): Promise<any> {
-    const response = await fetch(`${this.baseUrl}`, {
+    const response = await fetch(`${this.baseUrl}` , {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(set)
     });
-    this.setsChanged.next();
+    this.setsChanged.update(v => v + 1);
   }
 }
