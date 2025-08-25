@@ -27,10 +27,12 @@ export const routes: Routes = [
   { path: 'sets/:id/edit', component: EditSetComponent },
   { path: 'sets/:id/organize', component: EditSetComponent },
   { path: 'card/new', component: CardCreateComponent, canDeactivate: [checkoutGuard] },
+  
   { path: 'cards/:id/edit', component: CardEditComponent, canDeactivate: [checkoutGuard] },
   //TODO: homepage und 404 routen müssen angepasst werden
   // { path: '', redirectTo: 'test', pathMatch: 'full' },
   // { path: '**', redirectTo: 'cards' }
 
 ];
+
 

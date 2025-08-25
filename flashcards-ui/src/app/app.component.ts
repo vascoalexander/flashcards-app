@@ -6,7 +6,8 @@ import { Flashcard, FlashcardSet } from './flashcard.model';
 import { InfoPanelComponent, InfoItem } from './components/info-panel/info-panel.component';
 import { Subscription } from 'rxjs';
 
-import {QuizComponent} from './quiz/quiz.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { FlashcardsService } from './flashcards.service';
 
 
 
@@ -23,6 +24,7 @@ import {QuizComponent} from './quiz/quiz.component';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Flashcards UI';
   private setssvc = inject(FlashcardSetsService);
+  private cardsvc = inject(FlashcardsService);
   private subscription!: Subscription;
 
   infoItems = signal<InfoItem[]>([]);
@@ -43,22 +45,20 @@ export class AppComponent implements OnInit, OnDestroy {
   private async loadStats() {
     try {
       const sets: FlashcardSet[] = await this.setssvc.getAllSets();
-      const cardsInSet = sets.flatMap(s => s.flashcards ?? []);
-      const byId = new Map<number, Flashcard>(cardsInSet.map(c => [c.id, c]));
-      const uniqueCards = Array.from(byId.values());
-      const seen = uniqueCards.filter(c =>
-        (c as any).seen === true ||
-        (c as any).timesSeen > 0 ||
-        !!(c as any).lastReviewedAt).length;
-        
-      const correct = uniqueCards.filter(c => (c as any).correct == true ||
-        (c as any).isCorrect === true ||
-        ((c as any).stats?.correctCount ?? 0) > 0).length;
+      await this.cardsvc.getFlashcards();
+      const cards: Flashcard[] = this.cardsvc.flashcards().map(card => {
+        const stats = JSON.parse(localStorage.getItem(`flashcard-stats-${card.id}`) || '{}');
+        return { ...card, ...stats };
+      });
+
+      const seen = cards.filter(c => c.timesSeen && c.timesSeen > 0).length;
+
+      const correct = cards.filter(c => c.correctCount && c.correctCount > 0).length;
 
       const accuracy = seen > 0 ? Math.round((correct / seen) * 100) : 0;
 
       this.infoItems.set([
-        { icon: 'layers', label: 'Karten gesamt', value: uniqueCards.length.toString() },
+        { icon: 'layers', label: 'Karten gesamt', value: cards.length.toString() },
         { icon: 'collections_bookmark', label: 'Sets gesamt', value: sets.length.toString() },
         { icon: 'visibility', label: 'Karten gesehen', value: seen.toString() },
         { icon: 'check_circle', label: 'Richtig beantwortet', value: `${correct} (${accuracy}%)` }

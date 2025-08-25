@@ -12,10 +12,15 @@ export interface Flashcard {
   options?: FlashcardOption[];
   sets?: FlashcardSet[];
 
-  // clientseitige zustände
+  // client-side state
   userAnswer?: string[];
   isCorrect?: boolean;
   answered?: boolean;
+
+  // statistics
+  timesSeen?: number;
+  correctCount?: number;
+  lastReviewedAt?: Date;
 }
 
 export interface FlashcardOption {
