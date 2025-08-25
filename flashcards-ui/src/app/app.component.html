@@ -1,6 +1,5 @@
 <div class="my-app-container">
 
-  <router-outlet />
 
   <!-- TODO: dummy content als test, danach löschen -->
   <!-- header -->
@@ -12,24 +11,28 @@
 
   <!-- TODO: dummy content als test, danach löschen -->
   <!-- aside -->
+
    <div class="my-aside-main-container">
 
-    <aside class="info-panel">
+    <!-- <aside class="info-panel">
       <app-info-panel [infoItems]="infoItems
       ()"></app-info-panel>
-    </aside>
+    </aside> -->
 
 
 
     <!-- TODO: dummy content als test, danach löschen -->
     <!-- main -->
+
     <main class="my-main">
 
-      <div class="my-row">
+      <router-outlet />
+
+      <!-- <div class="my-row">
 
         <div class="main1">
-       
-<a routerLink="/quiz">Lern und Prüfungsmodus</a>
+
+          <a routerLink="/quiz">Lern und Prüfungsmodus</a>
         </div>
 
       </div>
@@ -45,7 +48,7 @@
          <a routerLink="/cards">Cards</a>
         </div>
 
-      </div>
+      </div> -->
 
     </main>
 
