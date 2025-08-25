@@ -14,10 +14,16 @@
   ));
 }
 
+:host {
+  @include mat.button-overrides((
+    text-label-text-color: grey,
+  ));
+}
+
 /* //TODO: code aus angular-buch, später alles anpassen */
 
 :host {
-  width: 400px;
+  // width: 400px;
 }
 
 /* input {
@@ -30,4 +36,12 @@ select {
   margin-bottom: 16px;
   border: 1px solid #BDBDBD;
   width: 220px;
+}
+// Ende code angular-buch
+
+
+.card-create-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
