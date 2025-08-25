@@ -1,65 +1,52 @@
 <div class="my-app-container">
 
-  <router-outlet />
-
-  <!-- TODO: dummy content als test, danach löschen -->
-  <!-- header -->
-     <header class="header1">
-
-      <h1>{{ title }}</h1>
-
-     </header>
-
-  <!-- TODO: dummy content als test, danach löschen -->
-  <!-- aside -->
-   <div class="my-aside-main-container">
-
-    <aside class="info-panel">
-      <app-info-panel [infoItems]="infoItems
-      ()"></app-info-panel>
-    </aside>
 
 
+  <!-- NOTE: HEADER-->
 
-    <!-- TODO: dummy content als test, danach löschen -->
-    <!-- main -->
-    <main class="my-main">
+  <header>
 
-      <div class="my-row">
+    <mat-toolbar>
+      <mat-toolbar-row>
 
-        <div class="main1">
-       
-<a routerLink="/quiz">Lern und Prüfungsmodus</a>
+        <div class="header-backToHome" (click)="backToHome()">
+          <h1 class="header-footer-text-color header-title">{{ title }}</h1>
         </div>
 
-      </div>
+
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <hr class="header-hr">
+
+  </header>
 
 
 
-      <div class="my-row">
+  <!-- NOTE: MAIN-->
 
-        <div class="main3">
-          <a routerLink="/sets">Card Sets</a>
-        </div>
-        <div class="main4">
-         <a routerLink="/cards">Cards</a>
-        </div>
+  <main class="my-main">
 
-      </div>
+    <router-outlet />
 
-    </main>
-
-   </div>
+  </main>
 
 
 
-  <!-- TODO: dummy content als test, danach löschen -->
-  <!-- footer  -->
-  <footer class="my-footer my-footer1">
 
-        <span>Footer Component</span>
+    <!-- NOTE: FOOTER-->
+
+<footer>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span class="header-footer-text-color footer-title">{{footerTitle}}</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</footer>
 
 
-  </footer>
+
+
 
 </div>
