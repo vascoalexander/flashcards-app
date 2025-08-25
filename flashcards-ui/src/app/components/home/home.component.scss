@@ -1,0 +1,68 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:host {
+  @include mat.card-overrides((
+    elevated-container-color: #fff,
+
+
+  ));
+}
+
+mat-card:hover {
+  background-color: #fbfafb;
+}
+
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+
+.info-card {
+  border-radius: 16px;
+  padding: 40px;
+}
+/* //TODO: hover einfügen */
+/* .info-card:hover {
+  color: hotpink;
+} */
+.mat-mdc-list-item .mdc-list-item__end {
+  font-weight: 600;
+}
+
+
+.cards-links-color {
+  color: #44474e;
+}
+
+/* //NOTE: geht nicht */
+.card-title {
+  text-align: center !important;
+}
+mat-card-title {
+  text-align: center !important;
+}
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+/*//////////////// DESKTOP ////////////////*/
+@media (min-width: 1024px) {
+  .home-container {
+    flex-direction: row;
+  }
+}

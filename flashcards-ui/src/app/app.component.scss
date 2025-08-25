@@ -1,24 +1,47 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:host {
+  @include mat.divider-overrides((
+    // color: #3969fe,
+  ));
+}
+
+
+
 .my-app-container {
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  gap: 10px;
-
+  margin: 0;
+  gap: 24px;
   min-height: 100vh;
 }
 
-.my-aside-main-container {
+.mat-toolbar-row {
+  background-color: #3969fe;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
+.header-footer-text-color {
+  color: white;
+}
+.header-hr {
+  border-top: 1px solid #527bfe;
+}
+
+// .my-aside-main-container {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 10px;
+//   flex: 1;
+// }
 
 .my-main {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
 }
 .my-row {
   display: flex;
@@ -32,13 +55,8 @@
 .my-aside1, .main1, .main2, .main3, .main4 {
   border-radius: 20px;
 }
-.header1, .my-footer1 {
-  border-radius: 12px;
-}
-.header1 {
-  height: 50px;
-  background-color: darksalmon;
-}
+
+
 .my-aside1 {
   background-color: aquamarine;
   /* min-width: 20vw; */
@@ -62,24 +80,15 @@
   text-align: center;
 }
 
-@media (min-width: 1024px) {
-  .my-app-container {
-    margin: 20px 100px 0 100px;
-  }
 
-  .my-aside-main-container {
-    flex-direction: row;
-  }
-  .my-row {
-    flex-direction: row;
-  }
-  .my-main {
-    min-width: 70vw;
-  }
-  .main1, .main2, .main3, .main4 {
-    /* min-width: 50%; */
-    /* min-width: 50%; */
-    height: 100%;
-    flex: 1;
-  }
+
+
+
+
+
+
+
+/*//////////////// DESKTOP ////////////////*/
+@media (min-width: 1024px) {
+
 }
