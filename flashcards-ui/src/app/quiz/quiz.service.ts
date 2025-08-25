@@ -217,7 +217,21 @@ export class QuizService {
       return newAnswers;
     })
 
-    this.validateAnswer(currentCard, answer);
+    const isCorrect = this.validateAnswer(currentCard, answer);
+    this.updateStats(currentCard.id, isCorrect);
+  }
+
+  private updateStats(flashcardId: number, isCorrect: boolean) {
+    const statsKey = `flashcard-stats-${flashcardId}`;
+    let stats = JSON.parse(localStorage.getItem(statsKey) || '{}');
+
+    stats.timesSeen = (stats.timesSeen || 0) + 1;
+    if (isCorrect) {
+      stats.correctCount = (stats.correctCount || 0) + 1;
+    }
+    stats.lastReviewedAt = new Date();
+
+    localStorage.setItem(statsKey, JSON.stringify(stats));
   }
 
   private getCorrectAnswers(flashcard: Flashcard) {
