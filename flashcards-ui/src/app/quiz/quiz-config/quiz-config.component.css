@@ -117,6 +117,48 @@
   transform: translateY(1px);
 }
 
+.quiz-config-shuffle {
+  margin-bottom: 2rem;
+}
+
+.quiz-config-shuffle label {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quiz-config-shuffle label:hover {
+  background: #f0f8ff;
+  border-color: #007bff;
+}
+
+.quiz-config-shuffle input[type="checkbox"] {
+  margin-right: 0.75rem;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.quiz-config-shuffle span {
+  font-weight: 500;
+  color: #333;
+  user-select: none;
+}
+
+.quiz-config-shuffle label:has(input:checked) {
+  background: #e3f2fd;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.quiz-config-shuffle label:has(input:checked) span {
+  color: #007bff;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .quiz-config {

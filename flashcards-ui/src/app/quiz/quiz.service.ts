@@ -7,6 +7,7 @@ export interface QuizConfig {
   setId: number;
   timeLimit: string;
   quizMode: string;
+  shuffleCards: boolean;
 }
 
 export interface QuizState {
@@ -67,6 +68,10 @@ export class QuizService {
       await this.flashcardsService.getFlashcardsBySetId(config.setId);
       const totalTime = this.calculateTime(config.timeLimit);
 
+      if (config.shuffleCards) {
+        this.shuffleFlashcards();
+      }
+
       this._quizState.set({
         quizMode: config.quizMode,
         isStarted: true,
@@ -120,6 +125,22 @@ export class QuizService {
       clearInterval(this._timerInterval);
       this._timerInterval = null;
     }
+  }
+
+  // shuffle
+
+  private shuffleFlashcards(){
+    const flashcards = this.flashcardsService.flashcards();
+    if (flashcards.length <= 1) return;
+
+    // fisher-yates algorithm
+    const shuffled = [...flashcards];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    this.flashcardsService.flashcards.set(shuffled);
   }
 
   // quiz functions
