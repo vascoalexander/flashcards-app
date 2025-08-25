@@ -1,8 +1,12 @@
 package com.example.flashcardsapp.service;
 
 import com.example.flashcardsapp.dto.FlashcardSetDto;
+import com.example.flashcardsapp.dto.FlashcardSetTransportDto;
 import com.example.flashcardsapp.exceptions.FlashcardSetNotFoundException;
+import com.example.flashcardsapp.model.Flashcard;
+import com.example.flashcardsapp.model.FlashcardOption;
 import com.example.flashcardsapp.model.FlashcardSet;
+import com.example.flashcardsapp.repository.FlashcardRepository;
 import com.example.flashcardsapp.repository.FlashcardSetRepository;
 import com.example.flashcardsapp.service.FlashcardService;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,10 +23,12 @@ public class FlashcardSetServiceImpl implements FlashcardSetService {
 
     private FlashcardSetRepository flashcardSetRepository;
     private FlashcardService flashcardService;
+    private FlashcardRepository flashcardRepository;
 
-    public FlashcardSetServiceImpl(FlashcardSetRepository flashcardSetRepository, FlashcardService flashcardService) {
+    public FlashcardSetServiceImpl(FlashcardSetRepository flashcardSetRepository, FlashcardService flashcardService, FlashcardRepository flashcardRepository) {
         this.flashcardSetRepository = flashcardSetRepository;
         this.flashcardService = flashcardService;
+        this.flashcardRepository = flashcardRepository;
     }
 
     @Override
@@ -69,5 +75,68 @@ public class FlashcardSetServiceImpl implements FlashcardSetService {
             .orElseThrow(() -> new FlashcardSetNotFoundException("FlashcardSet with id " + id + " not found"));
         flashcardSet.getFlashcards().clear();
         flashcardSetRepository.deleteById(id);
+    }
+
+    public FlashcardSetTransportDto exportSet(Long setId){
+        FlashcardSet set = flashcardSetRepository.findById(setId)
+                .orElseThrow(() -> new FlashcardSetNotFoundException("FlashcardSet with id " + setId + " not found"));
+
+        FlashcardSetTransportDto transportDto = new FlashcardSetTransportDto();
+        transportDto.setName(set.getName());
+        transportDto.setDescription(set.getDescription());
+
+        List<FlashcardSetTransportDto.FlashcardTransportDto> flashcards = set.getFlashcards()
+                .stream()
+                .map(card -> {
+                    FlashcardSetTransportDto.FlashcardTransportDto fc = new FlashcardSetTransportDto.FlashcardTransportDto();
+                    fc.setQuestion(card.getQuestion());
+                    fc.setAnswer(card.getAnswer());
+                    fc.setType(card.getType());
+
+                    List<FlashcardSetTransportDto.FlashcardOptionTransportDto> opts = card.getOptions()
+                            .stream()
+                            .map(opt -> {
+                                FlashcardSetTransportDto.FlashcardOptionTransportDto o = new  FlashcardSetTransportDto.FlashcardOptionTransportDto();
+                                o.setOptionText(opt.getOptionText());
+                                o.setCorrect(opt.isCorrect());
+                                return o;
+                            }).toList();
+
+                    fc.setOptions(opts);
+                    return fc;
+                }).toList();
+
+        transportDto.setFlashcards(flashcards);
+        return transportDto;
+    }
+
+    public FlashcardSet importSet(FlashcardSetTransportDto setDto){
+        FlashcardSet set = new FlashcardSet();
+        set.setName(setDto.getName());
+        set.setDescription(setDto.getDescription());
+
+        List<Flashcard> cards = setDto.getFlashcards().stream()
+                .map(fcDto -> {
+                    Flashcard flashcard = new Flashcard();
+                    flashcard.setQuestion(fcDto.getQuestion());
+                    flashcard.setAnswer(fcDto.getAnswer());
+                    flashcard.setType(fcDto.getType());
+                    flashcard.addSet(set);
+
+                    List<FlashcardOption> opts = fcDto.getOptions().stream()
+                            .map(opt -> {
+                                FlashcardOption flashcardOption = new FlashcardOption();
+                                flashcardOption.setOptionText(opt.getOptionText());
+                                flashcardOption.setCorrect(opt.isCorrect());
+                                flashcardOption.setFlashcard(flashcard);
+                                return flashcardOption;
+                            }).toList();
+
+                    flashcard.setOptions(opts);
+                    return flashcardRepository.save(flashcard);
+                }).toList();
+
+        set.setFlashcards(cards);
+        return flashcardSetRepository.save(set);
     }
 }

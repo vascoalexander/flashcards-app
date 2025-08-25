@@ -89,4 +89,8 @@ public class Flashcard
     public void setSets(List<FlashcardSet> sets) {
         this.sets = sets;
     }
+
+    public void addSet(FlashcardSet set) {
+        sets.add(set);
+    }
 }
