@@ -38,7 +38,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     await this.quizService.initializeQuiz();
   }
 
-  async onStartQuiz(config: {setId: number, timeLimit: string, quizMode: string}) {
+  async onStartQuiz(config: {setId: number, timeLimit: string, quizMode: string, shuffleCards: boolean}) {
     await this.quizService.startQuiz(config);
   }
 

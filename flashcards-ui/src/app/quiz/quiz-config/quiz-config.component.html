@@ -20,6 +20,13 @@
     </label>
   </div>
 
+  <div class="quiz-config-shuffle">
+    <label for="shuffleCards">
+      <input type="checkbox" name="shuffleCards" id="shuffleCards" [(ngModel)]="selectedShuffle"/>
+      <span>Karten mischen?</span>
+    </label>
+  </div>
+
   @if (selectedQuizMode === 'exam'){
     <div>
       <label for="selectTime">Zeitlimit festlegen</label>
