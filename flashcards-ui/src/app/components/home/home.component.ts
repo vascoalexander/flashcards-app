@@ -1,28 +1,36 @@
-import { Component, inject, signal, effect } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, effect, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { FlashcardSetsService } from '../../flashcard-sets.service';
+import { FlashcardsService } from '../../flashcards.service';
+import { InfoPanelComponent, InfoItem } from '../info-panel/info-panel.component';
+import { Flashcard ,FlashcardSet } from '../../flashcard.model';
 
-import { FlashcardSetsService } from './flashcard-sets.service';
-import { Flashcard, FlashcardSet } from './flashcard.model';
-import { InfoPanelComponent, InfoItem } from './components/info-panel/info-panel.component';
-import { FlashcardsService } from './flashcards.service';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, InfoPanelComponent,],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  selector: 'app-home',
+  imports: [ RouterLink, InfoPanelComponent],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class AppComponent {
-  title = 'Flashcards UI';
-  private setssvc = inject(FlashcardSetsService);
+
+
+export class HomeComponent
+{
+
+
+
+
+
+
+    private setssvc = inject(FlashcardSetsService);
   private cardsvc = inject(FlashcardsService);
 
   infoItems = signal<InfoItem[]>([]);
 
   constructor() {
     effect(() => {
-      this.setssvc.setsChanged(); 
-      this.cardsvc.cardsChanged(); 
+      this.setssvc.setsChanged();
+      this.cardsvc.cardsChanged();
       this.loadStats();
     });
   }
@@ -54,4 +62,3 @@ export class AppComponent {
     }
   }
 }
-

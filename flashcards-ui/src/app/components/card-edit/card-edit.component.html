@@ -8,7 +8,7 @@
 
     <mat-form-field>
       <mat-label for="question">Frage</mat-label>
-      <textarea matInput id="question" formControlName="question" required></textarea>
+      <textarea matInput id="question" formControlName="question" required maxlength="4000"></textarea>
       <mat-error>Frage ist erforderlich.</mat-error>
     </mat-form-field>
 
@@ -16,7 +16,7 @@
       <p>Fragetyp: {{selectedFlashcard?.type | formatCardtype}}</p>
       <mat-form-field>
         <mat-label for="answer">Antwort 1</mat-label>
-        <input matInput id="answer" formControlName="answer" required />
+        <input matInput id="answer" formControlName="answer" required maxlength="2000"/>
         <mat-error>
           @if (cardFormEditText.get('answer')?.invalid && cardFormEditText.get('answer')?.touched)
           {
@@ -27,8 +27,7 @@
     </div>
 
     <div>
-      <button mat-button [routerLink]="['/cards', selectedFlashcard?.id]">Abbrechen</button>
-      <button mat-button type="submit" [disabled]="cardFormEditText.invalid">Speichern</button>
+      <button mat-raised-button type="submit" [disabled]="cardFormEditText.invalid">Speichern</button>
     </div>
 
     </form>
@@ -41,7 +40,7 @@
 
       <mat-form-field>
         <mat-label for="question">Frage</mat-label>
-        <textarea matInput id="question" formControlName="question" required></textarea>
+        <textarea matInput id="question" formControlName="question" required maxlength="4000"></textarea>
         <mat-error>Frage ist erforderlich.</mat-error>
       </mat-form-field>
 
@@ -54,7 +53,7 @@
           <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer1">Antwort 1</mat-label>
-            <input matInput id="createAnswer1" formControlName="createAnswer1" required />
+            <input matInput id="createAnswer1" formControlName="createAnswer1" required maxlength="2000" />
             <mat-error>
               @if (cardFormEditSingleChoice.get('createAnswer1')?.invalid && cardFormEditSingleChoice.get('createAnswer1')?.touched)
               {
@@ -69,7 +68,7 @@
           <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer2">Antwort 2</mat-label>
-            <input matInput id="createAnswer2" formControlName="createAnswer2" required />
+            <input matInput id="createAnswer2" formControlName="createAnswer2" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditSingleChoice.get('createAnswer2')?.invalid && cardFormEditSingleChoice.get('createAnswer2')?.touched)
               {
@@ -83,7 +82,7 @@
           <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer3">Antwort 3</mat-label>
-            <input matInput id="createAnswer3" formControlName="createAnswer3" required />
+            <input matInput id="createAnswer3" formControlName="createAnswer3" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditSingleChoice.get('createAnswer3')?.invalid && cardFormEditSingleChoice.get('createAnswer3')?.touched)
               {
@@ -98,7 +97,7 @@
           <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer4">Antwort 4</mat-label>
-            <input matInput id="createAnswer4" formControlName="createAnswer4" required />
+            <input matInput id="createAnswer4" formControlName="createAnswer4" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditSingleChoice.get('createAnswer4')?.invalid && cardFormEditSingleChoice.get('createAnswer4')?.touched)
               {
@@ -112,7 +111,7 @@
           <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer5">Antwort 5</mat-label>
-            <input matInput id="createAnswer5" formControlName="createAnswer5" required />
+            <input matInput id="createAnswer5" formControlName="createAnswer5" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditSingleChoice.get('createAnswer5')?.invalid && cardFormEditSingleChoice.get('createAnswer5')?.touched)
               {
@@ -132,8 +131,7 @@
         </mat-error>
 
       <div>
-        <button mat-button [routerLink]="['/cards', selectedFlashcard?.id]">Abbrechen</button>
-        <button mat-button type="submit" [disabled]="cardFormEditSingleChoice.invalid">Speichern</button>
+        <button mat-raised-button type="submit" [disabled]="cardFormEditSingleChoice.invalid">Speichern</button>
       </div>
       </div>
 
@@ -146,7 +144,7 @@
 
     <mat-form-field>
       <mat-label for="question">Frage</mat-label>
-      <textarea matInput id="question" formControlName="question" required></textarea>
+      <textarea matInput id="question" formControlName="question" required maxlength="4000"></textarea>
       <mat-error>Frage ist erforderlich.</mat-error>
     </mat-form-field>
 
@@ -159,7 +157,7 @@
           <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer1">Antwort 1</mat-label>
-            <input matInput id="createAnswer1" formControlName="createAnswer1" required />
+            <input matInput id="createAnswer1" formControlName="createAnswer1" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditMultipleChoice.get('createAnswer1')?.invalid && cardFormEditMultipleChoice.get('createAnswer1')?.touched)
               {
@@ -174,7 +172,7 @@
           <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer2">Antwort 2</mat-label>
-            <input matInput id="createAnswer2" formControlName="createAnswer2" required />
+            <input matInput id="createAnswer2" formControlName="createAnswer2" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditMultipleChoice.get('createAnswer2')?.invalid && cardFormEditMultipleChoice.get('createAnswer2')?.touched)
               {
@@ -189,7 +187,7 @@
           <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer3">Antwort 3</mat-label>
-            <input matInput id="createAnswer3" formControlName="createAnswer3" required />
+            <input matInput id="createAnswer3" formControlName="createAnswer3" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditMultipleChoice.get('createAnswer3')?.invalid && cardFormEditMultipleChoice.get('createAnswer3')?.touched)
               {
@@ -204,7 +202,7 @@
           <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer4">Antwort 4</mat-label>
-            <input matInput id="createAnswer4" formControlName="createAnswer4" required />
+            <input matInput id="createAnswer4" formControlName="createAnswer4" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditMultipleChoice.get('createAnswer4')?.invalid && cardFormEditMultipleChoice.get('createAnswer4')?.touched)
               {
@@ -219,7 +217,7 @@
           <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer5">Antwort 5</mat-label>
-            <input matInput id="createAnswer5" formControlName="createAnswer5" required />
+            <input matInput id="createAnswer5" formControlName="createAnswer5" required maxlength="2000"/>
             <mat-error>
               @if (cardFormEditMultipleChoice.get('createAnswer5')?.invalid && cardFormEditMultipleChoice.get('createAnswer5')?.touched)
               {
@@ -245,16 +243,15 @@
 
       </div>
 
-      <div>
-        <button mat-button [routerLink]="['/cards', selectedFlashcard?.id]">Abbrechen</button>
-        <button mat-button type="submit" [disabled]="cardFormEditMultipleChoice.invalid">Speichern</button>
-      </div>
+      <button mat-raised-button type="submit" [disabled]="cardFormEditMultipleChoice.invalid">Speichern</button>
 
     </form>
   }
 
-
-
+  <div>
+    <button mat-raised-button [routerLink]="['/cards', selectedFlashcard?.id]">Abbrechen</button>
+    <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
+  </div>
 
 
 

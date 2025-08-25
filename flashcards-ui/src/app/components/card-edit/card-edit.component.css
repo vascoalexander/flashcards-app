@@ -1,0 +1,13 @@
+.card-edit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+select {
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #BDBDBD;
+  width: 220px;
+}/*# sourceMappingURL=card-edit.component.css.map */

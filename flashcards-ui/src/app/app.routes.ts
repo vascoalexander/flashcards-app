@@ -9,6 +9,9 @@ import { CardCreateComponent } from './components/card-create/card-create.compon
 
 import { checkoutGuard } from './guards/checkout.guard';
 import { CardEditComponent } from './components/card-edit/card-edit.component';
+import { QuizComponent } from './quiz/quiz.component';
+
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -19,6 +22,7 @@ export const routes: Routes = [
   { path: 'cards/:id', component: CardDetailComponent },
   { path: 'cards', component: CardListComponent },
   { path: 'create', component: CardCreateComponent },
+
   {
     path: 'sets',
     component: CardSetsComponent,
@@ -27,10 +31,11 @@ export const routes: Routes = [
   { path: 'sets/:id/edit', component: EditSetComponent },
   { path: 'sets/:id/organize', component: EditSetComponent },
   { path: 'card/new', component: CardCreateComponent, canDeactivate: [checkoutGuard] },
-  
+
   { path: 'cards/:id/edit', component: CardEditComponent, canDeactivate: [checkoutGuard] },
+  { path: 'quiz', component: QuizComponent },
   //TODO: homepage und 404 routen müssen angepasst werden
-  // { path: '', redirectTo: 'test', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   // { path: '**', redirectTo: 'cards' }
 
 ];
