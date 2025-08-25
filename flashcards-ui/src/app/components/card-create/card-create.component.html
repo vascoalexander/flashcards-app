@@ -7,7 +7,7 @@
     <mat-form-field>
       <mat-label for="question">Frage</mat-label>
       <!-- <input matInput id="question" formControlName="question" required /> -->
-      <textarea matInput id="question" formControlName="question" required></textarea>
+      <textarea matInput id="question" formControlName="question" required maxlength="4000"></textarea>
       <mat-error>Frage ist erforderlich.</mat-error>
     </mat-form-field>
 
@@ -25,6 +25,7 @@
     <mat-form-field>
       <mat-label for="set">Set auswählen</mat-label>
       <mat-select id="set" formControlName="set">
+        <mat-option selected>&lt;Kein Set&gt;</mat-option>
         @for (set of sets(); track set.id)
         {
           <mat-option [value]="set.id">{{ set.name }}</mat-option>
@@ -45,7 +46,7 @@
           <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer1">Antwort 1</mat-label>
-            <input matInput id="createAnswer1" formControlName="createAnswer1" required />
+            <input matInput id="createAnswer1" formControlName="createAnswer1" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer1')?.invalid && cardForm.get('createAnswer1')?.touched)
               {
@@ -60,7 +61,7 @@
           <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer2">Antwort 2</mat-label>
-            <input matInput id="createAnswer2" formControlName="createAnswer2" required />
+            <input matInput id="createAnswer2" formControlName="createAnswer2" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer2')?.invalid && cardForm.get('createAnswer2')?.touched)
               {
@@ -75,7 +76,7 @@
           <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer3">Antwort 3</mat-label>
-            <input matInput id="createAnswer3" formControlName="createAnswer3" required />
+            <input matInput id="createAnswer3" formControlName="createAnswer3" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer3')?.invalid && cardForm.get('createAnswer3')?.touched)
               {
@@ -90,7 +91,7 @@
           <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer4">Antwort 4</mat-label>
-            <input matInput id="createAnswer4" formControlName="createAnswer4" required />
+            <input matInput id="createAnswer4" formControlName="createAnswer4" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer4')?.invalid && cardForm.get('createAnswer4')?.touched)
               {
@@ -105,7 +106,7 @@
           <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer5">Antwort 5</mat-label>
-            <input matInput id="createAnswer5" formControlName="createAnswer5" required />
+            <input matInput id="createAnswer5" formControlName="createAnswer5" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer5')?.invalid && cardForm.get('createAnswer5')?.touched)
               {
@@ -142,7 +143,7 @@
           <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer1">Antwort 1</mat-label>
-            <input matInput id="createAnswer1" formControlName="createAnswer1" required />
+            <input matInput id="createAnswer1" formControlName="createAnswer1" required maxlength="2000"/>
             <mat-error>
               @if (cardForm.get('createAnswer1')?.invalid && cardForm.get('createAnswer1')?.touched)
               {
@@ -157,7 +158,7 @@
           <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer2">Antwort 2</mat-label>
-            <input matInput id="createAnswer2" formControlName="createAnswer2" required />
+            <input matInput id="createAnswer2" formControlName="createAnswer2" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer2')?.invalid && cardForm.get('createAnswer2')?.touched)
               {
@@ -172,7 +173,7 @@
           <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer3">Antwort 3</mat-label>
-            <input matInput id="createAnswer3" formControlName="createAnswer3" required />
+            <input matInput id="createAnswer3" formControlName="createAnswer3" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer3')?.invalid && cardForm.get('createAnswer3')?.touched)
               {
@@ -187,7 +188,7 @@
           <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer4">Antwort 4</mat-label>
-            <input matInput id="createAnswer4" formControlName="createAnswer4" required />
+            <input matInput id="createAnswer4" formControlName="createAnswer4" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer4')?.invalid && cardForm.get('createAnswer4')?.touched)
               {
@@ -202,7 +203,7 @@
           <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer5">Antwort 5</mat-label>
-            <input matInput id="createAnswer5" formControlName="createAnswer5" required />
+            <input matInput id="createAnswer5" formControlName="createAnswer5" required maxlength="2000" />
             <mat-error>
               @if (cardForm.get('createAnswer5')?.invalid && cardForm.get('createAnswer5')?.touched)
               {
@@ -238,7 +239,7 @@
         <div>
           <mat-form-field>
             <mat-label for="answer">Antwort 1</mat-label>
-            <input matInput id="answer" formControlName="answer" required />
+            <input matInput id="answer" formControlName="answer" required maxlength="2000"/>
             <mat-error>
               @if (cardForm.get('answer')?.invalid && cardForm.get('answer')?.touched)
               {

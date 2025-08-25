@@ -314,4 +314,20 @@ export class CardEditComponent implements OnInit
     this.cardFormEditMultipleChoice.reset();
     this.router.navigate(['/cards', this.id]);
   }
+
+
+  async delete()
+  {
+    this.ignoreGuard = true;
+    try
+    {
+      await this.flashcardsService.deleteFlashcard(this.id);
+      this.router.navigate(['/cards']);
+
+    }
+    catch (error)
+    {
+      alert('Die Karte konnte nicht gespeichert werden. Bitte versuche es später erneut.');
+    }
+  }
 }
