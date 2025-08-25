@@ -14,12 +14,13 @@ export class QuizConfigComponent {
 
   // input & output
   sets = input.required<FlashcardSet[]>();
-  examStart = output<{timeLimit: string, setId: number, quizMode: string}>();
+  examStart = output<{timeLimit: string, setId: number, quizMode: string, shuffleCards: boolean}>();
 
   // initial state
   selectedTime = '15';
   selectedSetId = 1;
   selectedQuizMode = 'learn';
+  selectedShuffle = false;
 
   timerOptions = [
     { value: '15', label: '15 Minuten' },
@@ -34,14 +35,9 @@ export class QuizConfigComponent {
     this.examStart.emit({
       timeLimit: this.selectedTime,
       setId: this.selectedSetId,
-      quizMode: this.selectedQuizMode
+      quizMode: this.selectedQuizMode,
+      shuffleCards: this.selectedShuffle
     })
-
-    // debug
-    console.log(`Start Quiz with
-      Timelimit: ${this.selectedTime} Minutes,
-      SetId: ${this.selectedSetId},
-      Mode: ${this.selectedQuizMode}`);
 
   }
 }
