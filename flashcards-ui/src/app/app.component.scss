@@ -34,10 +34,12 @@
 .header-backToHome {
   cursor: pointer;
   padding: 18px 50px 18px 50px;
-
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  color: white !important;
+  height: 100%;
+  gap: 10px;
 }
 .header-title {
   font-size: x-large;
@@ -45,6 +47,16 @@
 }
 .footer-title {
   font-size: medium;
+}
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.header-icon {
+   transform: scale(1.8);
+  //  padding-right: 10px;
 }
 
 

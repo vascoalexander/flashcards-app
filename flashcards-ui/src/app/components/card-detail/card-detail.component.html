@@ -7,47 +7,53 @@
 
     <mat-card-header>
       <mat-card-title>
-        <div><p class="p1" [matBadge]="card?.type | formatCardtype" matBadgeOverlap="false" class="card-detail-type-badge">{{card?.question}}</p></div>
+        {{card?.question}}
       </mat-card-title>
+
       <div class="card-id-type-badge-wrapper">
-        <p>{{card?.id}}#</p>
+        <span>{{card?.id}}#</span>
       </div>
 
-
-       <!-- //TODO 2: hatten cards keine sets? es hatte mal geklappt -->
-      <!-- <mat-chip-set>
-        <mat-chip *ngFor="let set of card?.sets">
-          {{ set.name }} (Set #{{ set.id }})
-        </mat-chip>
-      </mat-chip-set> -->
+      <mat-card-subtitle>
+        <div class="card-detail-type-badge">
+          {{card?.type | formatCardtype}}
+        </div>
+      </mat-card-subtitle>
 
     </mat-card-header>
 
 
     <mat-card-content>
-      @for (option of card?.options ?? []; track option.id; let i = $index)
+      @if (card?.type === 'SINGLE_CHOICE' || card?.type === 'MULTIPLE_CHOICE')
       {
-        <p>{{ i | formatIndexToLetter | uppercase }} {{ option.optionText }}</p>
+        @for (option of card?.options ?? []; track option.id; let i = $index)
+        {
+          <p>{{ i | formatIndexToLetter | uppercase }} {{ option.optionText }}</p>
+        }
+        @empty
+        {
+          <p>Flashcards wurden nicht gefunden.</p>
+        }
       }
-      @empty
+      @if (card?.type === 'TEXT')
       {
-        <p>Flashcards wurden nicht gefunden.</p>
+        <p></p>
       }
     </mat-card-content>
 
+    <mat-card-content>
+      <p><span class="card-detail-answer">Antwort:</span>{{card?.answer}}</p>
+    </mat-card-content>
 
 
     <mat-card-footer>
-      <mat-chip-set>
-        <!-- //TODO: Wenn ich card-edit habe dann implementieren: class="is-clickable" (click)="onOpen()" -->
-        <mat-chip>Antwort</mat-chip>
+      <mat-chip-set class="back-edit-chips-container">
+        <mat-chip (click)="edit()"><a (click)="backBtn()">< Zurück</a></mat-chip>
         <mat-chip (click)="edit()">Editieren</mat-chip>
       </mat-chip-set>
     </mat-card-footer>
 
   </mat-card>
-
-  <button class="backBtn" mat-button (click)="backBtn()">< Zurück</button>
 
 }
 <!-- //TODO: unsauber gelöst, wenn id/99 ungültige flashcard id aufgerufen wird -->
