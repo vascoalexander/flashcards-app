@@ -8,7 +8,7 @@
 
 /* Header Section */
 .exam-header {
-  background: #f8f9fa;
+  background: #fff;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 30px;
@@ -198,7 +198,7 @@
 
 /* Controls Section */
 .exam-controls {
-  background: #f8f9fa;
+  background: #fff;
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #e0e0e0;

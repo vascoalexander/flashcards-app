@@ -8,6 +8,16 @@
 }
 
 
+.card-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+
 .cardlist-placeholder-container, .cardlist-error-container {
   display: flex;
   flex-direction: column;
@@ -24,3 +34,4 @@
     background-color: rgba(0, 0, 0, 0.01);
   }
 }
+

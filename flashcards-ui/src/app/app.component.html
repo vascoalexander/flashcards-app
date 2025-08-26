@@ -9,7 +9,10 @@
     <mat-toolbar>
       <mat-toolbar-row>
 
-        <h1 class="header-footer-text-color">{{ title }}</h1>
+        <div class="header-backToHome" (click)="backToHome()">
+          <h1 class="header-footer-text-color header-title">{{ title }}</h1>
+        </div>
+
 
 
       </mat-toolbar-row>
@@ -37,7 +40,7 @@
 <footer>
   <mat-toolbar>
     <mat-toolbar-row>
-      <span class="header-footer-text-color">{{footerTitle}}</span>
+      <span class="header-footer-text-color footer-title">{{footerTitle}}</span>
     </mat-toolbar-row>
   </mat-toolbar>
 </footer>
