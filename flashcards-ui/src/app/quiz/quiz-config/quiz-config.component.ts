@@ -1,11 +1,24 @@
 import {Component, input, output} from '@angular/core';
 import {FlashcardSet} from '../../flashcard.model';
 import {FormsModule} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatLabel, MatFormField} from '@angular/material/form-field';
+import {MatOption} from '@angular/material/core';
+import {RouterLink} from '@angular/router';
+import {MatSelect} from '@angular/material/select';
 
 @Component({
   selector: 'app-quiz-config',
   imports: [
-    FormsModule
+    FormsModule,
+    MatButtonModule,
+    MatCheckbox,
+    RouterLink,
+    MatLabel,
+    MatFormField,
+    MatOption,
+    MatSelect
   ],
   templateUrl: './quiz-config.component.html',
   styleUrl: './quiz-config.component.css'
