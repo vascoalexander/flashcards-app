@@ -1,7 +1,7 @@
 <div class="exam-question">
 
   <!-- Timer und Progress -->
-  <div class="exam-header">
+  <div class="quiz-header">
     <div class="progress-info">
       <div class="progress-text-row">
         @if (showTimer()){
@@ -100,16 +100,19 @@
     </div>
   }
 
-  <div class="exam-controls">
+  <div class="quiz-controls">
     <div class="action-buttons">
       <button
+        mat-stroked-button
         type="button"
         [disabled]="!canGoPrevious()"
         (click)="onPreviousQuestion()">
-        ← Vorherige Frage
+        <mat-icon>arrow_back</mat-icon>
+        Vorherige Frage
       </button>
 
       <button
+        mat-flat-button
         type="button"
         class="submit-button"
         (click)="onSubmitAnswer()">
@@ -117,6 +120,7 @@
       </button>
 
       <button
+        mat-flat-button
         type="button"
         class="finish-button"
         (click)="onFinishQuiz()">
@@ -124,10 +128,12 @@
       </button>
 
       <button
+        mat-stroked-button
         type="button"
         [disabled]="!canGoNext()"
         (click)="onNextQuestion()">
-        Nächste Frage →
+        Nächste Frage
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
       </button>
 
     </div>

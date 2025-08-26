@@ -1,10 +1,13 @@
 import {Component, computed, inject, output, signal} from '@angular/core';
 import {QuizService} from '../quiz.service';
 import {Flashcard, FlashcardType} from '../../flashcard.model';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-quiz-result',
-  imports: [],
+  imports: [
+    MatButton
+  ],
   templateUrl: './quiz-result.component.html',
   styleUrl: './quiz-result.component.css'
 })

@@ -2,12 +2,16 @@ import {Component, computed, effect, inject, input, output, signal} from '@angul
 import {QuizService, QuizState} from '../quiz.service';
 import {Flashcard, FlashcardType} from '../../flashcard.model';
 import {DecimalPipe, NgClass} from '@angular/common';
+import {MatButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-quiz-question',
   imports: [
     DecimalPipe,
-    NgClass
+    NgClass,
+    MatButton,
+    MatIcon
   ],
   templateUrl: './quiz-question.component.html',
   styleUrl: './quiz-question.component.css'
@@ -107,7 +111,6 @@ export class QuizQuestionComponent {
       return;
     }
 
-
     let answerToSubmit: string[];
     if (currentFlashcard.type === FlashcardType.TEXT) {
       answerToSubmit = [this.textAnswer()];
@@ -115,7 +118,7 @@ export class QuizQuestionComponent {
       answerToSubmit = this.selectedOptions();
     }
 
-    if (answerToSubmit.length > 0) {
+    if (this.quizState().quizMode === 'learn' || answerToSubmit.length > 0) {
       this.quizService.submitAnswer(answerToSubmit);
     }
   }
