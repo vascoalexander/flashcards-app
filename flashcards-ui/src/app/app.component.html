@@ -8,13 +8,11 @@
 
     <mat-toolbar>
       <mat-toolbar-row>
-
-        <div class="header-backToHome" (click)="backToHome()">
-          <h1 class="header-footer-text-color header-title">{{ title }}</h1>
+        <div class="header-container">
+          <a class="header-backToHome header-footer-text-color header-title" mat-button (click)="backToHome()">
+            <mat-icon class="header-icon" aria-hidden="false" aria-label="Flashcard Learn App Icon" fontIcon="style"></mat-icon>
+            {{ title }}</a>
         </div>
-
-
-
       </mat-toolbar-row>
     </mat-toolbar>
 

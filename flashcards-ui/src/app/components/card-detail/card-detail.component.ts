@@ -8,14 +8,14 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { FormatCardtypePipe } from '../../pipes/format-cardtype.pipe';
 import { FormatIndexToLetterPipe } from '../../pipes/format-index-to-letter.pipe';
 import { UpperCasePipe } from '@angular/common';
-import { MatButton } from "@angular/material/button";
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-card-detail',
   imports: [
     MatCardModule, MatChipsModule, CommonModule, MatBadgeModule, FormatCardtypePipe,
-    FormatIndexToLetterPipe, UpperCasePipe, MatButton,
+    FormatIndexToLetterPipe, UpperCasePipe, MatButtonModule
 ],
   templateUrl: './card-detail.component.html',
   styleUrl: './card-detail.component.scss'
@@ -38,7 +38,6 @@ export class CardDetailComponent implements OnInit
   {
     this.flashcardsService.getFlashcards();
   };
-
 
 
   edit()
