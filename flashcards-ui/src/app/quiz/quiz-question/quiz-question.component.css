@@ -1,24 +1,19 @@
-
-.exam-question {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 /* Header Section */
+<<<<<<< HEAD
 .exam-header {
+=======
+.quiz-header {
+>>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 30px;
-  border-left: 4px solid #2196f3;
 }
 
 .timer {
   font-size: 18px;
   font-weight: bold;
-  color: #ff5722;
+  color: var(--mat-sys-danger);
 }
 
 .progress-info {
@@ -57,7 +52,7 @@
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 50%, #4caf50 100%);
+  background: linear-gradient(135deg, var(--mat-sys-success) 0%, #66bb6a 50%, var(--mat-sys-success) 100%);
   border-radius: 12px;
   transition: width 0.4s ease-in-out;
   position: relative;
@@ -165,7 +160,7 @@
 
 .text-input input:focus {
   outline: none;
-  border-color: #2196f3;
+  border-color: var(--mat-sys-primary);
 }
 
 /* Answer Status */
@@ -178,21 +173,22 @@
 }
 
 .answer-status.answered {
-  background: #e8f5e8;
-  color: #2e7d2e;
-  border: 1px solid #c8e6c8;
+  background: var(--mat-sys-success-container);
+  color: var(--mat-sys-success);
+  border: 1px solid var(--mat-sys-success);
 }
 
 .answer-status.not-answered {
-  background: #fff3e0;
-  color: #f57c00;
-  border: 1px solid #ffe0b2;
+  background: var(--mat-sys-warning-container);
+  color: var(--mat-sys-warning);
+  border: 1px solid var(--mat-sys-warning);
 }
 
 .correct {
-  background-color: #d4edda;
+  background-color: var(--mat-sys-success-container);
 }
 .wrong {
+<<<<<<< HEAD
   background-color: #f8d7da;
 }
 
@@ -202,6 +198,9 @@
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #e0e0e0;
+=======
+  background-color: var(--mat-sys-danger-container);
+>>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
 }
 
 /* Action Buttons Container */
@@ -212,71 +211,22 @@
   align-items: center;
 }
 
-/* Buttons - Updated */
-button {
-  padding: 14px 16px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  min-height: 48px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Navigation Buttons */
-.action-buttons button:first-child,
-.action-buttons button:nth-child(4) {
-  background: #e3f2fd;
-  color: #1976d2;
-  border: 1px solid #bbdefb;
-}
-
-.action-buttons button:first-child:hover:not(:disabled),
-.action-buttons button:nth-child(4):hover:not(:disabled) {
-  background: #bbdefb;
-  transform: translateY(-1px);
-}
-
 /* Submit Button */
 .submit-button {
-  background: #4caf50 !important;
-  color: white !important;
-  border: 1px solid #4caf50 !important;
-}
-
-.submit-button:hover:not(:disabled) {
-  background: #45a049 !important;
-  transform: translateY(-1px);
+  background: var(--mat-sys-success) !important;
+  transition: all 0.3s;
 }
 
 /* Finish Button */
 .finish-button {
-  background: #ff5722 !important;
-  color: white !important;
-  border: 1px solid #ff5722 !important;
-}
-
-.finish-button:hover:not(:disabled) {
-  background: #e64a19 !important;
-  transform: translateY(-1px);
+  background: var(--mat-sys-danger) !important;
+  transition: all 0.3s;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .exam-question {
-    padding: 15px;
-  }
 
-  .exam-header {
+  .quiz-header {
     padding: 15px;
   }
 
@@ -302,7 +252,6 @@ button:disabled {
     padding: 20px;
   }
 
-  /* Action buttons responsive */
   .action-buttons {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -316,11 +265,8 @@ button:disabled {
 }
 
 @media (max-width: 480px) {
-  .exam-question {
-    padding: 10px;
-  }
 
-  .exam-header {
+  .quiz-header {
     padding: 12px;
   }
 
@@ -352,7 +298,6 @@ button:disabled {
     font-size: 11px;
   }
 
-  /* Action buttons für sehr kleine Bildschirme */
   .action-buttons {
     grid-template-columns: 1fr;
     gap: 8px;
@@ -365,7 +310,6 @@ button:disabled {
   }
 }
 
-/* Progress Bar Status */
 .progress-bar[style*="width: 0"] + .progress-percentage {
   color: #666;
 }

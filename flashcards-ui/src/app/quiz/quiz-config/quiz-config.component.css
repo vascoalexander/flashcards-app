@@ -11,28 +11,6 @@
   margin-bottom: 2rem;
 }
 
-.quiz-config-set label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.quiz-config-set select {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  background: white;
-  transition: border-color 0.2s;
-}
-
-.quiz-config-set select:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
 .quiz-config-mode {
   margin-bottom: 2rem;
 }
@@ -43,8 +21,8 @@
   margin-bottom: 1rem;
   padding: 0.75rem;
   background: white;
-  border: 2px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #1f2937;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -70,51 +48,14 @@
   color: #007bff;
 }
 
-.quiz-config div:not(.quiz-config-set):not(.quiz-config-mode) {
+.quiz-config-header {
+  background: linear-gradient(45deg, #dd0031 0%, #1976d2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
-}
-
-.quiz-config div:not(.quiz-config-set):not(.quiz-config-mode) label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.quiz-config div:not(.quiz-config-set):not(.quiz-config-mode) select {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  background: white;
-  transition: border-color 0.2s;
-}
-
-.quiz-config div:not(.quiz-config-set):not(.quiz-config-mode) select:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-.quiz-config button {
-  width: 100%;
-  padding: 1rem 2rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.quiz-config button:hover {
-  background: #0056b3;
-}
-
-.quiz-config button:active {
-  transform: translateY(1px);
 }
 
 .quiz-config-shuffle {
@@ -124,17 +65,12 @@
 .quiz-config-shuffle label {
   display: flex;
   align-items: center;
-  padding: 0.75rem;
+  align-content: flex-start;
+  padding: 0.3rem;
   background: white;
-  border: 2px solid #ddd;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
-}
-
-.quiz-config-shuffle label:hover {
-  background: #f0f8ff;
-  border-color: #007bff;
 }
 
 .quiz-config-shuffle input[type="checkbox"] {
@@ -149,15 +85,16 @@
   user-select: none;
 }
 
-.quiz-config-shuffle label:has(input:checked) {
-  background: #e3f2fd;
-  border-color: #007bff;
-  color: #007bff;
+.quiz-config-set mat-form-field,
+.quiz-config-timer mat-form-field {
+  width: 100%;
 }
 
-.quiz-config-shuffle label:has(input:checked) span {
-  color: #007bff;
+.quiz-config-buttons {
+  display: flex;
+  justify-content: space-between;
 }
+
 
 /* Responsive */
 @media (max-width: 600px) {

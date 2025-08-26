@@ -24,9 +24,13 @@
 }
 
 
+.mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
 mat-card-header {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 mat-card-title {
@@ -34,13 +38,23 @@ mat-card-title {
   // margin-bottom: 10px;
 }
 
-mat-card-content {
-  margin-bottom: 10px;
-  // padding: 0 16px 16px 16px;
-
+.card-detail-type-badge {
+  display: inline;
+  color: #3969FE;
+  border-radius: 9px;
+  font-size: small;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
-mat-chip-set {
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 30px;
+}
+
+ack-edit-chips-container {
   display: flex;
   justify-content: space-between;
 }
@@ -75,6 +89,19 @@ mat-card-footer {
   margin-top: 20px;
 }
 
+<<<<<<< HEAD
+=======
+.card-detail-answer {
+  background-color: #90EE90;
+  // color: darkgreen;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border-radius: 3px;
+  padding: 2px 8px 2px 8px;
+  margin-right: 10px;
+}
+
+>>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
 
 
 /*//////////////// DESKTOP ////////////////*/

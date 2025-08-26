@@ -34,10 +34,19 @@
 .header-backToHome {
   cursor: pointer;
   padding: 18px 50px 18px 50px;
+<<<<<<< HEAD
 
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+=======
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: white !important;
+  height: 100%;
+  gap: 10px;
+>>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
 }
 .header-title {
   font-size: x-large;
@@ -46,6 +55,19 @@
 .footer-title {
   font-size: medium;
 }
+<<<<<<< HEAD
+=======
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.header-icon {
+   transform: scale(1.8);
+  //  padding-right: 10px;
+}
+>>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
 
 
 .my-main {
