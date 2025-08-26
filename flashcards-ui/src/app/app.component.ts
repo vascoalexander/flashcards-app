@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -13,6 +13,13 @@ export class AppComponent
 {
   title = 'Flashcards UI';
   currentYear = new Date().getFullYear();
-  footerTitle = `© ${this.currentYear}`;
+  footerTitle = `Triple A © ${this.currentYear}`;
+
+  private router = inject(Router);
+
+  backToHome()
+  {
+    this.router.navigate(['']);
+  }
 }
 

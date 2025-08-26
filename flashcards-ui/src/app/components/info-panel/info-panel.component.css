@@ -1,4 +1,8 @@
-.info-card { border-radius: 16px; }
+.info-card {
+  border-radius: 16px;
+  /* WICHTIG: für meine startseite layout */
+  height: 100%;
+}
 .mat-mdc-list-item .mdc-list-item__end { font-weight: 600; }
 
 mat-card-header {
