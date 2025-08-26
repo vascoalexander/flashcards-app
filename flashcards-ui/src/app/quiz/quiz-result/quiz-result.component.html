@@ -2,7 +2,7 @@
 
   <!-- Header -->
   <div class="result-header">
-    <h2>Exam Ergebnisse</h2>
+    <h3>Ergebnisse</h3>
   </div>
 
   <!-- Score  -->
@@ -64,6 +64,7 @@
   <!-- Action Buttons -->
   <div class="action-buttons">
     <button
+      mat-flat-button
       type="button"
       class="details-button"
       (click)="onToggleDetails()">
@@ -71,10 +72,11 @@
     </button>
 
     <button
+      mat-flat-button
       type="button"
       class="restart-button"
       (click)="onRestartExam()">
-      Neues Exam starten
+      Neue Prüfung starten
     </button>
   </div>
 
@@ -86,12 +88,14 @@
       <!-- Filter Buttons -->
       <div class="filter-buttons">
         <button
+          mat-stroked-button
           type="button"
           [class.active]="selectedFilter() === 'all'"
           (click)="onFilterChange('all')">
           Alle ({{ quizResult().totalQuestions }})
         </button>
         <button
+          mat-stroked-button
           type="button"
           [class.active]="selectedFilter() === 'correct'"
           class="filter-correct"
@@ -100,12 +104,14 @@
         </button>
         <button
           type="button"
+          mat-stroked-button
           [class.active]="selectedFilter() === 'incorrect'"
           class="filter-incorrect"
           (click)="onFilterChange('incorrect')">
           ❌ Falsch ({{ quizResult().incorrectAnswers }})
         </button>
         <button
+          mat-stroked-button
           type="button"
           [class.active]="selectedFilter() === 'skipped'"
           class="filter-skipped"
@@ -143,7 +149,7 @@
 
               <div class="answers-comparison">
                 <div class="user-answer">
-                  <strong>Ihre Antwort:</strong>
+                  <strong>Ihre Antwort: </strong>
                   <span [class]="getQuestionStatus(card)">
                     {{ getUserAnswerText(card) }}
                   </span>
@@ -151,7 +157,7 @@
 
                 @if (getQuestionStatus(card) !== 'skipped') {
                   <div class="correct-answer">
-                    <strong>Richtige Antwort:</strong>
+                    <strong>Richtige Antwort: </strong>
                     <span class="correct">{{ getCorrectAnswerText(card) }}</span>
                   </div>
                 }

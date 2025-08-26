@@ -1,12 +1,16 @@
 <div class="quiz-config">
 
+  <h1 class="quiz-config-header">Quiz</h1>
+
   <div class="quiz-config-set">
-    <label for="selectSet">Kartenset auswählen</label>
-    <select id="selectSet" [(ngModel)]="selectedSetId">
-      @for (set of sets(); track set.id) {
-        <option [value]="set.id">{{ set.name }}</option>
-      }
-    </select>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Kartenset auswählen</mat-label>
+      <mat-select [(ngModel)]="selectedSetId" id="selectSet">
+        @for (set of sets(); track set.id) {
+          <mat-option [value]="set.id">{{ set.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div class="quiz-config-mode">
@@ -22,22 +26,27 @@
 
   <div class="quiz-config-shuffle">
     <label for="shuffleCards">
-      <input type="checkbox" name="shuffleCards" id="shuffleCards" [(ngModel)]="selectedShuffle"/>
+      <mat-checkbox type="checkbox" name="shuffleCards" id="shuffleCards" [(ngModel)]="selectedShuffle"/>
       <span>Karten mischen?</span>
     </label>
   </div>
 
   @if (selectedQuizMode === 'exam'){
-    <div>
-      <label for="selectTime">Zeitlimit festlegen</label>
-      <select id="selectTime" [(ngModel)]="selectedTime">
-        @for (option of timerOptions; track option) {
-          <option [value]="option.value">{{ option.label }}</option>
-        }
-      </select>
+    <div class="quiz-config-timer">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Zeitlimit festlegen</mat-label>
+        <mat-select [(ngModel)]="selectedTime">
+          @for (option of timerOptions; track option) {
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
     </div>
   }
 
-  <button (click)="onStartQuiz()">Starte Quiz</button>
+  <div class="quiz-config-buttons">
+    <button mat-stroked-button routerLink="/">Zurück</button>
+    <button mat-flat-button (click)="onStartQuiz()">Starte Quiz</button>
+  </div>
 
 </div>
