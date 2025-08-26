@@ -4,8 +4,6 @@
 :host {
   @include mat.card-overrides((
     elevated-container-color: #fff,
-
-
   ));
 }
 
@@ -21,17 +19,15 @@ mat-card:hover {
 }
 
 
+.cards-link-container, .sets-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 
 .info-card {
   border-radius: 16px;
-  padding: 40px;
-}
-/* //TODO: hover einfügen */
-/* .info-card:hover {
-  color: hotpink;
-} */
-.mat-mdc-list-item .mdc-list-item__end {
-  font-weight: 600;
 }
 
 
@@ -39,21 +35,13 @@ mat-card:hover {
   color: #44474e;
 }
 
-/* //NOTE: geht nicht */
-.card-title {
-  text-align: center !important;
-}
-mat-card-title {
-  text-align: center !important;
-}
+
 mat-card-header {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
-
-
-
 
 
 
@@ -62,7 +50,52 @@ mat-card-header {
 
 /*//////////////// DESKTOP ////////////////*/
 @media (min-width: 1024px) {
-  .home-container {
+
+  .home-container, .sets-cards-container {
     flex-direction: row;
   }
+  .home-container {
+    //debug -> home container
+    // background-color: aquamarine;
+  }
+
+  //debug
+  // .info-panel {
+  //   height: 55vh;
+  //   width: 20vw;
+  // }
+  aside {
+    //besser nicht, weil ich schon bei .info-card die Höhe mit vh gemacht habe. Daher automatische Höhe
+    // height: 55vh;
+    width: 18vw;
+  }
+
+
+  .cards-link-container {
+    width: 40vw;
+  }
+  .sets-cards-container {
+    width: 100% !important;
+  }
+
+
+
+  //gleiche größe sets-card & cards-card
+  .sets-card, .cards-card {
+    flex: 1;
+    display: flex;
+  }
+  //höhe der links cards
+  .info-card {
+    flex: 1;
+    height: 25.5vh;
+  }
+  ////////FIX: TEST CODE: ENDE
+
+  //header title posi fix
+  mat-card-header {
+    display: flex;
+    flex: 1;
+  }
+
 }

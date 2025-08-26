@@ -70,3 +70,16 @@ mat-card-footer {
   // padding: 5px;
   font-size: small;
 }
+
+.backBtn {
+  margin-top: 20px;
+}
+
+
+
+/*//////////////// DESKTOP ////////////////*/
+@media (min-width: 1024px) {
+  .card-detail {
+    width: 50vw;
+  }
+}
