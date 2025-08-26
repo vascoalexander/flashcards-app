@@ -99,7 +99,7 @@
 /* Responsive */
 @media (max-width: 600px) {
   .quiz-config {
-    /* margin: 1rem;
-    padding: 1.5rem; */
+    margin: 1rem;
+    padding: 1.5rem;
   }
 }

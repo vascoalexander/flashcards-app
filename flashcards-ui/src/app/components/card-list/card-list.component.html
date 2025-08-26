@@ -31,21 +31,12 @@
     </div>
 
 
-<<<<<<< HEAD
-<div class="card-list-container">
-=======
->>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
 
-  @defer (when !loading() && !loadingError())
-  {
-    <h1>Alle Flashcards ({{ cards.length }})</h1>
+      <table mat-table [dataSource]="cards">
 
-<<<<<<< HEAD
-        <table mat-table [dataSource]="cards">
-
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>Nr:</th>
-            <td mat-cell *matCellDef="let card"><p>{{ card.id }}</p></td>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Nr:</th>
+          <td mat-cell *matCellDef="let card"><p>{{ card.id }}</p></td>
         </ng-container>
 
         <ng-container matColumnDef="question">

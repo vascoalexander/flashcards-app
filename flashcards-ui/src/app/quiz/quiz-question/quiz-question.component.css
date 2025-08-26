@@ -1,9 +1,5 @@
 /* Header Section */
-<<<<<<< HEAD
-.exam-header {
-=======
 .quiz-header {
->>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -188,19 +184,7 @@
   background-color: var(--mat-sys-success-container);
 }
 .wrong {
-<<<<<<< HEAD
-  background-color: #f8d7da;
-}
-
-/* Controls Section */
-.exam-controls {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-=======
   background-color: var(--mat-sys-danger-container);
->>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
 }
 
 /* Action Buttons Container */

@@ -21,7 +21,6 @@
 /* Score Overview */
 .score-overview {
   display: grid;
-  /* hier gehe ich nicht rein mit grid, lieber mit flexbox */
   grid-template-columns: auto 1fr;
   gap: 2rem;
   align-items: center;
@@ -381,11 +380,3 @@
   }
 }
 
-<<<<<<< HEAD
-
-@media (min-width: 1024px) {
-
-
-}
-=======
->>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053

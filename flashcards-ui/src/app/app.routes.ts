@@ -12,10 +12,7 @@ import { CardEditComponent } from './components/card-edit/card-edit.component';
 import { QuizComponent } from './quiz/quiz.component';
 
 import { HomeComponent } from './components/home/home.component';
-<<<<<<< HEAD
-=======
 import { Page404Component } from './components/page-404/page-404.component';
->>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
 
 
 
@@ -32,16 +29,9 @@ export const routes: Routes = [
   { path: 'card/new', component: CardCreateComponent, title: 'Karte erstellen', canDeactivate: [checkoutGuard] },
 
   { path: 'cards/:id/edit', component: CardEditComponent, canDeactivate: [checkoutGuard] },
-<<<<<<< HEAD
-  { path: 'quiz', component: QuizComponent },
-  //TODO: homepage und 404 routen müssen angepasst werden
-  { path: '', component: HomeComponent },
-  // { path: '**', redirectTo: 'cards' }
-=======
   { path: 'quiz', component: QuizComponent, title: 'Quiz' },
   { path: '', component: HomeComponent, title: 'Home' },
   { path: '**', component: Page404Component, title: '404' }
->>>>>>> b62c5ac17ebcd96310b7f4f33a06e8984a673053
 
 ];
 
