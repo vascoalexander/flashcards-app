@@ -4,13 +4,14 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 20px;
+  gap: 40px;
 }
 .h2-container {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+
 }
 
 .h2-404 {

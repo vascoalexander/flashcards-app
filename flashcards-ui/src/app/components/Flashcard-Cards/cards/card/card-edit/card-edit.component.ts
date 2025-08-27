@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FlashcardsService } from '../../flashcards.service';
+import { FlashcardsService } from '../../../../../flashcards.service';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
-import { Flashcard } from '../../flashcard.model';
+import { Flashcard } from '../../../../../flashcard.model';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -10,11 +10,11 @@ import { MatFormField, MatError, MatLabel } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { formMultipleChoiceValidator } from '../../validators/formMultipleChoiceValidator';
-import { formNoWhiteSpaceValidator } from '../../validators/formNoWhiteSpaceValidator';
-import { formMultipleChoiceMaxThreeRightValidator } from '../../validators/formMultipleChoiceMaxThreeRightValidator';
-import { formSingleChoiceValidator } from '../../validators/formSingleChoiceValidator';
-import { FormatCardtypePipe } from '../../pipes/format-cardtype.pipe';
+import { formMultipleChoiceValidator } from '../../../../../validators/formMultipleChoiceValidator';
+import { formNoWhiteSpaceValidator } from '../../../../../validators/formNoWhiteSpaceValidator';
+import { formMultipleChoiceMaxThreeRightValidator } from '../../../../../validators/formMultipleChoiceMaxThreeRightValidator';
+import { formSingleChoiceValidator } from '../../../../../validators/formSingleChoiceValidator';
+import { FormatCardtypePipe } from '../../../../../pipes/format-cardtype.pipe';
 
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FlashcardsService } from '../../flashcards.service';
-import { FlashcardSetsService } from '../../flashcard-sets.service';
+import { FlashcardsService } from '../../../../../flashcards.service';
+import { FlashcardSetsService } from '../../../../../flashcard-sets.service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormField, MatError, MatLabel } from '@angular/material/form-field';
@@ -10,10 +10,10 @@ import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterLink, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { formMultipleChoiceValidator } from '../../validators/formMultipleChoiceValidator';
-import { formNoWhiteSpaceValidator } from '../../validators/formNoWhiteSpaceValidator';
-import { formMultipleChoiceMaxThreeRightValidator } from '../../validators/formMultipleChoiceMaxThreeRightValidator';
-import { formSingleChoiceValidator } from '../../validators/formSingleChoiceValidator';
+import { formMultipleChoiceValidator } from '../../../../../validators/formMultipleChoiceValidator';
+import { formNoWhiteSpaceValidator } from '../../../../../validators/formNoWhiteSpaceValidator';
+import { formMultipleChoiceMaxThreeRightValidator } from '../../../../../validators/formMultipleChoiceMaxThreeRightValidator';
+import { formSingleChoiceValidator } from '../../../../../validators/formSingleChoiceValidator';
 import { Subscription } from 'rxjs';
 
 
