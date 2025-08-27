@@ -249,7 +249,7 @@
   }
 
   <div>
-    <button mat-raised-button [routerLink]="['/cards', selectedFlashcard?.id]">Abbrechen</button>
+    <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
     <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
   </div>
 

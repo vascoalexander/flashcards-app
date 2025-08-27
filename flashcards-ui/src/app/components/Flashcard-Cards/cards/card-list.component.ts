@@ -68,12 +68,12 @@ export class CardListComponent implements OnInit
 
   clickCardDetail(id: number)
   {
-    this.router.navigate(['/cards/card', id]);
+    this.router.navigate(['/cards/detail', id]);
   }
 
   clickAddCard()
   {
-    this.router.navigate(['/card/new']);
+    this.router.navigate(['/cards/create']);
   }
 }
 

@@ -1,5 +1,5 @@
 import { CanDeactivateFn } from '@angular/router';
-import { CardCreateComponent } from '../components/Flashcard-Cards/cards/card/card-create/card-create.component';
+import { CardCreateComponent } from '../components/Flashcard-Cards/cards/create/card-create.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckoutComponent } from '../components/Flashcard-Cards/checkout/checkout.component';
 import { inject } from '@angular/core';

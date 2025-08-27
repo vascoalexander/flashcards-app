@@ -203,9 +203,8 @@ export class CardEditComponent implements OnInit
       };
     }
 
-
     //debug
-    console.log(newFlashcard);
+    // console.log(newFlashcard);
     try
     {
       await this.flashcardsService.updateFlashcard(this.id, newFlashcard);
@@ -216,8 +215,10 @@ export class CardEditComponent implements OnInit
     }
 
     this.cardFormEditText.reset();
-    this.router.navigate(['/cards', this.id]);
+    this.router.navigate(['/cards']);
   }
+
+
 
 
   async submitEditSingleChoice()
@@ -252,7 +253,7 @@ export class CardEditComponent implements OnInit
 
 
     //debug
-    console.log(newFlashcard);
+    // console.log(newFlashcard);
     try
     {
       await this.flashcardsService.updateFlashcard(this.id, newFlashcard);
@@ -262,9 +263,8 @@ export class CardEditComponent implements OnInit
       alert('Die Karte konnte nicht gespeichert werden. Bitte versuche es später erneut.');
     }
 
-
     this.cardFormEditSingleChoice.reset();
-    this.router.navigate(['/cards', this.id]);
+    this.router.navigate(['/cards']);
   }
 
 
@@ -300,7 +300,7 @@ export class CardEditComponent implements OnInit
 
 
     //debug
-    console.log(newFlashcard);
+    // console.log(newFlashcard);
     try
     {
       await this.flashcardsService.updateFlashcard(this.id, newFlashcard);
@@ -312,7 +312,7 @@ export class CardEditComponent implements OnInit
 
 
     this.cardFormEditMultipleChoice.reset();
-    this.router.navigate(['/cards', this.id]);
+    this.router.navigate(['/cards']);
   }
 
 

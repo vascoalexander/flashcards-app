@@ -1,12 +1,12 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
-import { FlashcardsService } from '../../../../../flashcards.service';
+import { FlashcardsService } from '../../../../flashcards.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import { MatBadgeModule } from '@angular/material/badge';
-import { FormatCardtypePipe } from '../../../../../pipes/format-cardtype.pipe';
-import { FormatIndexToLetterPipe } from '../../../../../pipes/format-index-to-letter.pipe';
+import { FormatCardtypePipe } from '../../../../pipes/format-cardtype.pipe';
+import { FormatIndexToLetterPipe } from '../../../../pipes/format-index-to-letter.pipe';
 import { UpperCasePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -42,10 +42,10 @@ export class CardDetailComponent implements OnInit
 
   edit()
   {
-    this.router.navigate(['/cards', this.id, 'edit']);
+    this.router.navigate(['/cards/detail/edit', this.id]);
   }
 
-  backBtn()
+  backToCards()
   {
     this.router.navigate(['/cards']);
   }
