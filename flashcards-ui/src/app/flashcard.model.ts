@@ -11,12 +11,22 @@ export interface Flashcard {
   type: FlashcardType;
   options?: FlashcardOption[];
   sets?: FlashcardSet[];
+
+  // client-side state
+  userAnswer?: string[];
+  isCorrect?: boolean;
+  answered?: boolean;
+
+  // statistics
+  timesSeen?: number;
+  correctCount?: number;
+  lastReviewedAt?: Date;
 }
 
 export interface FlashcardOption {
   id: number;
   optionText: string;
-  isCorrect: boolean;
+  correct: boolean;
 }
 
 export interface FlashcardSet {

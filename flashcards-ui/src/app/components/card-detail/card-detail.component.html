@@ -1,28 +1,67 @@
 @let card = flashcard();
 
-<!-- //TODO: 1: alle infos ausgeben!! -->
-<!-- TODO: vllt designen, aber erst in die haupt design basic layout einfügne und schauen wie es aussieht -->
+
 @defer (when card)
 {
-  <li>Id: {{card?.id}}</li>
-  <li>Question: {{card?.question}}</li>
-  <li>Answer: {{card?.answer}}</li>
+  <mat-card class="card-detail" appearance="outlined">
+
+    <mat-card-header>
+      <mat-card-title>
+        {{card?.question}}
+      </mat-card-title>
+
+      <div class="card-id-type-badge-wrapper">
+        <span>{{card?.id}}#</span>
+      </div>
+
+      <mat-card-subtitle>
+        <div class="card-detail-type-badge">
+          {{card?.type | formatCardtype}}
+        </div>
+      </mat-card-subtitle>
+
+    </mat-card-header>
 
 
-      <!-- <mat-card [routerLink]="[card.id]">
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>{{ i+1 }}. {{ card.question }}</mat-card-title>
-            <mat-card-subtitle>{{ card.question }}</mat-card-subtitle>
-          </mat-card-title-group>
-        </mat-card-header>
-      </mat-card> -->
+    <mat-card-content>
+      @if (card?.type === 'SINGLE_CHOICE' || card?.type === 'MULTIPLE_CHOICE')
+      {
+        @for (option of card?.options ?? []; track option.id; let i = $index)
+        {
+          <p>{{ i | formatIndexToLetter | uppercase }} {{ option.optionText }}</p>
+        }
+        @empty
+        {
+          <p>Flashcards wurden nicht gefunden.</p>
+        }
+      }
+      @if (card?.type === 'TEXT')
+      {
+        <p></p>
+      }
+    </mat-card-content>
+
+    <mat-card-content>
+      <p><span class="card-detail-answer">Antwort:</span>{{card?.answer}}</p>
+    </mat-card-content>
+
+
+    <mat-card-footer>
+      <mat-chip-set class="back-edit-chips-container">
+        <mat-chip (click)="edit()"><a (click)="backBtn()">< Zurück</a></mat-chip>
+        <mat-chip (click)="edit()">Editieren</mat-chip>
+      </mat-chip-set>
+    </mat-card-footer>
+
+  </mat-card>
+
 }
-<!-- zum testen: @placeholder(minimum 3s) -->
+<!-- //TODO: unsauber gelöst, wenn id/99 ungültige flashcard id aufgerufen wird -->
 @placeholder ()
 {
   <div>
-    <p>Flashcard wurde nicht gefunden...</p>
+    <p>Flashcard wird geladen...</p>
+    <p>(oder wurde nicht gefunden)</p>
   </div>
 }
 @error

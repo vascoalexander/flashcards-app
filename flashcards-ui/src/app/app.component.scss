@@ -1,0 +1,106 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:host {
+  @include mat.divider-overrides((
+
+  ));
+}
+
+
+
+.my-app-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  gap: 24px;
+  //TODO: auskommentieren, weil benutzt wird
+  min-height: 100vh;
+}
+
+
+.mat-toolbar-row {
+  background-color: #3969fe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-hr {
+  border-top: 1px solid #527bfe;
+}
+.header-footer-text-color {
+  color: white;
+}
+.header-backToHome {
+  cursor: pointer;
+  padding: 18px 50px 18px 50px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: white !important;
+  height: 100%;
+  gap: 10px;
+}
+.header-title {
+  font-size: x-large;
+  font-weight: 500;
+}
+.footer-title {
+  font-size: medium;
+}
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.header-icon {
+   transform: scale(1.8);
+  //  padding-right: 10px;
+}
+
+
+.my-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //FIX:
+  flex: 1 1 0;
+  //debug -> main -> router-outlet
+  // background-color: #3969fe;
+}
+
+
+footer {
+  //TODO: auskommentieren, weil benutzt wird
+  margin-top: auto;
+}
+
+
+
+
+
+
+
+
+/*//////////////// DESKTOP ////////////////*/
+@media (min-width: 1024px) {
+
+  .my-main {
+  // flex: 0;
+  //debug -> main -> router-outlet
+  // background-color: #3969fe;
+
+
+  margin: 0 100px 0 100px;
+  padding: 5px;
+
+
+  //debug
+  // justify-content: start;
+  // align-items: start;
+  // width: 1093px;
+  // height: 500px;
+  }
+
+}

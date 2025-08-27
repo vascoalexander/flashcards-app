@@ -1,0 +1,109 @@
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.card-overrides((
+
+  ));
+}
+
+:host {
+  @include mat.chips-overrides((
+
+  ));
+}
+
+:host {
+  @include mat.badge-overrides((
+    background-color: rgb(53, 134, 255),
+  ));
+}
+
+:host ::ng-deep .mat-mdc-chip .mdc-evolution-chip__action,
+:host ::ng-deep .mat-mdc-chip .mdc-evolution-chip__primary-action {
+  cursor: pointer !important;
+}
+
+
+.mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+mat-card-header {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+mat-card-title {
+  display: flex;
+  // margin-bottom: 10px;
+}
+
+.card-detail-type-badge {
+  display: inline;
+  color: #3969FE;
+  border-radius: 9px;
+  font-size: small;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 30px;
+}
+
+ack-edit-chips-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-card-footer {
+  padding: 0 16px 16px 16px;
+}
+
+
+:host ::ng-deep .mdc-evolution-chip-set__chips {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.card-id-type-badge-wrapper {
+  display: flex;
+  margin-left: auto;
+  gap: 4px;
+}
+.my-type-badge-container {
+  background-color: rgb(53, 134, 255);
+  border-radius: 9px;
+}
+.my-type-badge {
+  color: aliceblue;
+  // padding: 5px;
+  font-size: small;
+}
+
+.backBtn {
+  margin-top: 20px;
+}
+
+.card-detail-answer {
+  background-color: #90EE90;
+  // color: darkgreen;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border-radius: 3px;
+  padding: 2px 8px 2px 8px;
+  margin-right: 10px;
+}
+
+
+
+/*//////////////// DESKTOP ////////////////*/
+@media (min-width: 1024px) {
+  .card-detail {
+    width: 50vw;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="quiz-container">
+
+  @if (showConfig()){
+      <app-quiz-config
+        [sets]="sets()"
+        (examStart)="onStartQuiz($event)">
+      </app-quiz-config>
+  }
+
+  @if (showQuestion()){
+      <app-quiz-question
+        [quizState]="quizState()"
+        [flashcards]="flashcards()"
+        [currentFlashcard]="currentFlashcard()"
+        [progress]="quizProgress()"
+        [answeredCount]="answeredCount()"
+        (finishQuiz)="onFinishQuiz()">
+      </app-quiz-question>
+  }
+
+  @if (showResult()){
+      <app-quiz-result
+        (restartQuiz)="onRestartQuiz()">
+      </app-quiz-result>
+  }
+
+</div>

@@ -1,5 +1,5 @@
-import {Injectable, signal} from '@angular/core';
-import {FlashcardSet} from './flashcard.model';
+import { Injectable, signal } from '@angular/core';
+import { FlashcardSet } from './flashcard.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,8 @@ export class FlashcardSetsService {
   private baseUrl = '/api/sets';
 
   sets = signal<FlashcardSet[]>([]);
+
+  setsChanged = signal(0);
 
   async getAllSets(): Promise<FlashcardSet[]> {
     const response = await fetch(this.baseUrl);
@@ -34,6 +36,7 @@ export class FlashcardSetsService {
     const created = await response.json();
 
     this.sets.update(sets => [...sets, created]);
+    this.setsChanged.update(v => v + 1);
   }
 
   async deleteSet(setId: number): Promise<void> {
@@ -42,18 +45,15 @@ export class FlashcardSetsService {
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
 
-    this.sets.update(sets => sets.filter(s => s.id !== setId));
+    this.setsChanged.update(v => v + 1);
   }
 
-    async updateSet(setId: number, set: any): Promise<any> {
-    const response = await fetch(`${this.baseUrl}/${setId}`, {
+  async updateSet(setId: number, set: any): Promise<any> {
+    const response = await fetch(`${this.baseUrl}` , {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(set)
     });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    // The response from the server is null, so we use the passed 'set' object to update the state.
-    this.sets.update(sets => sets.map(s => s.id === setId ? set : s));
-    return null;
+    this.setsChanged.update(v => v + 1);
   }
 }

@@ -1,3 +1,77 @@
+/*material ui colors*/
+:root {
+  --mat-sys-background: #faf9fd;
+  --mat-sys-error: #ba1a1a;
+  --mat-sys-error-container: #ffdad6;
+  --mat-sys-inverse-on-surface: #f2f0f4;
+  --mat-sys-inverse-primary: #abc7ff;
+  --mat-sys-inverse-surface: #2f3033;
+  --mat-sys-on-background: #1a1b1f;
+  --mat-sys-on-error: #ffffff;
+  --mat-sys-on-error-container: #93000a;
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-on-primary-container: #00458f;
+  --mat-sys-on-primary-fixed: #001b3f;
+  --mat-sys-on-primary-fixed-variant: #00458f;
+  --mat-sys-on-secondary: #ffffff;
+  --mat-sys-on-secondary-container: #3e4759;
+  --mat-sys-on-secondary-fixed: #131c2b;
+  --mat-sys-on-secondary-fixed-variant: #3e4759;
+  --mat-sys-on-surface: #1a1b1f;
+  --mat-sys-on-surface-variant: #44474e;
+  --mat-sys-on-tertiary: #ffffff;
+  --mat-sys-on-tertiary-container: #0000ef;
+  --mat-sys-on-tertiary-fixed: #00006e;
+  --mat-sys-on-tertiary-fixed-variant: #0000ef;
+  --mat-sys-outline: #74777f;
+  --mat-sys-outline-variant: #c4c6d0;
+  --mat-sys-primary: #005cbb;
+  --mat-sys-primary-container: #d7e3ff;
+  --mat-sys-primary-fixed: #d7e3ff;
+  --mat-sys-primary-fixed-dim: #abc7ff;
+  --mat-sys-scrim: #000000;
+  --mat-sys-secondary: #565e71;
+  --mat-sys-secondary-container: #dae2f9;
+  --mat-sys-secondary-fixed: #dae2f9;
+  --mat-sys-secondary-fixed-dim: #bec6dc;
+  --mat-sys-shadow: #000000;
+  --mat-sys-surface: #faf9fd;
+  --mat-sys-surface-bright: #faf9fd;
+  --mat-sys-surface-container: #efedf0;
+  --mat-sys-surface-container-high: #e9e7eb;
+  --mat-sys-surface-container-highest: #e3e2e6;
+  --mat-sys-surface-container-low: #f4f3f6;
+  --mat-sys-surface-container-lowest: #ffffff;
+  --mat-sys-surface-dim: #dbd9dd;
+  --mat-sys-surface-tint: #005cbb;
+  --mat-sys-surface-variant: #e0e2ec;
+  --mat-sys-tertiary: #343dff;
+  --mat-sys-tertiary-container: #e0e0ff;
+  --mat-sys-tertiary-fixed: #e0e0ff;
+  --mat-sys-tertiary-fixed-dim: #bec2ff;
+  --mat-sys-neutral-variant20: #2d3038;
+  --mat-sys-neutral10: #1a1b1f;
+
+  /* Success Colors */
+  --mat-sys-success: #2e7d32;
+  --mat-sys-success-container: #c8e6c9;
+  --mat-sys-on-success: #ffffff;
+  --mat-sys-on-success-container: #1b5e20;
+
+  /* Danger Colors */
+  --mat-sys-danger: #d32f2f;
+  --mat-sys-danger-container: #ffcdd2;
+  --mat-sys-on-danger: #ffffff;
+  --mat-sys-on-danger-container: #b71c1c;
+
+  /* Warning Colors */
+  --mat-sys-warning: #f57c00;
+  --mat-sys-warning-container: #fff3e0;
+  --mat-sys-on-warning: #ffffff;
+  --mat-sys-on-warning-container: #e65100;
+
+}
+
 /* ===== Reset / Normalize ===== */
 *,
 *::before,
@@ -13,7 +87,7 @@ html, body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  background-color: #f9fafb;
+  background-color: #F2F4F7;
   color: #1f2937;
 }
 
@@ -36,7 +110,7 @@ html, body {
 }
 
 /* ===== Buttons ===== */
-button {
+/* button {
   background-color: #2563eb;
   color: white;
   border: none;
@@ -45,30 +119,20 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
-}
+} */
 
-button:hover {
+/* button:hover {
   background-color: #1d4ed8;
-}
+} */
 
 /* ===== Links ===== */
-a {
-  color: #2563eb;
+a, a:hover, a:active, a:visited {
   text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
 }
 /* ===== Utility ===== */
 .mb {
   margin-bottom: 1rem;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

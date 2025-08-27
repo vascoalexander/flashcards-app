@@ -1,5 +1,5 @@
 import {Injectable, signal} from '@angular/core';
-import {Flashcard} from './flashcard.model';
+import {Flashcard, FlashcardType} from './flashcard.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ export class FlashcardsService {
   private baseUrl = '/api/flashcards';
 
   flashcards = signal<Flashcard[]>([]);
+  cardsChanged = signal(0);
 
   async getFlashcards(): Promise<void> {
     const response = await fetch(this.baseUrl);
@@ -41,7 +42,8 @@ export class FlashcardsService {
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
     const newCard = await response.json();
 
-    this.flashcards.update(cards => [...cards, newCard])
+    this.flashcards.update(cards => [...cards, newCard]);
+    this.cardsChanged.update(v => v + 1);
   }
 
   async updateFlashcard(flashcardId: number, flashcard: any): Promise<void> {
@@ -54,6 +56,7 @@ export class FlashcardsService {
     const updated = await response.json();
 
     this.flashcards.update(cards => cards.map(c => c.id === updated.id ? updated : c));
+    this.cardsChanged.update(v => v + 1);
   }
 
   async deleteFlashcard(flashcardId: number): Promise<void> {
@@ -63,5 +66,6 @@ export class FlashcardsService {
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
 
     this.flashcards.update(cards => cards.filter(c => c.id !== flashcardId));
+    this.cardsChanged.update(v => v + 1);
   }
 }

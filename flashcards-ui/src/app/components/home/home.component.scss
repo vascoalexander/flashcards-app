@@ -1,0 +1,101 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:host {
+  @include mat.card-overrides((
+    elevated-container-color: #fff,
+  ));
+}
+
+mat-card:hover {
+  background-color: #fbfafb;
+}
+
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.cards-link-container, .sets-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.info-card {
+  border-radius: 16px;
+}
+
+
+.cards-links-color {
+  color: #44474e;
+}
+
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+
+
+
+/*//////////////// DESKTOP ////////////////*/
+@media (min-width: 1024px) {
+
+  .home-container, .sets-cards-container {
+    flex-direction: row;
+  }
+  .home-container {
+    //debug -> home container
+    // background-color: aquamarine;
+  }
+
+  //debug
+  // .info-panel {
+  //   height: 55vh;
+  //   width: 20vw;
+  // }
+  aside {
+    //besser nicht, weil ich schon bei .info-card die Höhe mit vh gemacht habe. Daher automatische Höhe
+    // height: 55vh;
+    width: 18vw;
+  }
+
+
+  .cards-link-container {
+    width: 40vw;
+  }
+  .sets-cards-container {
+    width: 100% !important;
+  }
+
+
+
+  //gleiche größe sets-card & cards-card
+  .sets-card, .cards-card {
+    flex: 1;
+    display: flex;
+  }
+  //höhe der links cards
+  .info-card {
+    flex: 1;
+    height: 25.5vh;
+  }
+  ////////FIX: TEST CODE: ENDE
+
+  //header title posi fix
+  mat-card-header {
+    display: flex;
+    flex: 1;
+  }
+
+}

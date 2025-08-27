@@ -1,0 +1,32 @@
+.container-404 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+.h2-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.h2-404 {
+  background-color: #3969FE;
+  border-radius: 9px;
+  padding: 10px 40px 10px 40px;
+  color: #fff;
+
+}
+
+.h2-404 {
+  font-size: 6rem;
+  font-weight: 600;
+  letter-spacing: 10px;
+}
+
+.container-404 p {
+  font-size: x-large;
+}
