@@ -37,7 +37,7 @@
       </mat-nav-list>
     </div>
     <div>
-       <button mat-stroked-button color="primary" class="hover-white" (click)="cancel()" >Zurück</button>
+       <button mat-stroked-button color="primary" class="hover-white" (click)="cancel()" >< Zurück</button>
     </div>
   </mat-sidenav>
 
@@ -49,7 +49,7 @@
       </div>
 
       <ng-container *ngIf="selectedSet() as sel; else noSetSelected">
-    
+
         <div class="content-header">
           <h1>{{ sel.name }}</h1>
           <span class="spacer"></span>

@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, signal, ViewChild, computed } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FlashcardSetsService } from '../../../flashcard-sets.service';
-import { Flashcard, FlashcardSet } from '../../../flashcard.model';
+import { FlashcardSetsService } from '../../../../flashcard-sets.service';
+import { Flashcard, FlashcardSet } from '../../../../flashcard.model';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +14,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { FlashcardsService } from '../../../flashcards.service';
+import { FlashcardsService } from '../../../../flashcards.service';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 

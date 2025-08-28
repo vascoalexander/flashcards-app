@@ -160,7 +160,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
   editSelected() {
     const id = this.selectedId();
     if (id != null) {
-      this.router.navigate(['/sets', id, 'edit']);
+      this.router.navigate(['/sets/edit', id]);
     }
   }
 
@@ -183,10 +183,11 @@ export class CardSetsComponent implements OnInit, OnDestroy {
     }
   }
 
-  organizeCards() {
-    const id = this.selectedId();
-    if (id != null) this.router.navigate(['/sets', id, 'organize']);
-  }
+  //zombie code
+  // organizeCards() {
+  //   const id = this.selectedId();
+  //   if (id != null) this.router.navigate(['/sets', id, 'organize']);
+  // }
   cancel() {
     this.router.navigate(['/']);
   }
