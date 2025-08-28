@@ -27,7 +27,16 @@ export const routes: Routes = [
   { path: 'sets/:id/organize', component: EditSetComponent },
 
   // { path: 'cards/:id/edit', component: CardEditComponent, canDeactivate: [checkoutGuard] },
-  { path: 'quiz', component: QuizComponent, title: 'Quiz' },
+
+
+
+
+
+  // { path: 'quiz', component: QuizComponent, title: 'Quiz' },
+  { path: 'quiz', loadChildren: () => import('./lazyloading-routes/quiz.routes') },
+
+
+
 
   { path: '', component: HomeComponent, title: 'Home' },
   { path: '**', component: Page404Component, title: '404' }
