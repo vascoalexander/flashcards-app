@@ -8,7 +8,7 @@ export type ConfirmDeleteDialog = {
   confirmText?: string;
   cancelText?: string;
   name?: string;
-  entity: 'Deck' | 'Karte' | 'Karten';
+  entity: 'Set' | 'Karte' | 'Karten' | 'InfoPanel';
   title?: string;
   count?: number;
   message?: string;
@@ -32,7 +32,7 @@ export class ConfirmDeleteDialogComponent {
     if (this.data.entity === 'Karten') {
       { return `Wollen Sie wirklich ${label} aus dem ${this.data.name} entfernen?`; };
     }
-    if (this.data.entity === 'Karte') return `Wollen Sie wirklich ${label} aus dem Deck entfernen?`;
+    if (this.data.entity === 'Karte') return `Wollen Sie wirklich ${label} aus dem Set entfernen?`;
     return `${label} löschen?`;
   }
 
@@ -41,6 +41,7 @@ export class ConfirmDeleteDialogComponent {
     if (this.data.name) return `Wollen Sie wirklich ${this.data.name}  löschen?`;
     return '';
   }
+
 
   close(result: boolean) {
     this.ref.close(result);

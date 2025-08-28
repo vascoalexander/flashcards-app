@@ -96,7 +96,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
       }
     }
     catch (e: any) {
-      this.error.set(e?.message ?? 'Fehler beim Laden der Decks.');
+      this.error.set(e?.message ?? 'Fehler beim Laden der Sets.');
     }
     finally {
       this.loading.set(false);
@@ -108,7 +108,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
       await this.flashcardsService.getFlashcardsBySetId(setId);
       this.selectedSetCards.set(this.flashcardsService.flashcards());
     } catch (e) {
-      console.error('Fehler beim Laden der Karten für das Deck', e);
+      console.error('Fehler beim Laden der Karten für das Set', e);
       this.selectedSetCards.set([]);
     }
   }
@@ -169,7 +169,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
     if (id == null) return;
     const ref = this.dialog.open
       (ConfirmDeleteDialogComponent,
-        { data: { entity: 'Deck', name: this.selectedSet()?.name }, disableClose: true });
+        { data: { entity: 'Set', name: this.selectedSet()?.name }, disableClose: true });
     const confirmed = await firstValueFrom(ref.afterClosed());
     if (!confirmed) return;
     this.error.set(null);
