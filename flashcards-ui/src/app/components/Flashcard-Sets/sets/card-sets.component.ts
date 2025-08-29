@@ -28,7 +28,7 @@ import { MatDialog } from '@angular/material/dialog';
 
   ],
   templateUrl: './card-sets.component.html',
-  styleUrl: './card-sets.component.css'
+  styleUrl: './card-sets.component.scss'
 })
 export class CardSetsComponent implements OnInit, OnDestroy {
 
@@ -96,7 +96,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
       }
     }
     catch (e: any) {
-      this.error.set(e?.message ?? 'Fehler beim Laden der Decks.');
+      this.error.set(e?.message ?? 'Fehler beim Laden der Sets.');
     }
     finally {
       this.loading.set(false);
@@ -108,7 +108,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
       await this.flashcardsService.getFlashcardsBySetId(setId);
       this.selectedSetCards.set(this.flashcardsService.flashcards());
     } catch (e) {
-      console.error('Fehler beim Laden der Karten für das Deck', e);
+      console.error('Fehler beim Laden der Karten für das Set', e);
       this.selectedSetCards.set([]);
     }
   }
@@ -160,7 +160,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
   editSelected() {
     const id = this.selectedId();
     if (id != null) {
-      this.router.navigate(['/sets', id, 'edit']);
+      this.router.navigate(['/sets/edit', id]);
     }
   }
 
@@ -169,7 +169,7 @@ export class CardSetsComponent implements OnInit, OnDestroy {
     if (id == null) return;
     const ref = this.dialog.open
       (ConfirmDeleteDialogComponent,
-        { data: { entity: 'Deck', name: this.selectedSet()?.name }, disableClose: true });
+        { data: { entity: 'Set', name: this.selectedSet()?.name }, disableClose: true });
     const confirmed = await firstValueFrom(ref.afterClosed());
     if (!confirmed) return;
     this.error.set(null);
@@ -183,10 +183,11 @@ export class CardSetsComponent implements OnInit, OnDestroy {
     }
   }
 
-  organizeCards() {
-    const id = this.selectedId();
-    if (id != null) this.router.navigate(['/sets', id, 'organize']);
-  }
+  //zombie code
+  // organizeCards() {
+  //   const id = this.selectedId();
+  //   if (id != null) this.router.navigate(['/sets', id, 'organize']);
+  // }
   cancel() {
     this.router.navigate(['/']);
   }

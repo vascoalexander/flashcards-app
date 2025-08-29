@@ -8,6 +8,18 @@
 }
 
 
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+.footer-mat-toolbar {
+  @include mat.toolbar-overrides((
+    standard-height: 40px,
+    mobile-height: 40px,
+  ));
+}
+
+
+
+
+
 
 .my-app-container {
   display: flex;
@@ -16,17 +28,27 @@
   gap: 24px;
   //TODO: auskommentieren, weil benutzt wird
   min-height: 100vh;
+  // width: 100%;
 }
 
 
 .mat-toolbar-row {
-  background-color: #3969fe;
+  //original
+  // background-color: #3969fe;
+
+  //testen
+  // background-color: #6487ee;
+  background-color: #6d8ef1;
+  // background-color: #a4bbff;
+  // background-color: #7591e6;
+  //oder vllt: #1a1b1f ?
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .header-hr {
-  border-top: 1px solid #527bfe;
+  border-top: 1px solid #92adfd;
 }
 .header-footer-text-color {
   color: white;
@@ -53,6 +75,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  height: 100%;
 }
 .header-icon {
    transform: scale(1.8);
@@ -72,12 +95,11 @@
 
 
 footer {
-  //TODO: auskommentieren, weil benutzt wird
   margin-top: auto;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-
-
-
 
 
 

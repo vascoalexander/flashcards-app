@@ -3,24 +3,27 @@ import { RouterLink } from '@angular/router';
 import { FlashcardSetsService } from '../../flashcard-sets.service';
 import { FlashcardsService } from '../../flashcards.service';
 import { InfoPanelComponent, InfoItem } from '../info-panel/info-panel.component';
-import { Flashcard ,FlashcardSet } from '../../flashcard.model';
+import { Flashcard, FlashcardSet } from '../../flashcard.model';
 import { MatCardModule } from '@angular/material/card';
+import { ConfirmDeleteDialogComponent } from '../Flashcard-Sets/confirm-delete-dialog/confirm-delete-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
   selector: 'app-home',
-  imports: [ RouterLink, InfoPanelComponent, MatCardModule],
+  imports: [RouterLink, InfoPanelComponent, MatCardModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 
 
-export class HomeComponent
-{
+export class HomeComponent {
   private setssvc = inject(FlashcardSetsService);
   private cardsvc = inject(FlashcardsService);
 
   infoItems = signal<InfoItem[]>([]);
+
+  private dialog = inject(MatDialog);
 
   constructor() {
     effect(() => {
@@ -29,6 +32,19 @@ export class HomeComponent
       this.loadStats();
     });
   }
+  async clearLocalStorage(): Promise<void> {
+    this.dialog.open(ConfirmDeleteDialogComponent, { data: { entity: 'InfoPanel', title: 'Statistik zurücksetzen?', confirmText: 'Zurücksetzen', cancelText: 'Abbrechen' } })
+      .afterClosed()
+      .subscribe(confirmed => {
+        if (confirmed) {
+          localStorage.clear();
+          this.loadStats();
+        }
+      });
+  }
+
+
+
 
   private async loadStats() {
     try {

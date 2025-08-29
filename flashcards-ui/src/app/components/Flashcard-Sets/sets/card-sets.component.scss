@@ -28,6 +28,7 @@
 
 .main-content-inner {
   padding: 24px;
+  width: 50vw;
 }
 
 .content-header {
@@ -108,7 +109,7 @@
 .hover-white:hover {
   color: #fff !important;
 }
-.backerror:hover{ 
+.backerror:hover{
   color: #fff !important;
   background-color: red;
   border-color: red;
@@ -116,5 +117,63 @@
 }
 .hover-green:hover{
     color: white;
-    background-color: green;
+    background-color: rgb(134, 240, 134);
+}
+
+
+
+
+//quick fix: Breite passt sich an my-main auch wenn inhalt der list-items zu lang ist. inhalt wrappt sich
+:host ::ng-deep a.mat-mdc-list-item, :host ::ng-deep mat-list-option.mdc-list-item, :host ::ng-deep .mat-mdc-list-item {
+  min-width: 0;
+}
+
+:host ::ng-deep [matListItemTitle], :host ::ng-deep .mdc-list-item__primary-text, :host ::ng-deep .mat-mdc-list-item-unscoped-content {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  text-overflow: clip;
+}
+
+mat-selection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+//list items höhe gegeben, wenn inhalt um wrapped zb bei 3 zeilen sieht schlecht aus
+a.mat-mdc-list-item, mat-list-option.mdc-list-item, .mat-mdc-list-item {
+  height: auto !important;
+  align-items: flex-start;
+  min-height: 48px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.sets-edit-delete-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.backBtn-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding-left: 32px;
+}
+.backBtn, .sets-edit-Btn {
+
+
+  &:hover {
+   background-color: #e7edff;
+  }
+}
+
+mat-nav-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
 }

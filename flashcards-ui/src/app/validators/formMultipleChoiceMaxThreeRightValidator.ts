@@ -48,7 +48,7 @@ export function formMultipleChoiceMaxThreeRightValidator(): ValidatorFn
     }
     else
     {
-      return { multipleChoiceMaxThreeNotNull: 'Maximal 3 Häkchen als richtige Antworten sind erlaubt.' };
+      return { multipleChoiceMaxThreeNotNull: 'Max. 3 Häkchen als richtige Antworten sind erlaubt.' };
     }
   }
 }

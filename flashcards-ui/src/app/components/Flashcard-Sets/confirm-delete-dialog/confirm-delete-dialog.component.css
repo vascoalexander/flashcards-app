@@ -15,10 +15,22 @@
   gap: 8px;
 }
 .hover-red:hover {
-  background-color: red;
-  color: white;
+  background-color: #e7edff;
+  /* color: white; */
 }
 .hover-blue:hover {
-  background-color: blue;
-  color: white;
+  background-color: #e7edff;
+  /* color: white; */
+}
+
+
+
+/* test */
+
+.dlg-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
 }

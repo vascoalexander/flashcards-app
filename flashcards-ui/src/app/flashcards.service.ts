@@ -11,7 +11,7 @@ export class FlashcardsService {
   flashcards = signal<Flashcard[]>([]);
   cardsChanged = signal(0);
 
-  async getFlashcards(): Promise<void> {
+    async getFlashcards(): Promise<void> {
     const response = await fetch(this.baseUrl);
     if (!response.ok) throw new Error('Fehler beim Abrufen des /flashcards Enpoints');
     const data = await response.json();

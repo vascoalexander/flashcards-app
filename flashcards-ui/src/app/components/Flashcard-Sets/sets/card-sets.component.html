@@ -5,16 +5,16 @@
 
   <mat-sidenav mode="side" opened class="sidenav">
     <mat-toolbar color="primary">
-      <span>Lernkarten Decks</span>
+      <span>Lernkarten Sets</span>
       <span class="spacer"></span>
-      <button mat-icon-button class="hover-green" (click)="addSet()" matTooltip="Neues Deck erstellen">
+      <button mat-icon-button class="hover-green" (click)="addSet()" matTooltip="Neues Set erstellen">
         <mat-icon>add</mat-icon>
       </button>
     </mat-toolbar>
 
     <div class="sidenav-content">
       <mat-form-field appearance="outline">
-        <mat-label>Deck suchen</mat-label>
+        <mat-label>Set suchen</mat-label>
         <input matInput [value]="filterText()" (input)="filterText.set($any($event.target).value)">
         <button *ngIf="filterText()" mat-icon-button matSuffix (click)="filterText.set('')">
           <mat-icon>close</mat-icon>
@@ -31,13 +31,13 @@
         </ng-container>
         <ng-template #noSets>
           <div class="empty-list-message">
-            <p>Keine Decks gefunden.</p>
+            <p>Keine Sets gefunden.</p>
           </div>
         </ng-template>
       </mat-nav-list>
     </div>
-    <div>
-       <button mat-stroked-button color="primary" class="hover-white" (click)="cancel()" >Zurück</button>
+    <div class="backBtn-wrapper">
+       <button mat-stroked-button color="primary" class="backBtn" (click)="cancel()" >< Zurück</button>
     </div>
   </mat-sidenav>
 
@@ -49,18 +49,20 @@
       </div>
 
       <ng-container *ngIf="selectedSet() as sel; else noSetSelected">
-    
+
         <div class="content-header">
           <h1>{{ sel.name }}</h1>
           <span class="spacer"></span>
-          <button mat-stroked-button class="hover-white" (click)="editSelected()">
-            <mat-icon>edit</mat-icon>
-            Deck bearbeiten
-          </button>
-          <button mat-stroked-button  class="hover-white, backerror" (click)="removeSet()">
-            <mat-icon>delete</mat-icon>
-            Deck löschen
-          </button>
+          <div class="sets-edit-delete-wrapper">
+            <button mat-stroked-button class="sets-edit-Btn" (click)="editSelected()">
+              <mat-icon>edit</mat-icon>
+              Set bearbeiten
+            </button>
+            <button mat-stroked-button  class="hover-white, backerror" (click)="removeSet()">
+              <mat-icon>delete</mat-icon>
+              Set löschen
+            </button>
+          </div>
         </div>
 
         <p *ngIf="sel.description; else noDesc" class="description">{{ sel.description }}</p>
@@ -72,7 +74,7 @@
 
         <mat-card class="questions-card">
           <mat-card-header>
-            <mat-card-title>Fragen in diesem Deck ({{ selectedCount() }})</mat-card-title>
+            <mat-card-title>Fragen in diesem Set ({{ selectedCount() }})</mat-card-title>
             <span class="spacer"></span>
             <button mat-stroked-button class="backerror" [disabled]="!questionIdsToDelete().length" (click)="removeSelectedQuestions()">
               <mat-icon>delete_sweep</mat-icon>
@@ -89,7 +91,7 @@
               <ng-template #noCards>
                 <div class="empty-list-message">
                   <mat-icon>inbox</mat-icon>
-                  <p>Dieses Deck hat noch keine Fragen.</p>
+                  <p>Dieses Set hat noch keine Fragen.</p>
                 </div>
               </ng-template>
             </mat-selection-list>
@@ -100,7 +102,7 @@
         <div class="empty-content-message">
           <mat-icon>rule_folder</mat-icon>
           <h2>Deck auswählen</h2>
-          <p>Wählen Sie ein Deck aus für mehr Informationen.</p>
+          <p>Wählen Sie ein Set aus für mehr Informationen.</p>
         </div>
       </ng-template>
     </div>

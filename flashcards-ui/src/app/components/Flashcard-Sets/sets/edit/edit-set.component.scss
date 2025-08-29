@@ -1,0 +1,106 @@
+/* quick fixes */
+.hover-green:hover{
+  background-color: #e7edff;
+}
+.backerror:hover{
+  color: #fff !important;
+  background-color: rgb(255, 162, 162);
+}
+
+.mat-h3 {
+  letter-spacing: 2px;
+}
+
+mat-card {
+  // width: 40vw;
+  width: 100%;
+  margin: 16px auto;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+mat-form-field {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-icon {
+  color: white;
+}
+
+mat-card-content {
+  padding: 0;
+}
+
+mat-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background-color: #8B8B8B;
+  border-radius: 19px;
+  color: white;
+  height: 40px;
+
+  .mat-toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+  button {
+    flex-shrink: 0;
+  }
+}
+
+mat-selection-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+//quick fix: Breite passt sich an my-main auch wenn inhalt der list-items zu lang ist. inhalt wrappt sich
+:host ::ng-deep a.mat-mdc-list-item, :host ::ng-deep mat-list-option.mdc-list-item, :host ::ng-deep .mat-mdc-list-item {
+  min-width: 0;
+}
+:host ::ng-deep [matListItemTitle], :host ::ng-deep .mdc-list-item__primary-text, :host ::ng-deep .mat-mdc-list-item-unscoped-content {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  text-overflow: clip;
+}
+//list items höhe gegeben, wenn inhalt um wrapped zb bei 3 zeilen sieht schlecht aus
+a.mat-mdc-list-item, mat-list-option.mdc-list-item, .mat-mdc-list-item {
+  height: auto !important;
+  align-items: flex-start;
+  min-height: 48px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+fieldset {
+  border: 0;
+}
+
+
+
+
+@media (min-width: 1024px) {
+
+  mat-card {
+    width: 50%;
+  }
+
+}
+
