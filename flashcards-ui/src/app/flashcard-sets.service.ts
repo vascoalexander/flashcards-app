@@ -44,7 +44,7 @@ export class FlashcardSetsService {
       method: 'DELETE'
     });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-
+    this.sets.update(sets => sets.filter(s => s.id !== setId));
     this.setsChanged.update(v => v + 1);
   }
 
