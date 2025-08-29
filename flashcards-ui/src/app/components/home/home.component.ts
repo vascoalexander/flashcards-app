@@ -5,9 +5,6 @@ import { FlashcardsService } from '../../flashcards.service';
 import { InfoPanelComponent, InfoItem } from '../info-panel/info-panel.component';
 import { Flashcard, FlashcardSet } from '../../flashcard.model';
 import { MatCardModule } from '@angular/material/card';
-import { checkoutGuard } from '../../guards/checkout.guard';
-import { CheckoutComponent } from '../checkout/checkout.component';
-import { firstValueFrom } from 'rxjs';
 import { ConfirmDeleteDialogComponent } from '../Flashcard-Sets/confirm-delete-dialog/confirm-delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
