@@ -54,19 +54,12 @@ mat-card-header {
 }
 
 
-
-
-
-/*//////////////// DESKTOP ////////////////*/
 @media (min-width: 1024px) {
 
   .home-container, .sets-cards-container {
     flex-direction: row;
   }
-  .home-container {
-    //debug -> home container
-    // background-color: aquamarine;
-  }
+
 
   //debug
   // .info-panel {

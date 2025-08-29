@@ -147,7 +147,7 @@ export class EditSetComponent {
         if (e.status === 400) {
           const errorMessage = e.error?.message || e.error;
           if (errorMessage && (errorMessage.toLowerCase().includes('already exists') || errorMessage.toLowerCase().includes('bereits existiert'))) {
-            this.error.set('Das Deck existiert bereits.');
+            this.error.set('Das Set existiert bereits.');
           } else {
             this.error.set('Speichern fehlgeschlagen: Ungültige Anfrage.');
           }
