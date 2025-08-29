@@ -3,6 +3,7 @@
 
   @if (selectedFlashcard?.type === 'TEXT')
   {
+    <!-- //NOTE TEXT -->
     <form [formGroup]="cardFormEditText" (ngSubmit)="submitEditText()">
 
 
@@ -28,13 +29,16 @@
 
     <div>
       <button mat-raised-button type="submit" [disabled]="cardFormEditText.invalid">Speichern</button>
+      <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
+      <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
     </div>
 
     </form>
   }
+  <!-- //NOTE: SINGLE -->
   @if (selectedFlashcard?.type === 'SINGLE_CHOICE')
   {
-    <form [formGroup]="cardFormEditSingleChoice" (ngSubmit)="submitEditSingleChoice()">
+    <form class="form-edit-card" [formGroup]="cardFormEditSingleChoice" (ngSubmit)="submitEditSingleChoice()">
 
 
 
@@ -45,10 +49,12 @@
       </mat-form-field>
 
 
-      <div>
 
-        <div>
-          <p>Fragetyp: {{selectedFlashcard?.type | formatCardtype}}</p>
+
+          <p class="fragetyp-title">Fragetyp: {{selectedFlashcard?.type | formatCardtype}}</p>
+
+      <div>
+        <div class="answers-correct">
 
           <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
           <mat-form-field>
@@ -64,7 +70,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer2">Antwort 2</mat-label>
@@ -78,7 +84,7 @@
           </mat-form-field>
         </div>
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer3">Antwort 3</mat-label>
@@ -93,7 +99,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer4">Antwort 4</mat-label>
@@ -107,7 +113,7 @@
           </mat-form-field>
         </div>
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer5">Antwort 5</mat-label>
@@ -123,20 +129,24 @@
 
 
 
-        <mat-error>
+        <mat-error class="my-validation-errors">
           @if (cardFormEditSingleChoice.hasError('singleChoiceNotNull'))
           {
             {{ cardFormEditSingleChoice.getError('singleChoiceNotNull') }}
           }
         </mat-error>
 
+      </div>
+
       <div>
         <button mat-raised-button type="submit" [disabled]="cardFormEditSingleChoice.invalid">Speichern</button>
-      </div>
+        <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
+        <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
       </div>
 
     </form>
   }
+  <!-- //NOTE: MULTIPLE -->
   @if (selectedFlashcard?.type === 'MULTIPLE_CHOICE')
   {
     <form [formGroup]="cardFormEditMultipleChoice" (ngSubmit)="submitEditMultipleChoice()">
@@ -243,15 +253,19 @@
 
       </div>
 
-      <button mat-raised-button type="submit" [disabled]="cardFormEditMultipleChoice.invalid">Speichern</button>
+      <div class="cancel-delete-Btn-wrapper">
+        <button mat-raised-button type="submit" [disabled]="cardFormEditMultipleChoice.invalid">Speichern</button>
+        <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
+        <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
+      </div>
 
     </form>
   }
 
-  <div>
-    <button mat-raised-button [routerLink]="['/cards', selectedFlashcard?.id]">Abbrechen</button>
+  <!-- <div class="cancel-delete-Btn-wrapper">
+    <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
     <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
-  </div>
+  </div> -->
 
 
 

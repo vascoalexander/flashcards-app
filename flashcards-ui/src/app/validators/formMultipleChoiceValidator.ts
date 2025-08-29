@@ -48,7 +48,7 @@ export function formMultipleChoiceValidator(): ValidatorFn
     }
     else
     {
-      return { multipleChoiceNotNull: 'Mindestens 2 Häkchen müssen als richtige Antworten ausgewählt werden.' };
+      return { multipleChoiceNotNull: 'Mind. 2 Häkchen müssen als richtige Antworten ausgewählt werden.' };
     }
   }
 }

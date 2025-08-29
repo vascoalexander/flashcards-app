@@ -1,7 +1,7 @@
 import { Component, computed, inject, OnInit, Signal } from '@angular/core';
-import { Flashcard } from '../../flashcard.model';
+import { Flashcard } from '../../../flashcard.model';
 import { signal } from '@angular/core';
-import { FlashcardsService } from '../../flashcards.service';
+import { FlashcardsService } from '../../../flashcards.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -68,12 +68,12 @@ export class CardListComponent implements OnInit
 
   clickCardDetail(id: number)
   {
-    this.router.navigate(['/cards', id]);
+    this.router.navigate(['/cards/detail', id]);
   }
 
   clickAddCard()
   {
-    this.router.navigate(['/card/new']);
+    this.router.navigate(['/cards/create']);
   }
 }
 

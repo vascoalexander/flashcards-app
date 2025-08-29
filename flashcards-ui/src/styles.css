@@ -136,3 +136,6 @@ a, a:hover, a:active, a:visited {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-moz-selection { background: #92ADFE; color: #fff; }
+::selection { background: #92ADFE; color: #fff; }

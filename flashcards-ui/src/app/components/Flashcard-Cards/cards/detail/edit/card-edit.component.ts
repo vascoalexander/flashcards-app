@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FlashcardsService } from '../../flashcards.service';
+import { FlashcardsService } from '../../../../../flashcards.service';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
-import { Flashcard } from '../../flashcard.model';
+import { Flashcard } from '../../../../../flashcard.model';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -10,11 +10,11 @@ import { MatFormField, MatError, MatLabel } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { formMultipleChoiceValidator } from '../../validators/formMultipleChoiceValidator';
-import { formNoWhiteSpaceValidator } from '../../validators/formNoWhiteSpaceValidator';
-import { formMultipleChoiceMaxThreeRightValidator } from '../../validators/formMultipleChoiceMaxThreeRightValidator';
-import { formSingleChoiceValidator } from '../../validators/formSingleChoiceValidator';
-import { FormatCardtypePipe } from '../../pipes/format-cardtype.pipe';
+import { formMultipleChoiceValidator } from '../../../../../validators/formMultipleChoiceValidator';
+import { formNoWhiteSpaceValidator } from '../../../../../validators/formNoWhiteSpaceValidator';
+import { formMultipleChoiceMaxThreeRightValidator } from '../../../../../validators/formMultipleChoiceMaxThreeRightValidator';
+import { formSingleChoiceValidator } from '../../../../../validators/formSingleChoiceValidator';
+import { FormatCardtypePipe } from '../../../../../pipes/format-cardtype.pipe';
 
 
 @Component({
@@ -203,9 +203,8 @@ export class CardEditComponent implements OnInit
       };
     }
 
-
     //debug
-    console.log(newFlashcard);
+    // console.log(newFlashcard);
     try
     {
       await this.flashcardsService.updateFlashcard(this.id, newFlashcard);
@@ -216,8 +215,10 @@ export class CardEditComponent implements OnInit
     }
 
     this.cardFormEditText.reset();
-    this.router.navigate(['/cards', this.id]);
+    this.router.navigate(['/cards']);
   }
+
+
 
 
   async submitEditSingleChoice()
@@ -252,7 +253,7 @@ export class CardEditComponent implements OnInit
 
 
     //debug
-    console.log(newFlashcard);
+    // console.log(newFlashcard);
     try
     {
       await this.flashcardsService.updateFlashcard(this.id, newFlashcard);
@@ -262,9 +263,8 @@ export class CardEditComponent implements OnInit
       alert('Die Karte konnte nicht gespeichert werden. Bitte versuche es später erneut.');
     }
 
-
     this.cardFormEditSingleChoice.reset();
-    this.router.navigate(['/cards', this.id]);
+    this.router.navigate(['/cards']);
   }
 
 
@@ -300,7 +300,7 @@ export class CardEditComponent implements OnInit
 
 
     //debug
-    console.log(newFlashcard);
+    // console.log(newFlashcard);
     try
     {
       await this.flashcardsService.updateFlashcard(this.id, newFlashcard);
@@ -312,7 +312,7 @@ export class CardEditComponent implements OnInit
 
 
     this.cardFormEditMultipleChoice.reset();
-    this.router.navigate(['/cards', this.id]);
+    this.router.navigate(['/cards']);
   }
 
 

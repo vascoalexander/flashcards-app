@@ -11,7 +11,7 @@
       </mat-card-title>
 
       <div class="card-id-type-badge-wrapper">
-        <span>{{card?.id}}#</span>
+        <span>#{{card?.id}}</span>
       </div>
 
       <mat-card-subtitle>
@@ -48,7 +48,7 @@
 
     <mat-card-footer>
       <mat-chip-set class="back-edit-chips-container">
-        <mat-chip (click)="edit()"><a (click)="backBtn()">< Zurück</a></mat-chip>
+        <mat-chip (click)="backToCards()">< Zurück</mat-chip>
         <mat-chip (click)="edit()">Editieren</mat-chip>
       </mat-chip-set>
     </mat-card-footer>

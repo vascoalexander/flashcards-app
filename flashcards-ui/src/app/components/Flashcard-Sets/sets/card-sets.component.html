@@ -36,8 +36,8 @@
         </ng-template>
       </mat-nav-list>
     </div>
-    <div>
-       <button mat-stroked-button color="primary" class="hover-white" (click)="cancel()" >Zurück</button>
+    <div class="backBtn-wrapper">
+       <button mat-stroked-button color="primary" class="backBtn" (click)="cancel()" >< Zurück</button>
     </div>
   </mat-sidenav>
 
@@ -49,18 +49,20 @@
       </div>
 
       <ng-container *ngIf="selectedSet() as sel; else noSetSelected">
-    
+
         <div class="content-header">
           <h1>{{ sel.name }}</h1>
           <span class="spacer"></span>
-          <button mat-stroked-button class="hover-white" (click)="editSelected()">
-            <mat-icon>edit</mat-icon>
-            Set bearbeiten
-          </button>
-          <button mat-stroked-button  class="hover-white, backerror" (click)="removeSet()">
-            <mat-icon>delete</mat-icon>
-           Set löschen
-          </button>
+          <div class="sets-edit-delete-wrapper">
+            <button mat-stroked-button class="sets-edit-Btn" (click)="editSelected()">
+              <mat-icon>edit</mat-icon>
+              Set bearbeiten
+            </button>
+            <button mat-stroked-button  class="hover-white, backerror" (click)="removeSet()">
+              <mat-icon>delete</mat-icon>
+              Set löschen
+            </button>
+          </div>
         </div>
 
         <p *ngIf="sel.description; else noDesc" class="description">{{ sel.description }}</p>
