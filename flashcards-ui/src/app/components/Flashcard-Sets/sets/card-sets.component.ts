@@ -175,7 +175,6 @@ export class CardSetsComponent implements OnInit, OnDestroy {
     this.error.set(null);
     try {
       await this.setservice.deleteSet(id);
-      this.selectedSetCards.update(arr => arr.filter(s => s.id !== id));
       const left = this.setservice.sets();
       this.selectedId.set(left.length ? left[0].id : null);
     } catch (e: any) {
