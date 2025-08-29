@@ -29,6 +29,8 @@
 
     <div>
       <button mat-raised-button type="submit" [disabled]="cardFormEditText.invalid">Speichern</button>
+      <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
+      <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
     </div>
 
     </form>
@@ -138,6 +140,8 @@
 
       <div>
         <button mat-raised-button type="submit" [disabled]="cardFormEditSingleChoice.invalid">Speichern</button>
+        <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
+        <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
       </div>
 
     </form>
@@ -249,15 +253,19 @@
 
       </div>
 
-      <button mat-raised-button type="submit" [disabled]="cardFormEditMultipleChoice.invalid">Speichern</button>
+      <div class="cancel-delete-Btn-wrapper">
+        <button mat-raised-button type="submit" [disabled]="cardFormEditMultipleChoice.invalid">Speichern</button>
+        <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
+        <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
+      </div>
 
     </form>
   }
 
-  <div class="cancel-delete-Btn-wrapper">
+  <!-- <div class="cancel-delete-Btn-wrapper">
     <button mat-raised-button [routerLink]="['/cards/detail', selectedFlashcard?.id]">Abbrechen</button>
     <button mat-raised-button (click)="delete()" [routerLink]="['/cards', selectedFlashcard?.id]">Löschen</button>
-  </div>
+  </div> -->
 
 
 
