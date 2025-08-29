@@ -15,7 +15,8 @@
   align-items: center;
   text-align: center;
   gap: 24px;
-  max-width: 95vw;
+  // max-width: 95vw;
+
 }
 
 
@@ -74,8 +75,24 @@
 }
 
 
+// Tabelle Breite Inhalt Fix
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+.table-first-column {
+  border-right: 1px solid #1a1b1f;
+  width: 60px;
+}
+.table-content {
+  overflow-wrap: break-word;
+}
+
+
+
 @media (min-width: 1024px) {
+
   .card-list-container {
     max-width: 50vw;
-}
+  }
 }

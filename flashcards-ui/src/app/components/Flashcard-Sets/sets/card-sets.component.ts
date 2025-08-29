@@ -28,7 +28,7 @@ import { MatDialog } from '@angular/material/dialog';
 
   ],
   templateUrl: './card-sets.component.html',
-  styleUrl: './card-sets.component.css'
+  styleUrl: './card-sets.component.scss'
 })
 export class CardSetsComponent implements OnInit, OnDestroy {
 

@@ -1,7 +1,7 @@
 <div class="card-create-container">
   <h1>Neue Flashcard erstellen</h1>
 
-  <form [formGroup]="cardForm!" (ngSubmit)="submit()">
+  <form class="form-create-card" [formGroup]="cardForm!" (ngSubmit)="submit()">
 
 
     <mat-form-field>
@@ -13,7 +13,7 @@
 
 
     <!-- //TODO: nicht mit radio sondern -> mit chip siehe angular material examples aber aufwendiger -->
-    <p>Fragetyp:</p>
+    <p class="fragetyp-title">Fragetyp:</p>
     <mat-radio-group aria-label="Wählen Sie einen Fragetyp aus" [color]="'accent'" formControlName="type">
       <mat-radio-button value="MULTIPLE_CHOICE">Multiple Choice</mat-radio-button>
       <mat-radio-button value="SINGLE_CHOICE">Single Choice</mat-radio-button>
@@ -42,7 +42,7 @@
     @if (cardForm.get('type')?.value === 'MULTIPLE_CHOICE')
     {
       <div>
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer1">Antwort 1</mat-label>
@@ -57,7 +57,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer2">Antwort 2</mat-label>
@@ -72,7 +72,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer3">Antwort 3</mat-label>
@@ -87,7 +87,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer4">Antwort 4</mat-label>
@@ -102,7 +102,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer5">Antwort 5</mat-label>
@@ -118,7 +118,7 @@
 
 
 
-        <mat-error>
+        <mat-error class="my-validation-errors">
           @if (cardForm.hasError('multipleChoiceNotNull'))
           {
             {{ cardForm.getError('multipleChoiceNotNull') }}
@@ -139,7 +139,7 @@
     @if (cardForm.get('type')?.value === 'SINGLE_CHOICE')
     {
       <div>
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect1"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer1">Antwort 1</mat-label>
@@ -154,7 +154,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect2"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer2">Antwort 2</mat-label>
@@ -169,7 +169,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect3"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer3">Antwort 3</mat-label>
@@ -184,7 +184,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect4"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer4">Antwort 4</mat-label>
@@ -199,7 +199,7 @@
         </div>
 
 
-        <div>
+        <div class="answers-correct">
           <mat-checkbox formControlName="createCorrect5"></mat-checkbox>
           <mat-form-field>
             <mat-label for="createAnswer5">Antwort 5</mat-label>
@@ -215,7 +215,7 @@
 
 
 
-        <mat-error>
+        <mat-error class="my-validation-errors">
           @if (cardForm.hasError('singleChoiceNotNull'))
           {
             {{ cardForm.getError('singleChoiceNotNull') }}

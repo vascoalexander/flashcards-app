@@ -33,10 +33,19 @@ mat-card-header {
   margin-bottom: 30px;
 }
 
+
+//testweise zum ausprobieren: Wenn Title sehr viele Zeichen hat,
+//dann breitet sich der Container aus. Dies verhindert es. (.card-detail und mat-card-title)
+.card-detail {
+  max-width: 90vw;
+}
 mat-card-title {
   display: flex;
   // margin-bottom: 10px;
+  white-space: normal;
+  word-break: break-word;
 }
+
 
 .card-detail-type-badge {
   display: inline;

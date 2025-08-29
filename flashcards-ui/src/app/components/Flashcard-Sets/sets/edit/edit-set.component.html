@@ -13,12 +13,12 @@
   </mat-toolbar>
 
   <mat-card-content>
-    
+
     <fieldset [disabled]="loading() || saving() " >
-      <mat-form-field appearance="outline" style="width:100%; ">
-        
+      <mat-form-field appearance="outline">
+
         <mat-label>Name</mat-label>
-        
+
         <input
           matInput
           [value]="name()"
@@ -27,7 +27,7 @@
         <mat-error *ngIf="!name().trim()">Name ist erforderlich</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" style="width:100%;">
+      <mat-form-field appearance="outline">
         <mat-label>Beschreibung</mat-label>
         <textarea
           matInput
@@ -36,7 +36,7 @@
           (input)="description.set($any($event.target).value)"></textarea>
       </mat-form-field>
 
-     
+
 
       <h3 class="mat-h3">Verfügbare Karten auswählen ({{cardsAvailable().length}})</h3>
       <mat-selection-list #availableCardsList>

@@ -23,7 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatProgressBarModule, MatCardModule, MatDividerModule, MatGridListModule],
   templateUrl: './edit-set.component.html',
-  styleUrl: './edit-set.component.css'
+  styleUrl: './edit-set.component.scss'
 })
 
 
